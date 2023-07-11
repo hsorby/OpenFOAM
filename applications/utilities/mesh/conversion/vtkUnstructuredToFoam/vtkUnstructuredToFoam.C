@@ -42,7 +42,7 @@ Note
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "IFstream.H"
 #include "vtkUnstructuredReader.H"

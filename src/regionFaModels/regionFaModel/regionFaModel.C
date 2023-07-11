@@ -27,7 +27,7 @@ License
 
 #include "regionFaModel.H"
 #include "faMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "mappedWallPolyPatch.H"
 #include "zeroGradientFvPatchFields.H"
 

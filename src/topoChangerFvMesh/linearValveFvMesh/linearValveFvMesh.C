@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "linearValveFvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "slidingInterface.H"
 #include "mapPolyMesh.H"
 #include "polyTopoChange.H"

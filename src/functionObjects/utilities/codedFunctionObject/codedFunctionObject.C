@@ -29,7 +29,7 @@ License
 #include "codedFunctionObject.H"
 #include "volFields.H"
 #include "dictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "dynamicCode.H"
 #include "dynamicCodeContext.H"
 #include "dictionaryContent.H"

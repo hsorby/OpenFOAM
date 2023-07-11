@@ -29,7 +29,7 @@ License
 #include "fieldToCell.H"
 #include "polyMesh.H"
 #include "cellSet.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IFstream.H"
 #include "fieldDictionary.H"
 #include "addToRunTimeSelectionTable.H"

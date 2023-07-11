@@ -32,7 +32,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "searchableSphere.H"
 #include "unitConversion.H"
 #include "Random.H"

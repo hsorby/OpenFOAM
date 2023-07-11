@@ -34,7 +34,7 @@ Description
 
 #include "PatchTools.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OBJstream.H"
 
 using namespace Foam;

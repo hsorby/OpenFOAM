@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "engineMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * Selectors * * * * * * * * * * * * * * * * //
 

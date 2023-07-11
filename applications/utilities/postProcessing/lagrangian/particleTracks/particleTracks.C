@@ -40,7 +40,7 @@ Description
 #include "Cloud.H"
 #include "IOdictionary.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "timeSelector.H"
 #include "coordSetWriter.H"
 #include "passiveParticleCloud.H"

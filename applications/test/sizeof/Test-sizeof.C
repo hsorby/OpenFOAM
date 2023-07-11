@@ -36,7 +36,7 @@ Description
 #include "IOstreams.H"
 #include "PstreamBuffers.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOobject.H"
 #include "scalarField.H"
 

@@ -57,7 +57,7 @@ See also
 
 #include "argList.H"
 #include "timeSelector.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "STARCDMeshWriter.H"
 #include "IOdictionary.H"

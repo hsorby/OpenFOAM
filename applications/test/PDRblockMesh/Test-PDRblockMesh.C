@@ -29,7 +29,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "PDRblock.H"
 
 using namespace Foam;

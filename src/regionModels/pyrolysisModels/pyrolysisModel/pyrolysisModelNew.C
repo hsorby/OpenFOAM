@@ -28,7 +28,7 @@ License
 
 #include "pyrolysisModel.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

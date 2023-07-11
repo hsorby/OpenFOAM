@@ -29,7 +29,7 @@ License
 #include "cyclicAMIFvPatch.H"
 #include "addToRunTimeSelectionTable.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "transform.H"
 #include "surfaceFields.H"
 

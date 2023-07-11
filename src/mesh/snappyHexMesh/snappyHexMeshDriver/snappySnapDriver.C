@@ -34,7 +34,7 @@ Description
 #include "polyTopoChange.H"
 #include "syncTools.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OFstream.H"
 #include "OBJstream.H"
 #include "mapPolyMesh.H"

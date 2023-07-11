@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "FUNCTIONOBJECT.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvMesh.H"
 #include "addToRunTimeSelectionTable.H"
 

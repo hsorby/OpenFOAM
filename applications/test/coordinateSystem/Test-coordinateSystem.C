@@ -32,7 +32,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "coordinateSystems.H"
 #include "identityRotation.H"
 #include "cartesianCS.H"

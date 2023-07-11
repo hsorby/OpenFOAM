@@ -32,7 +32,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Switch.H"
 #include "primitiveFields.H"
 #include "pointField.H"

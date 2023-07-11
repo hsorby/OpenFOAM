@@ -31,7 +31,7 @@ License
 // For debugging
 #include "OBJstream.H"
 #include "PatchTools.H"
-#include "Time.H"
+#include "TimeFoam.H"
 // Note: cannot use vtkSurfaceWriter here - circular linkage
 // but foamVtkSurfaceWriter (vtk::surfaceWriter) would be okay.
 //

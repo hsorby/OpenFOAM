@@ -30,7 +30,7 @@ License
 #include "addToRunTimeSelectionTable.H"
 #include "triSurfaceMesh.H"
 #include "triSurfaceFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

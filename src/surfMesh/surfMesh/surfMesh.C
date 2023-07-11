@@ -30,7 +30,7 @@ License
 #include "meshedSurf.H"
 #include "MeshedSurfaceProxy.H"
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OSspecific.H"
 #include "MeshedSurface.H"
 

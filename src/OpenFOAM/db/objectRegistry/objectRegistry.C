@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "objectRegistry.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "predicates.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

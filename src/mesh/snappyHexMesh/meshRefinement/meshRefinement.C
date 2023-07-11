@@ -31,7 +31,7 @@ License
 #include "volFields.H"
 #include "surfaceMesh.H"
 #include "syncTools.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "refinementSurfaces.H"
 #include "refinementFeatures.H"
 #include "decompositionMethod.H"

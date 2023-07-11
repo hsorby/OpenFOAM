@@ -74,7 +74,7 @@ Usage
 
 #include "argList.H"
 #include "timeSelector.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvMesh.H"
 #include "globalMeshData.H"
 #include "vtkCoordSetWriter.H"

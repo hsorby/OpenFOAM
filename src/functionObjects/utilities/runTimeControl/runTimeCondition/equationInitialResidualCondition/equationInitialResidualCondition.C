@@ -29,7 +29,7 @@ License
 #include "equationInitialResidualCondition.H"
 #include "addToRunTimeSelectionTable.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "volFields.H"
 
 #define SetResidual(Type)                                                     \

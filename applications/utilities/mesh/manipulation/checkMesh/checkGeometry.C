@@ -16,7 +16,7 @@
 
 #include "cyclicACMIPolyPatch.H"
 #include "mappedPatchBase.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // Find wedge with opposite orientation. Note: does not actually check that
 // it is opposite, only that it has opposite normal and same axis

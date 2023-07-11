@@ -1,7 +1,7 @@
 #ifndef fvCFD_H
 #define fvCFD_H
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvMesh.H"
 #include "fvc.H"
 #include "fvMatrices.H"

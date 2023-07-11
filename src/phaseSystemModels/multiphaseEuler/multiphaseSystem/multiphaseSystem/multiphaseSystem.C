@@ -29,7 +29,7 @@ License
 #include "multiphaseSystem.H"
 #include "alphaContactAngleFvPatchScalarField.H"
 #include "fixedValueFvsPatchFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "subCycle.H"
 #include "MULES.H"
 #include "surfaceInterpolate.H"

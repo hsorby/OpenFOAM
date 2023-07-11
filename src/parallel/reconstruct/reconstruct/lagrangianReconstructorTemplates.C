@@ -28,7 +28,7 @@ License
 
 #include "IOField.H"
 #include "CompactIOField.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 

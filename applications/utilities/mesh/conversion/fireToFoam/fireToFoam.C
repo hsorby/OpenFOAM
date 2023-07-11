@@ -50,7 +50,7 @@ Usage
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "FIREMeshReader.H"
 #include "checkFireEdges.H"
 

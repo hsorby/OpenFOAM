@@ -28,7 +28,7 @@ License
 
 #include "refinementIterator.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "refineCell.H"
 #include "undoableMeshCutter.H"
 #include "polyTopoChange.H"

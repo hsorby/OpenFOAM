@@ -46,7 +46,7 @@ Description
 #include "MeshedSurface.H"
 #include "UnsortedMeshedSurface.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "emptyPolyPatch.H"
 #include "processorPolyPatch.H"

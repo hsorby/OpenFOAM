@@ -30,7 +30,7 @@ License
 #include "surfaceFields.H"
 #include "polySurfaceFields.H"
 #include "dictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "syncTools.H"
 #include "meshTools.H"
 #include "PatchEdgeFaceWave.H"

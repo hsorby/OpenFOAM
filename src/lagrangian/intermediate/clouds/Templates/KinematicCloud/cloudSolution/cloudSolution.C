@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "cloudSolution.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "localEulerDdtScheme.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //

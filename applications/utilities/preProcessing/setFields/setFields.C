@@ -36,7 +36,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvMesh.H"
 #include "faMesh.H"
 #include "topoSetSource.H"

@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "string.H"
+#include "stringfoam.H"
 #include "stringOps.H"
 #include "word.H"
 #include "wordRe.H"

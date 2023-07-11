@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "parLagrangianDistributor.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOobjectList.H"
 #include "mapDistributePolyMesh.H"
 #include "cloud.H"

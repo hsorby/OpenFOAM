@@ -28,7 +28,7 @@ License
 
 #include "schemesLookup.H"
 #include "Switch.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

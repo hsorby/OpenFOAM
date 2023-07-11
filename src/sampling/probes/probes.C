@@ -30,7 +30,7 @@ License
 #include "dictionary.H"
 #include "volFields.H"
 #include "surfaceFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOmanip.H"
 #include "mapPolyMesh.H"
 #include "addToRunTimeSelectionTable.H"

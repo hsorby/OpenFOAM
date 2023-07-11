@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "dimensionedType.H"
 #include "fvcDdt.H"
 

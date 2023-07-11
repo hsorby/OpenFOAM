@@ -35,7 +35,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "clockTime.H"
 #include "primitiveFields.H"
 #include "surfaceReader.H"

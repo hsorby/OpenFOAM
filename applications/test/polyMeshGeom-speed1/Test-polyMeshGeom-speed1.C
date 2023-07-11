@@ -30,7 +30,7 @@ Description
 
 #include "argList.H"
 #include "clockTime.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "PDRblock.H"
 #include "polyMesh.H"
 #include "ListOps.H"

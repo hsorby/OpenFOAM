@@ -34,7 +34,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "ListOps.H"
 #include "face.H"

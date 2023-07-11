@@ -29,7 +29,7 @@ License
 #include "coordinateSystems.H"
 #include "predicates.H"
 #include "PtrListOps.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

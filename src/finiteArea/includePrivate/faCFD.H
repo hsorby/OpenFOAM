@@ -1,7 +1,7 @@
 #ifndef faCFD_H
 #define faCFD_H
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "faMesh.H"
 #include "areaFields.H"
 #include "edgeFields.H"

@@ -31,7 +31,7 @@ License
 #include "stringOps.H"
 #include "IFstream.H"
 #include "IOstreams.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fileOperation.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

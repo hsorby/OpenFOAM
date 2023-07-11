@@ -39,7 +39,7 @@ Description
 #include "joints.H"
 #include "IFstream.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 using namespace Foam;
 using namespace RBD;

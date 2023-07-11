@@ -30,7 +30,7 @@ License
 #include "dynamicCode.H"
 #include "dynamicCodeContext.H"
 #include "StringStream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "addToMemberFunctionSelectionTable.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

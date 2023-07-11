@@ -40,7 +40,7 @@ Description
 #include "Fstream.H"
 #include "constants.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 using namespace Foam;
 using namespace RBD;

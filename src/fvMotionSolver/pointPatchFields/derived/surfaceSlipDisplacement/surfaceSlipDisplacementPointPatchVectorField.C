@@ -28,7 +28,7 @@ License
 
 #include "surfaceSlipDisplacementPointPatchVectorField.H"
 #include "addToRunTimeSelectionTable.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "transformField.H"
 #include "fvMesh.H"
 #include "displacementMotionSolver.H"

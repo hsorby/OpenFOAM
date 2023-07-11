@@ -51,7 +51,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyTopoChange.H"
 #include "cellCuts.H"
 #include "cellSet.H"

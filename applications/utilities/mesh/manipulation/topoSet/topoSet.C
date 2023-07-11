@@ -37,7 +37,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "topoSetSource.H"
 #include "globalMeshData.H"

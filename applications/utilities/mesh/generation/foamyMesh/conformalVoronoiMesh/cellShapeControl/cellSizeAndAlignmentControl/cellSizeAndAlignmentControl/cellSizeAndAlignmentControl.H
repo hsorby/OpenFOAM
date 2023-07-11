@@ -39,7 +39,7 @@ SourceFiles
 
 #include "dictionary.H"
 #include "conformationSurfaces.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "quaternion.H"
 #include "triadField.H"
 

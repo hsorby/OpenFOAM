@@ -43,7 +43,7 @@ SourceFiles
 #ifndef Foam_word_H
 #define Foam_word_H
 
-#include "string.H"
+#include "stringfoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

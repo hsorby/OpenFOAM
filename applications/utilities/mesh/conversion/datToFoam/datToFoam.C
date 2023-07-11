@@ -37,7 +37,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Fstream.H"
 #include "polyMesh.H"
 #include "unitConversion.H"

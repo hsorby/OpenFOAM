@@ -31,7 +31,7 @@ License
 
 using std::ios;
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fluentFvMesh.H"
 #include "primitiveMesh.H"
 #include "wallFvPatch.H"

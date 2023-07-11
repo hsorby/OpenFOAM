@@ -39,7 +39,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "polyMeshZipUpCells.H"
 #include "boolList.H"

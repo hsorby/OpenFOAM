@@ -69,7 +69,7 @@ Usage
 
 \*---------------------------------------------------------------------------*/
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOdictionary.H"
 #include "IOPtrList.H"
 

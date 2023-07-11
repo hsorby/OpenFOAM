@@ -30,7 +30,7 @@ License
 
 #include "IOMRFZoneList.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * * //
 

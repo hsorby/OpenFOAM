@@ -32,7 +32,7 @@ License
 #include "constrainHbyA.H"
 #include "constrainPressure.H"
 #include "adjustPhi.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvOptions.H"
 #include "addToRunTimeSelectionTable.H"
 

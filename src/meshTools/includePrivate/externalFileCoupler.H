@@ -94,7 +94,7 @@ SourceFiles
 
 #include "fileName.H"
 #include "dictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

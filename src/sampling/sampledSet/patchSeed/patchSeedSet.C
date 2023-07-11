@@ -31,7 +31,7 @@ License
 #include "addToRunTimeSelectionTable.H"
 #include "treeBoundBox.H"
 #include "treeDataFace.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "meshTools.H"
 #include "mappedPatchBase.H"
 #include "indirectPrimitivePatch.H"

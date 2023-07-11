@@ -44,7 +44,7 @@ SourceFiles
 #include "point.H"
 #include "primitiveFieldsFwd.H"
 #include "pointFieldFwd.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "searchableSurfaces.H"
 #include "conformationSurfaces.H"
 #include "cellAspectRatioControl.H"

@@ -30,7 +30,7 @@ License
 #include "IOobject.H"
 #include "IFstream.H"
 #include "clock.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "featureEdgeMesh.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //

@@ -53,7 +53,7 @@ Usage
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "timeSelector.H"
 #include "polyTopoChange.H"
 #include "fvMesh.H"

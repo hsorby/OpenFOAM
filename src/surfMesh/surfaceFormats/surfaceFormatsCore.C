@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "surfaceFormatsCore.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "ListOps.H"
 #include "surfMesh.H"
 #include "stringListOps.H"

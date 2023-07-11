@@ -27,7 +27,7 @@ License
 
 #include "meshRefinement.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "refinementSurfaces.H"
 #include "removeCells.H"
 #include "unitConversion.H"

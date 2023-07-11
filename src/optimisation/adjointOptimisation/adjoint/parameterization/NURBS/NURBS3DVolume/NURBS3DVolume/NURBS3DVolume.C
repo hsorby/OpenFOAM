@@ -31,7 +31,7 @@ License
 #include "NURBS3DVolume.H"
 
 #include "OFstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "deltaBoundary.H"
 #include "coupledFvPatch.H"
 #include "controlPointsDefinition.H"

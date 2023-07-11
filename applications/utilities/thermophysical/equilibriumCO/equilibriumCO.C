@@ -35,7 +35,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "dictionary.H"
 #include "IFstream.H"
 #include "OSspecific.H"

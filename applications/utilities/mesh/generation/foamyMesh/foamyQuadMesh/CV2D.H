@@ -120,7 +120,7 @@ SourceFiles
 #define CGAL_HIERARCHY
 
 #include "CGALTriangulation2Ddefs.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "point2DFieldFwd.H"
 #include "dictionary.H"
 #include "Switch.H"

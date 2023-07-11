@@ -90,7 +90,7 @@ SourceFiles
 #define functionObjects_abort_H
 
 #include "timeFunctionObject.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

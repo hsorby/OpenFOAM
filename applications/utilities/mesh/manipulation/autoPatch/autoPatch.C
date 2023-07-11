@@ -37,7 +37,7 @@ Description
 
 #include "argList.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "boundaryMesh.H"
 #include "repatchPolyTopoChanger.H"
 #include "unitConversion.H"

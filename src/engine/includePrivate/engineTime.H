@@ -38,7 +38,7 @@ SourceFiles
 #ifndef engineTime_H
 #define engineTime_H
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOdictionary.H"
 #include "dimensionedScalar.H"
 #include "runTimeSelectionTables.H"

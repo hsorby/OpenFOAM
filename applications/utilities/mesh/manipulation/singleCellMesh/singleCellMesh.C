@@ -43,7 +43,7 @@ Description
 #include "argList.H"
 #include "fvMesh.H"
 #include "volFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "ReadFields.H"
 #include "singleCellFvMesh.H"
 #include "timeSelector.H"

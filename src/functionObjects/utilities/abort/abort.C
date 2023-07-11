@@ -29,7 +29,7 @@ License
 #include "abort.H"
 #include "dictionary.H"
 #include "error.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OSspecific.H"
 #include "PstreamReduceOps.H"
 #include "addToRunTimeSelectionTable.H"

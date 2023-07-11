@@ -35,7 +35,7 @@ Description
 #include "globalIndex.H"
 #include "globalMeshData.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "IndirectList.H"
 #include "IOstreams.H"

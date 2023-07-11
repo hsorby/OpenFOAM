@@ -46,7 +46,7 @@ Description
 
 #include "argList.H"
 #include "timeSelector.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "OFstream.H"
 #include "meshTools.H"

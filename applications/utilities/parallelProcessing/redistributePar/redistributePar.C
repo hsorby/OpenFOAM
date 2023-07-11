@@ -74,7 +74,7 @@ Usage
 
 #include "argList.H"
 #include "sigFpe.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvMesh.H"
 #include "fvMeshTools.H"
 #include "fvMeshDistribute.H"

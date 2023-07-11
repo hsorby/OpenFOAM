@@ -41,7 +41,7 @@ SourceFiles
 #include "IOdictionary.H"
 #include "pointField.H"
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

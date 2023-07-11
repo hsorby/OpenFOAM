@@ -27,7 +27,7 @@ License
 
 #include "kahipDecomp.H"
 #include "addToRunTimeSelectionTable.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "PrecisionAdaptor.H"
 #include <map>
 #include <string>

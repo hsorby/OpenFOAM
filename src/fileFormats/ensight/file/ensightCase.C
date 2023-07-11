@@ -27,7 +27,7 @@ License
 
 #include "ensightCase.H"
 #include "ensightGeoFile.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "cloud.H"
 #include "IOmanip.H"
 #include "OSstream.H"

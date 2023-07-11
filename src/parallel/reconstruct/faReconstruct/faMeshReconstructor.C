@@ -30,7 +30,7 @@ License
 #include "globalMeshData.H"
 #include "edgeHashes.H"
 #include "ignoreFaPatch.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

@@ -35,7 +35,7 @@ Description
 #include "syncTools.H"
 #include "argList.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Random.H"
 #include "PackedList.H"
 #include "flipOp.H"

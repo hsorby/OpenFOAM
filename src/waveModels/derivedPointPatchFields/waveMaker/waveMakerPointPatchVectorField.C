@@ -30,7 +30,7 @@ License
 #include "mathematicalConstants.H"
 #include "pointPatchFields.H"
 #include "addToRunTimeSelectionTable.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "gravityMeshObject.H"
 
 #include "polyMesh.H"

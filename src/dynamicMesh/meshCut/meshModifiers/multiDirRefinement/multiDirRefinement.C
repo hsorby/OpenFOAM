@@ -28,7 +28,7 @@ License
 
 #include "multiDirRefinement.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "undoableMeshCutter.H"
 #include "hexCellLooper.H"
 #include "geomCellLooper.H"

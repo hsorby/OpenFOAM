@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "boundaryInfo.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "processorPolyPatch.H"
 

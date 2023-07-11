@@ -29,7 +29,7 @@ License
 #include "addToRunTimeSelectionTable.H"
 #include "syncTools.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "BitOps.H"
 #include "faceBoolSet.H"
 

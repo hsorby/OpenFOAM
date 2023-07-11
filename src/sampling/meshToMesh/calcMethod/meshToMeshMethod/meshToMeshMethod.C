@@ -29,7 +29,7 @@ License
 #include "meshToMeshMethod.H"
 #include "tetOverlapVolume.H"
 #include "OFstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "treeBoundBox.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

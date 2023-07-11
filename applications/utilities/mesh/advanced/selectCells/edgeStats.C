@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "edgeStats.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "Ostream.H"
 #include "twoDPointCorrector.H"

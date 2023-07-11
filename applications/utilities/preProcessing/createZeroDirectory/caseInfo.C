@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "caseInfo.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "boundaryInfo.H"
 #include "boundaryTemplates.H"
 

@@ -30,7 +30,7 @@ License
 #include "meshSearch.H"
 #include "conformationSurfaces.H"
 #include "zeroGradientFvPatchFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Random.H"
 #include "pointConversion.H"
 #include "decompositionModel.H"

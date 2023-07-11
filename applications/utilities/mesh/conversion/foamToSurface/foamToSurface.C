@@ -48,7 +48,7 @@ Usage
 
 #include "argList.H"
 #include "timeSelector.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "IOdictionary.H"
 #include "MeshedSurfaces.H"

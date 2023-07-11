@@ -46,7 +46,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IFstream.H"
 #include "hexBlock.H"
 #include "polyMesh.H"

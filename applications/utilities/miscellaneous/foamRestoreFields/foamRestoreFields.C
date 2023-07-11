@@ -67,7 +67,7 @@ Usage
 #include "stringOps.H"
 #include "regionProperties.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 using namespace Foam;
 

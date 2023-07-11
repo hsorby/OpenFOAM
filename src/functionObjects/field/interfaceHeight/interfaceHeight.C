@@ -32,7 +32,7 @@ License
 #include "IOmanip.H"
 #include "meshSearch.H"
 #include "midPointAndFaceSet.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "uniformDimensionedFields.H"
 #include "volFields.H"
 #include "addToRunTimeSelectionTable.H"

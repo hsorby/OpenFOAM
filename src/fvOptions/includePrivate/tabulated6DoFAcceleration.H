@@ -43,7 +43,7 @@ SourceFiles
 
 #include "primitiveFields.H"
 #include "Vector2D.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

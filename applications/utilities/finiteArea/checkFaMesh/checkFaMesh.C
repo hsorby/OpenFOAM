@@ -36,7 +36,7 @@ Original Authors
 
 \*---------------------------------------------------------------------------*/
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "argList.H"
 #include "faMesh.H"
 #include "polyMesh.H"

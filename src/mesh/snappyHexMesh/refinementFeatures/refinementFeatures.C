@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "refinementFeatures.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Tuple2.H"
 #include "DynamicField.H"
 #include "featureEdgeMesh.H"

@@ -33,7 +33,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "timeSelector.H"
 #include "volFields.H"
 #include "IOobjectList.H"

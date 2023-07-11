@@ -28,7 +28,7 @@ License
 
 #include "regionProperties.H"
 #include "IOdictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 

@@ -31,7 +31,7 @@ License
 #include "triSurfaceMesh.H"
 #include "foamVtkSurfaceWriter.H"
 #include "primitivePatchInterpolation.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

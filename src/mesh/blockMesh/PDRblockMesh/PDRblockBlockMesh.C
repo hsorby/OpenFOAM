@@ -29,7 +29,7 @@ License
 #include "ListOps.H"
 #include "gradingDescriptors.H"
 #include "objectRegistry.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOdictionary.H"
 #include "Fstream.H"
 #include "OTstream.H"

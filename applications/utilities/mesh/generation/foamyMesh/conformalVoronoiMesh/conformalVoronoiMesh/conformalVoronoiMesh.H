@@ -50,7 +50,7 @@ SourceFiles
 #include "cvControls.H"
 #include "DynamicList.H"
 #include "bitSet.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "plane.H"
 #include "meshTools.H"

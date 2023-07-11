@@ -27,7 +27,7 @@ License
 
 #include "codedPoints0MotionSolver.H"
 #include "dictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "dynamicCode.H"
 #include "addToRunTimeSelectionTable.H"
 

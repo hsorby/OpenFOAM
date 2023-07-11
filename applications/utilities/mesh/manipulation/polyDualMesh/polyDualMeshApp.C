@@ -64,7 +64,7 @@ Note
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvMesh.H"
 #include "unitConversion.H"
 #include "polyTopoChange.H"

@@ -33,7 +33,7 @@ Description
 #include "IOobjectList.H"
 #include "IOstreams.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 using namespace Foam;
 

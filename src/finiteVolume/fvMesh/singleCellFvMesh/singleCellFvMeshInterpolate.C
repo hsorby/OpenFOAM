@@ -28,7 +28,7 @@ License
 #include "singleCellFvMesh.H"
 #include "calculatedFvPatchFields.H"
 #include "directFvPatchFieldMapper.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

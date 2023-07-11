@@ -28,7 +28,7 @@ License
 
 #include "decompositionModel.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

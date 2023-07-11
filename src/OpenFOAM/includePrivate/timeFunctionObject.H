@@ -41,7 +41,7 @@ SourceFiles
 #define functionObjects_timeFunctionObject_H
 
 #include "functionObject.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

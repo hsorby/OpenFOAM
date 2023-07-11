@@ -29,7 +29,7 @@ License
 #include "readFields.H"
 #include "volFields.H"
 #include "surfaceFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * * //
 

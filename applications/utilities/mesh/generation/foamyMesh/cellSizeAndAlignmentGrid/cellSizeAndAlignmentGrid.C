@@ -37,7 +37,7 @@ Description
 #include "indexedCell.H"
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "DistributedDelaunayMesh.H"
 #include "backgroundMeshDecomposition.H"
 #include "searchableSurfaces.H"

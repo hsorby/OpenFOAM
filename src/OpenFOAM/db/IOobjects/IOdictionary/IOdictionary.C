@@ -29,7 +29,7 @@ License
 #include "IOdictionary.H"
 #include "objectRegistry.H"
 #include "Pstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 

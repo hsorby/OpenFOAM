@@ -39,7 +39,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "syncTools.H"
 #include "patchFaceOrientation.H"
 #include "PatchEdgeFaceWave.H"

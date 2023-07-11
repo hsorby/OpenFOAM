@@ -29,7 +29,7 @@ License
 #include "uniformInterpolatedDisplacementPointPatchVectorField.H"
 #include "pointFields.H"
 #include "addToRunTimeSelectionTable.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "interpolationWeights.H"
 #include "uniformInterpolate.H"

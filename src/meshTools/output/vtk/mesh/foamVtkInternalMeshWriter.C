@@ -27,7 +27,7 @@ License
 
 #include "foamVtkInternalMeshWriter.H"
 #include "globalIndex.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

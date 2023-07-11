@@ -28,7 +28,7 @@ License
 
 #include "VTKedgeFormat.H"
 #include "Fstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "foamVtkLineWriter.H"
 #include "vtkUnstructuredReader.H"
 

@@ -28,7 +28,7 @@ License
 
 #include "searchableSurfaceWithGaps.H"
 #include "addToRunTimeSelectionTable.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "ListOps.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

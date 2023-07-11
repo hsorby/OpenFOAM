@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "instant.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Pair.H"
 #include "UList.H"
 #include <cstdlib>  // std::atof

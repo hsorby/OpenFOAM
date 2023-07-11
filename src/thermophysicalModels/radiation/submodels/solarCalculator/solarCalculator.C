@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "solarCalculator.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "unitConversion.H"
 #include "constants.H"
 

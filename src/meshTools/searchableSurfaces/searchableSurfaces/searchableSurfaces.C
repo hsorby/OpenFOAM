@@ -29,7 +29,7 @@ License
 #include "searchableSurfaces.H"
 #include "searchableSurfacesQueries.H"
 #include "ListOps.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "DynamicField.H"
 #include "PatchTools.H"
 #include "coordSetWriter.H"

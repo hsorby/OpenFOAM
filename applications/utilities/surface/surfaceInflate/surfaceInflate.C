@@ -53,7 +53,7 @@ Usage
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "triSurfaceFields.H"
 #include "triSurfaceMesh.H"
 #include "triSurfaceGeoMesh.H"

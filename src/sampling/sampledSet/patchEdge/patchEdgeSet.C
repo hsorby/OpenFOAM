@@ -29,7 +29,7 @@ License
 #include "polyMesh.H"
 #include "addToRunTimeSelectionTable.H"
 #include "searchableSurface.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "mergePoints.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

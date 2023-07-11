@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "timeActivatedFileUpdate.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "addToRunTimeSelectionTable.H"
 

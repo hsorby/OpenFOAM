@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "string.H"
+#include "stringfoam.H"
 #include "token.H"
 #include "IOstreams.H"
 

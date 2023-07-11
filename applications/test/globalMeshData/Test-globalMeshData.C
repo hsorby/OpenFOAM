@@ -34,7 +34,7 @@ Description
 #include "globalMeshData.H"
 #include "argList.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "mapDistribute.H"
 
 using namespace Foam;

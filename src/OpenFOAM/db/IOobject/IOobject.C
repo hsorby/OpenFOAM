@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "IOobject.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Istream.H"
 #include "registerSwitch.H"
 

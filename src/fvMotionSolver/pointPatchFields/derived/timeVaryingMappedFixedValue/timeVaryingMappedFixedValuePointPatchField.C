@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "timeVaryingMappedFixedValuePointPatchField.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "rawIOField.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //

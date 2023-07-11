@@ -41,7 +41,7 @@ License
 #include "pointSet.H"
 #include "labelPairHashes.H"
 #include "OFstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "FaceCellWave.H"
 #include "mapDistributePolyMesh.H"
 #include "refinementData.H"

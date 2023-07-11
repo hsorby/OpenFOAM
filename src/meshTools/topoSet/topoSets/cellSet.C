@@ -29,7 +29,7 @@ License
 #include "cellSet.H"
 #include "mapPolyMesh.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "addToRunTimeSelectionTable.H"
 #include "mapDistributePolyMesh.H"
 

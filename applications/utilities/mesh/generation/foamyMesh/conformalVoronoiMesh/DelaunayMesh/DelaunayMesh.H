@@ -43,7 +43,7 @@ SourceFiles
 #include "boundBox.H"
 #include "indexedVertex.H"
 #include "CGALTriangulation3Ddefs.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "autoPtr.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

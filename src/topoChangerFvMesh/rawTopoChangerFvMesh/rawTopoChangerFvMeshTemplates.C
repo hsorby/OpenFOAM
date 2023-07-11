@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "rawTopoChangerFvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 

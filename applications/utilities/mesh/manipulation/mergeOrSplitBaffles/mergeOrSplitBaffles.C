@@ -63,7 +63,7 @@ Note
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "syncTools.H"
 #include "faceSet.H"
 #include "pointSet.H"

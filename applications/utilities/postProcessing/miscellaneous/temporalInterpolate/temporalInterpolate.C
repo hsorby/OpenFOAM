@@ -39,7 +39,7 @@ Description
 #include "timeSelector.H"
 
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "volMesh.H"
 #include "surfaceMesh.H"
 #include "volFields.H"

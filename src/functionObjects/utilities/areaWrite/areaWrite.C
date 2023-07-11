@@ -33,7 +33,7 @@ License
 #include "areaFields.H"
 #include "HashOps.H"
 #include "ListOps.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IndirectList.H"
 #include "addToRunTimeSelectionTable.H"
 

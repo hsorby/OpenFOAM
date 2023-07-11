@@ -29,7 +29,7 @@ License
 #include "PDRmeshArrays.H"
 #include "PDRblock.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IjkField.H"
 
 // Notes

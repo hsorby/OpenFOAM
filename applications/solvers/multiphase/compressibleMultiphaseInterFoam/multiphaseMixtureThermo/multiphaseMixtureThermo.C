@@ -28,7 +28,7 @@ License
 
 #include "multiphaseMixtureThermo.H"
 #include "alphaContactAngleFvPatchScalarField.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "subCycle.H"
 #include "MULES.H"
 #include "fvcDiv.H"

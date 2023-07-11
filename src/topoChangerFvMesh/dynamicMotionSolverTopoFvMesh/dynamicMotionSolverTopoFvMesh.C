@@ -29,7 +29,7 @@ License
 #include "dynamicMotionSolverTopoFvMesh.H"
 #include "mapPolyMesh.H"
 #include "OBJstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "surfaceFields.H"
 #include "volFields.H"
 

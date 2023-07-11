@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "solverTemplate.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOPtrList.H"
 #include "polyMesh.H"
 #include "regionProperties.H"

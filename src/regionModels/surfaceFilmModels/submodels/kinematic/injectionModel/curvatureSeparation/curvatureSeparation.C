@@ -29,7 +29,7 @@ License
 #include "curvatureSeparation.H"
 #include "addToRunTimeSelectionTable.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "volFields.H"
 #include "kinematicSingleLayer.H"
 #include "surfaceInterpolate.H"

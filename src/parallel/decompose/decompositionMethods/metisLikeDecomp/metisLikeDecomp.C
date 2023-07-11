@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "metisLikeDecomp.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "globalIndex.H"
 
 // * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * * //

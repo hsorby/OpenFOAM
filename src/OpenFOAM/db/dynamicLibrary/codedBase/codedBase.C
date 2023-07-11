@@ -37,7 +37,7 @@ License
 #include "PstreamReduceOps.H"
 #include "OSspecific.H"
 #include "Ostream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "regIOobject.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

@@ -28,7 +28,7 @@ License
 #include "multiphaseSystem.H"
 
 #include "fixedValueFvsPatchFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "subCycle.H"
 #include "fvcMeshPhi.H"
 

@@ -39,7 +39,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OFstream.H"
 #include "foamVtkSeriesWriter.H"
 #include "lumpedPointTools.H"

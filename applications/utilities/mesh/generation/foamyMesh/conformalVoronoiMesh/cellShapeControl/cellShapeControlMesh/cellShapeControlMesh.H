@@ -37,7 +37,7 @@ SourceFiles
 #ifndef cellShapeControlMesh_H
 #define cellShapeControlMesh_H
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "scalar.H"
 #include "point.H"
 #include "tensor.H"

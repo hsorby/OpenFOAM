@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "PstreamReduceOps.H"
 #include "argList.H"
 #include "HashSet.H"

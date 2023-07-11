@@ -33,7 +33,7 @@ License
 #include "matchPoints.H"
 #include "OFstream.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "transformList.H"
 #include "PstreamBuffers.H"
 #include "Circulator.H"

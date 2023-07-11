@@ -27,7 +27,7 @@ License
 
 #include "triSurface.H"
 #include "Fstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "boundBox.H"
 #include "bitSet.H"
 #include "surfZoneList.H"

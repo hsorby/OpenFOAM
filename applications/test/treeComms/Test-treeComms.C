@@ -30,7 +30,7 @@ Description
 
 #include "argList.H"
 #include "List.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "vector.H"
 #include "Fstream.H"
 #include "IPstream.H"

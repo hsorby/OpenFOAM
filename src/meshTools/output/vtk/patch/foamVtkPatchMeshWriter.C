@@ -28,7 +28,7 @@ License
 #include "foamVtkPatchMeshWriter.H"
 #include "foamVtkOutput.H"
 #include "globalIndex.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "processorPolyPatch.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //

@@ -28,7 +28,7 @@ License
 
 #include "extendedEdgeMeshFormat.H"
 #include "IFstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "extendedFeatureEdgeMesh.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //

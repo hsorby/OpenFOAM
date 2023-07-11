@@ -76,7 +76,7 @@ Description
 #include "extrudeModel.H"
 #include "autoPtr.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

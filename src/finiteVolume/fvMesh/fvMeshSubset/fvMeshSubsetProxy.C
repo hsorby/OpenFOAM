@@ -28,7 +28,7 @@ License
 #include "fvMeshSubsetProxy.H"
 #include "cellSet.H"
 #include "cellZone.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 

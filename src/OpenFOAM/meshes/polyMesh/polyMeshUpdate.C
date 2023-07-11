@@ -31,7 +31,7 @@ Description
 
 #include "polyMesh.H"
 #include "mapPolyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "globalMeshData.H"
 #include "pointMesh.H"
 #include "indexedOctree.H"

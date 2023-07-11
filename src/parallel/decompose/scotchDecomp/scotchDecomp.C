@@ -29,7 +29,7 @@ License
 #include "scotchDecomp.H"
 #include "addToRunTimeSelectionTable.H"
 #include "floatScalar.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "PrecisionAdaptor.H"
 #include "OFstream.H"
 #include <cstdio>

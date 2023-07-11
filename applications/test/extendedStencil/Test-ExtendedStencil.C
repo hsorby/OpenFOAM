@@ -34,7 +34,7 @@ Description
 #include "argList.H"
 #include "fvMesh.H"
 #include "volFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvCFD.H"
 #include "OFstream.H"
 #include "meshTools.H"

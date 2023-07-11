@@ -45,7 +45,7 @@ SourceFiles
 #ifndef sixDoFRigidBodyMotionRestraint_H
 #define sixDoFRigidBodyMotionRestraint_H
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "dictionary.H"
 #include "autoPtr.H"
 #include "vector.H"

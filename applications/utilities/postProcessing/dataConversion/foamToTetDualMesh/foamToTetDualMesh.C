@@ -38,7 +38,7 @@ Description
 #include "fvMesh.H"
 #include "volFields.H"
 #include "pointFields.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOobjectList.H"
 
 using namespace Foam;

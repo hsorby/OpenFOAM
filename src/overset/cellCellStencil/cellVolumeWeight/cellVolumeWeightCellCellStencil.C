@@ -28,7 +28,7 @@ License
 #include "cellVolumeWeightCellCellStencil.H"
 #include "addToRunTimeSelectionTable.H"
 #include "OBJstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "meshToMesh.H"
 #include "cellVolumeWeightMethod.H"
 #include "fvMeshSubset.H"

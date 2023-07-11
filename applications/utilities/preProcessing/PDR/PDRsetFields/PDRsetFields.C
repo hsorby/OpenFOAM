@@ -36,7 +36,7 @@ SourceFiles
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOdictionary.H"
 
 #include "PDRsetFields.H"

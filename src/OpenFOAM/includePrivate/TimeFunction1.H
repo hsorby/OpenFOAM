@@ -40,7 +40,7 @@ SourceFiles
 #define TimeFunction1_H
 
 #include "Function1.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

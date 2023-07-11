@@ -29,7 +29,7 @@ License
 #include "GAMGAgglomeration.H"
 #include "lduMesh.H"
 #include "lduMatrix.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "GAMGInterface.H"
 #include "GAMGProcAgglomeration.H"
 #include "pairGAMGAgglomeration.H"

@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "Function1.H"
-#include "Time.H"
+#include "TimeFoam.H"
 // Required by clang 5 for correct instantiation of Function1::New
 #include "Constant.H"
 

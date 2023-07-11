@@ -31,7 +31,7 @@ License
 #include "syncTools.H"
 #include "searchableSurface.H"
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

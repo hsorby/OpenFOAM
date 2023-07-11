@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "edgeMeshFormatsCore.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "ListOps.H"
 #include "edgeMesh.H"
 

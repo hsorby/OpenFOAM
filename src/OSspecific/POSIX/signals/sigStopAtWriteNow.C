@@ -31,7 +31,7 @@ License
 #include "error.H"
 #include "JobInfo.H"
 #include "IOstreams.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // File-local functions
 #include "signalMacros.C"

@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "fvMesh.H"
 #include "indexedOctree.H"
 #include "treeDataEdge.H"

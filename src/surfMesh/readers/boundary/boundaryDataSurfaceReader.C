@@ -28,7 +28,7 @@ License
 #include "boundaryDataSurfaceReader.H"
 #include "rawIOField.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "addToRunTimeSelectionTable.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

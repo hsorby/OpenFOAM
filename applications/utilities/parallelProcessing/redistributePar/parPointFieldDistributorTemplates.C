@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "emptyPointPatchField.H"
 #include "IOobjectList.H"
 #include "mapDistributePolyMesh.H"

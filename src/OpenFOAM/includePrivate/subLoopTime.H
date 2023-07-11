@@ -40,7 +40,7 @@ SeeAlso
 #ifndef subLoopTime_H
 #define subLoopTime_H
 
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

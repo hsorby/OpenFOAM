@@ -45,7 +45,7 @@ Description
  \* ------------------------------------------------------------------------- */
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "StringStream.H"
 #include "polyMesh.H"
 #include "emptyPolyPatch.H"

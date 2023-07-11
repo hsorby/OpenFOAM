@@ -32,7 +32,7 @@ InClass
 #include "polyDualMesh.H"
 #include "meshTools.H"
 #include "OFstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "SortableList.H"
 #include "pointSet.H"
 #include "bitSet.H"

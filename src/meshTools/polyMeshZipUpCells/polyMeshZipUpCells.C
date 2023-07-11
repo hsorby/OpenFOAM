@@ -28,7 +28,7 @@ License
 
 #include "polyMeshZipUpCells.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "CircularBuffer.H"
 #include "DynamicList.H"
 

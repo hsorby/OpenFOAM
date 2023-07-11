@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "STARCDMeshWriter.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OFstream.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //

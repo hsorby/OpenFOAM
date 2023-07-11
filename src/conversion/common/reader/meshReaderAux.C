@@ -29,7 +29,7 @@ License
 #include "meshReader.H"
 #include "IOMap.H"
 #include "OFstream.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * Static Functions  * * * * * * * * * * * * * //
 

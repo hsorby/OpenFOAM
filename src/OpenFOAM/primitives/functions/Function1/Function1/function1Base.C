@@ -27,7 +27,7 @@ License
 
 #include "function1Base.H"
 #include "objectRegistry.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 

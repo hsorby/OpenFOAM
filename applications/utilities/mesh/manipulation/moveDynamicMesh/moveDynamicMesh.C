@@ -36,7 +36,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "dynamicFvMesh.H"
 #include "pimpleControl.H"
 #include "cyclicAMIPolyPatch.H"

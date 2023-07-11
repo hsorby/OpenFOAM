@@ -29,7 +29,7 @@ License
 #include "ObukhovLength.H"
 #include "volFields.H"
 #include "dictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "mapPolyMesh.H"
 #include "addToRunTimeSelectionTable.H"
 #include "zeroGradientFvPatchField.H"

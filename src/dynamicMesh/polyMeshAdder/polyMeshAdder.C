@@ -32,7 +32,7 @@ License
 #include "faceCoupleInfo.H"
 #include "processorPolyPatch.H"
 #include "SortableList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "globalMeshData.H"
 #include "mergePoints.H"
 #include "polyModifyFace.H"

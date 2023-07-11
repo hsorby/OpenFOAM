@@ -33,7 +33,7 @@ License
 #include "OFstream.H"
 #include "patchZones.H"
 #include "matchPoints.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "transformList.H"
 #include "cyclicPolyPatch.H"
 

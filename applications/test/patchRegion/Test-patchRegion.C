@@ -30,7 +30,7 @@ Description
 
 #include "argList.H"
 #include "PatchTools.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "patchEdgeFaceRegions.H"
 #include "PatchEdgeFaceWave.H"

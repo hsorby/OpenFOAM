@@ -39,7 +39,7 @@ Description
 #include "rigidBodyModelState.H"
 #include "Fstream.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 using namespace Foam;
 using namespace RBD;

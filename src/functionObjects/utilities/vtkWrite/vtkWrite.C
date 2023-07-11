@@ -27,7 +27,7 @@ License
 
 #include "vtkWrite.H"
 #include "dictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "areaFields.H"
 #include "stringListOps.H"
 #include "foamVtkInternalWriter.H"

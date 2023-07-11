@@ -29,7 +29,7 @@ License
 #include "meshRefinement.H"
 #include "fvMesh.H"
 #include "syncTools.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "refinementSurfaces.H"
 #include "pointSet.H"
 #include "faceSet.H"

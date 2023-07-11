@@ -33,7 +33,7 @@ Description
 
 #include "List.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "bitSet.H"
 #include "vector.H"
 #include "IPstream.H"

@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "exprResultGlobals.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "TableBase.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "interpolationWeights.H"
 
 // * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * * //

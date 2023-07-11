@@ -36,7 +36,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "mirrorFvMesh.H"
 #include "mapPolyMesh.H"
 #include "hexRef8Data.H"

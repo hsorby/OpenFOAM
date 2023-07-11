@@ -30,7 +30,7 @@ License
 #include "MeshedSurfaceProxy.H"
 
 #include "fileFormats.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "coordinateRotation.H"
 #include "transformField.H"
 #include "addToRunTimeSelectionTable.H"

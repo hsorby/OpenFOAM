@@ -28,7 +28,7 @@ License
 
 #include "sampledSets.H"
 #include "dictionary.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "globalIndex.H"
 #include "volFields.H"
 #include "mapPolyMesh.H"

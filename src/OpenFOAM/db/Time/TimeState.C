@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "TimeState.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 

@@ -43,7 +43,7 @@ Description
 
 #include "triSurface.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "triSurfaceMesh.H"
 #include "searchableSurfaces.H"
 #include "searchableSurfaceModifier.H"

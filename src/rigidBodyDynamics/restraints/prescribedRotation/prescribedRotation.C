@@ -28,7 +28,7 @@ License
 #include "prescribedRotation.H"
 #include "rigidBodyModel.H"
 #include "addToRunTimeSelectionTable.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

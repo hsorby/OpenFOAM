@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "polySurface.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "ModifiableMeshedSurface.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

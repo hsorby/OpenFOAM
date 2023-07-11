@@ -43,7 +43,7 @@ Description
 
 #include "argList.H"
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IFstream.H"
 #include "cellModel.H"
 #include "cellSet.H"

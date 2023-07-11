@@ -41,7 +41,7 @@ SourceFiles
 
 #include "uniformDimensionedFields.H"
 #include "MeshObject.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

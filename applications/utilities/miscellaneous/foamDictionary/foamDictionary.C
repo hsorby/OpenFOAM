@@ -131,7 +131,7 @@ Usage
 
 #include "argList.H"
 #include "profiling.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "Fstream.H"
 #include "etcFiles.H"
 #include "includeEntry.H"

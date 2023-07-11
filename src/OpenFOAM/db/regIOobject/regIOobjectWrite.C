@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "regIOobject.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OFstream.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

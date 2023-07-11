@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "polyMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "cellIOList.H"
 #include "wedgePolyPatch.H"
 #include "emptyPolyPatch.H"

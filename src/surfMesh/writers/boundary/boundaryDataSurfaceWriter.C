@@ -31,7 +31,7 @@ License
 #include "OFstream.H"
 #include "OSspecific.H"
 #include "IOmanip.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "pointIOField.H"
 #include "primitivePatch.H"
 #include "surfaceWriterMethods.H"

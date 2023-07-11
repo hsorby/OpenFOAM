@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "boundaryTemplates.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IFstream.H"
 #include "StringStream.H"
 

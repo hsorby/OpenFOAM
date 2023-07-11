@@ -38,7 +38,7 @@ Description
 #define adjointSolver_H
 
 #include "fvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOdictionary.H"
 #include "solver.H"
 #include "objectiveManager.H"

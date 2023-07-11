@@ -29,7 +29,7 @@ License
 #include "solution.H"
 #include "HashPtrTable.H"
 #include "Function1.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

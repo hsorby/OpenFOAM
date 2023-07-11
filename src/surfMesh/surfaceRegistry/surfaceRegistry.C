@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "surfaceRegistry.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

@@ -44,7 +44,7 @@ Description
 
 #include "cyclicPolyPatch.H"
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "polyMesh.H"
 #include "polyTopoChange.H"
 #include "polyMeshZipUpCells.H"

@@ -42,7 +42,7 @@ Note
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "regionProperties.H"
 
 using namespace Foam;

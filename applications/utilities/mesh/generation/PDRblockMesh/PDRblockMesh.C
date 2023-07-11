@@ -54,7 +54,7 @@ Usage
 #include "argList.H"
 #include "polyMesh.H"
 #include "PDRblock.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "IOdictionary.H"
 #include "OSspecific.H"
 

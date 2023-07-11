@@ -28,7 +28,7 @@ License
 
 #include "blockMesh.H"
 #include "transform.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

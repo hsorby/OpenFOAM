@@ -42,7 +42,7 @@ SourceFiles
 
 #include "MeshObject.H"
 #include "edgeHashes.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

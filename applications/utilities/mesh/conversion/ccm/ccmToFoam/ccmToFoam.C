@@ -82,7 +82,7 @@ See also
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "ccm.H"
 #include "regionSplit.H"
 

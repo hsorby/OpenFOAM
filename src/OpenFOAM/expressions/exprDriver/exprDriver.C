@@ -29,7 +29,7 @@ License
 #include "exprDriver.H"
 #include "expressionEntry.H"
 #include "stringOps.H"
-#include "Time.H"
+#include "TimeFoam.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

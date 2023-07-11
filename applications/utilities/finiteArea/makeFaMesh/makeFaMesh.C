@@ -38,7 +38,7 @@ Original Authors
 
 \*---------------------------------------------------------------------------*/
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "argList.H"
 #include "OSspecific.H"
 #include "faMesh.H"

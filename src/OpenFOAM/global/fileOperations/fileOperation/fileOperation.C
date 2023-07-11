@@ -31,7 +31,7 @@ License
 #include "labelIOList.H"
 #include "registerSwitch.H"
 #include "stringOps.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "OSspecific.H"  // for Foam::isDir etc
 #include <cinttypes>
 

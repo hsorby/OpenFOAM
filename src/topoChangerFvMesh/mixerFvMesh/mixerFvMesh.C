@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "mixerFvMesh.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "regionSplit.H"
 #include "slidingInterface.H"
 #include "addToRunTimeSelectionTable.H"

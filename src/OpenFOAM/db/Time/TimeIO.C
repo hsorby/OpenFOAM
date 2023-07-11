@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "Time.H"
+#include "TimeFoam.H"
 #include "argList.H"
 #include "Pstream.H"
 #include "simpleObjectRegistry.H"

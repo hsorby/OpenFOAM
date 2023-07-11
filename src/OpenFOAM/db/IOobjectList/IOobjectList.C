@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "IOobjectList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "predicates.H"
 #include "OSspecific.H"
 

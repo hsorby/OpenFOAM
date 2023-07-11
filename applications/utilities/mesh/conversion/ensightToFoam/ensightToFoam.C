@@ -52,7 +52,7 @@ See also
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
-#include "Time.H"
+#include "TimeFoam.H"
 #include "ensightMeshReader.H"
 
 using namespace Foam;
