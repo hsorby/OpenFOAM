@@ -38,7 +38,7 @@ SourceFiles
 #ifndef simpleObjectRegistry_H
 #define simpleObjectRegistry_H
 
-#include "Dictionary.H"
+#include "DictionaryPascal.H"
 #include "simpleRegIOobject.H"
 #include <string>
 
