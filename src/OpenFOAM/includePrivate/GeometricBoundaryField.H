@@ -42,7 +42,7 @@ SourceFiles
 #include "DimensionedField.H"
 #include "FieldField.H"
 #include "lduInterfaceFieldPtrsList.H"
-#include "LduInterfaceFieldPtrsList.H"
+#include "LduInterfaceFieldPtrsListPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
