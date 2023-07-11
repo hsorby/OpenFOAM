@@ -18,4 +18,5 @@ set(_FILES
 )
 add_library(OSspecific ${_FILES})
 target_compile_features(OSspecific PUBLIC cxx_std_11)
-target_include_directories(OSspecific PUBLIC include PRIVATE includePrivate)
+target_include_directories(OSspecific PUBLIC include PUBLIC includePrivate)
+target_link_libraries(OSspecific PUBLIC OpenFOAM)
