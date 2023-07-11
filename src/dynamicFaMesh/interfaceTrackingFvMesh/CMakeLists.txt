@@ -1,0 +1,11 @@
+set(_FILES
+  interfaceTrackingFvMesh.C
+  freeSurfacePointDisplacement.C
+  fvPatchFields/freeSurfacePressure/freeSurfacePressureFvPatchScalarField.C
+  fvPatchFields/freeSurfaceVelocity/freeSurfaceVelocityFvPatchVectorField.C
+  functionObjects/pointHistory/pointHistory.C
+  functionObjects/writeFreeSurface/writeFreeSurface.C
+)
+add_library(interfaceTrackingFvMesh ${_FILES})
+target_compile_features(interfaceTrackingFvMesh PUBLIC cxx_std_11)
+target_include_directories(interfaceTrackingFvMesh PUBLIC include PRIVATE includePrivate)

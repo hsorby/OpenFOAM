@@ -1,0 +1,6 @@
+set(_FILES
+  compressibleTransportModel/compressibleTransportModel.C
+)
+add_library(compressibleTransportModels ${_FILES})
+target_compile_features(compressibleTransportModels PUBLIC cxx_std_11)
+target_include_directories(compressibleTransportModels PUBLIC include PRIVATE includePrivate)

@@ -1,0 +1,6 @@
+set(_FILES
+  hydrostaticPressure/hydrostaticPressure.C
+)
+add_library(initialisationFunctionObjects ${_FILES})
+target_compile_features(initialisationFunctionObjects PUBLIC cxx_std_11)
+target_include_directories(initialisationFunctionObjects PUBLIC include PRIVATE includePrivate)

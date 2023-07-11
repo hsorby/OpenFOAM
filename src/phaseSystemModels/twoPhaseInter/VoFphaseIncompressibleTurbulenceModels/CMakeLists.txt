@@ -1,0 +1,6 @@
+set(_FILES
+  VoFphaseTurbulentTransportModels.C
+)
+add_library(VoFphaseTurbulentTransportModels ${_FILES})
+target_compile_features(VoFphaseTurbulentTransportModels PUBLIC cxx_std_11)
+target_include_directories(VoFphaseTurbulentTransportModels PUBLIC include PRIVATE includePrivate)

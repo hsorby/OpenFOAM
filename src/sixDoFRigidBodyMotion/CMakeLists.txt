@@ -1,0 +1,34 @@
+set(_FILES
+  sixDoFRigidBodyMotion/sixDoFRigidBodyMotion.C
+  sixDoFRigidBodyMotion/sixDoFRigidBodyMotionIO.C
+  sixDoFRigidBodyMotion/sixDoFRigidBodyMotionState.C
+  sixDoFRigidBodyMotion/sixDoFRigidBodyMotionStateIO.C
+  sixDoFRigidBodyMotion/restraints/sixDoFRigidBodyMotionRestraint/sixDoFRigidBodyMotionRestraint.C
+  sixDoFRigidBodyMotion/restraints/sixDoFRigidBodyMotionRestraint/sixDoFRigidBodyMotionRestraintNew.C
+  sixDoFRigidBodyMotion/restraints/linearAxialAngularSpring/linearAxialAngularSpring.C
+  sixDoFRigidBodyMotion/restraints/linearSpring/linearSpring.C
+  sixDoFRigidBodyMotion/restraints/sphericalAngularSpring/sphericalAngularSpring.C
+  sixDoFRigidBodyMotion/restraints/tabulatedAxialAngularSpring/tabulatedAxialAngularSpring.C
+  sixDoFRigidBodyMotion/restraints/linearDamper/linearDamper.C
+  sixDoFRigidBodyMotion/restraints/sphericalAngularDamper/sphericalAngularDamper.C
+  sixDoFRigidBodyMotion/restraints/linearSpringDamper/linearSpringDamper.C
+  sixDoFRigidBodyMotion/restraints/softWall/softWall.C
+  sixDoFRigidBodyMotion/constraints/sixDoFRigidBodyMotionConstraint/sixDoFRigidBodyMotionConstraint.C
+  sixDoFRigidBodyMotion/constraints/sixDoFRigidBodyMotionConstraint/sixDoFRigidBodyMotionConstraintNew.C
+  sixDoFRigidBodyMotion/constraints/axis/sixDoFRigidBodyMotionAxisConstraint.C
+  sixDoFRigidBodyMotion/constraints/line/sixDoFRigidBodyMotionLineConstraint.C
+  sixDoFRigidBodyMotion/constraints/orientation/sixDoFRigidBodyMotionOrientationConstraint.C
+  sixDoFRigidBodyMotion/constraints/plane/sixDoFRigidBodyMotionPlaneConstraint.C
+  sixDoFRigidBodyMotion/constraints/point/sixDoFRigidBodyMotionPointConstraint.C
+  pointPatchFields/derived/sixDoFRigidBodyDisplacement/sixDoFRigidBodyDisplacementPointPatchVectorField.C
+  pointPatchFields/derived/uncoupledSixDoFRigidBodyDisplacement/uncoupledSixDoFRigidBodyDisplacementPointPatchVectorField.C
+  sixDoFRigidBodyMotionSolver/sixDoFRigidBodyMotionSolver.C
+  sixDoFSolvers/sixDoFSolver/sixDoFSolver.C
+  sixDoFSolvers/sixDoFSolver/sixDoFSolverNew.C
+  sixDoFSolvers/symplectic/symplectic.C
+  sixDoFSolvers/CrankNicolson/CrankNicolson.C
+  sixDoFSolvers/Newmark/Newmark.C
+)
+add_library(sixDoFRigidBodyMotion ${_FILES})
+target_compile_features(sixDoFRigidBodyMotion PUBLIC cxx_std_11)
+target_include_directories(sixDoFRigidBodyMotion PUBLIC include PRIVATE includePrivate)

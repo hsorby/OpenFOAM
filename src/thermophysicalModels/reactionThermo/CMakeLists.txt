@@ -1,0 +1,23 @@
+set(_FILES
+  chemistryReaders/chemkinReader/chemkinReader.C
+  chemistryReaders/chemistryReader/makeChemistryReaders.C
+  mixtures/basicMultiComponentMixture/basicMultiComponentMixture.C
+  mixtures/basicSpecieMixture/basicSpecieMixture.C
+  mixtures/basicCombustionMixture/basicCombustionMixture.C
+  psiReactionThermo/psiReactionThermo.C
+  psiReactionThermo/psiReactionThermos.C
+  psiuReactionThermo/psiuReactionThermo.C
+  psiuReactionThermo/psiuReactionThermos.C
+  rhoReactionThermo/rhoReactionThermo.C
+  rhoReactionThermo/rhoReactionThermos.C
+  derivedFvPatchFields/fixedUnburntEnthalpy/fixedUnburntEnthalpyFvPatchScalarField.C
+  derivedFvPatchFields/gradientUnburntEnthalpy/gradientUnburntEnthalpyFvPatchScalarField.C
+  derivedFvPatchFields/mixedUnburntEnthalpy/mixedUnburntEnthalpyFvPatchScalarField.C
+  derivedFvPatchFields/speciesSorption/speciesSorptionFvPatchScalarField.C
+  derivedFvPatchFields/enthalpySorption/enthalpySorptionFvPatchScalarField.C
+  derivedFvPatchFields/boundarySourcePatch/boundarySourcePatch.C
+  functionObjects/moleFractions/moleFractionsFunctionObjects.C
+)
+add_library(reactionThermophysicalModels ${_FILES})
+target_compile_features(reactionThermophysicalModels PUBLIC cxx_std_11)
+target_include_directories(reactionThermophysicalModels PUBLIC include PRIVATE includePrivate)

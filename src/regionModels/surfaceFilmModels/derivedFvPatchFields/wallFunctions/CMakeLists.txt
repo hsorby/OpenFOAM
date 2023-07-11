@@ -1,0 +1,7 @@
+set(_FILES
+  alphatFilmWallFunction/alphatFilmWallFunctionFvPatchScalarField.C
+  nutkFilmWallFunction/nutkFilmWallFunctionFvPatchScalarField.C
+)
+add_library(surfaceFilmDerivedFvPatchFields ${_FILES})
+target_compile_features(surfaceFilmDerivedFvPatchFields PUBLIC cxx_std_11)
+target_include_directories(surfaceFilmDerivedFvPatchFields PUBLIC include PRIVATE includePrivate)

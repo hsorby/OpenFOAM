@@ -1,0 +1,6 @@
+set(_FILES
+  incompressibleInterPhaseTransportModels.C
+)
+add_library(incompressibleInterPhaseTransportModels ${_FILES})
+target_compile_features(incompressibleInterPhaseTransportModels PUBLIC cxx_std_11)
+target_include_directories(incompressibleInterPhaseTransportModels PUBLIC include PRIVATE includePrivate)

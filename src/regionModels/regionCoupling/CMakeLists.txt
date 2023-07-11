@@ -1,0 +1,8 @@
+set(_FILES
+  derivedFvPatchFields/filmPyrolysisVelocityCoupled/filmPyrolysisVelocityCoupledFvPatchVectorField.C
+  derivedFvPatchFields/filmPyrolysisTemperatureCoupled/filmPyrolysisTemperatureCoupledFvPatchScalarField.C
+  derivedFvPatchFields/filmPyrolysisRadiativeCoupledMixed/filmPyrolysisRadiativeCoupledMixedFvPatchScalarField.C
+)
+add_library(regionCoupling ${_FILES})
+target_compile_features(regionCoupling PUBLIC cxx_std_11)
+target_include_directories(regionCoupling PUBLIC include PRIVATE includePrivate)

@@ -1,0 +1,12 @@
+set(_FILES
+  interfaceProperties.C
+  interfaceCompression/interfaceCompression.C
+  alphaContactAngle/alphaContactAngleTwoPhaseFvPatchScalarField.C
+  surfaceTensionModels/surfaceTensionModel/surfaceTensionModel.C
+  surfaceTensionModels/surfaceTensionModel/surfaceTensionModelNew.C
+  surfaceTensionModels/constant/constantSurfaceTension.C
+  surfaceTensionModels/temperatureDependent/temperatureDependentSurfaceTension.C
+)
+add_library(interfaceProperties ${_FILES})
+target_compile_features(interfaceProperties PUBLIC cxx_std_11)
+target_include_directories(interfaceProperties PUBLIC include PRIVATE includePrivate)

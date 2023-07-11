@@ -1,0 +1,6 @@
+set(_FILES
+  interCondensatingEvaporatingFoam.C
+)
+add_executable(interCondensatingEvaporatingFoam ${_FILES})
+target_compile_features(interCondensatingEvaporatingFoam PUBLIC cxx_std_11)
+target_link_libraries(interCondensatingEvaporatingFoam PUBLIC finiteVolume)

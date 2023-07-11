@@ -1,0 +1,30 @@
+set(_FILES
+  phaseCompressibleTurbulenceModels.C
+  phasePressureModel/phasePressureModel.C
+  kineticTheoryModels/kineticTheoryModel/kineticTheoryModel.C
+  kineticTheoryModels/viscosityModel/viscosityModel/viscosityModel.C
+  kineticTheoryModels/viscosityModel/Gidaspow/GidaspowViscosity.C
+  kineticTheoryModels/viscosityModel/Syamlal/SyamlalViscosity.C
+  kineticTheoryModels/viscosityModel/HrenyaSinclair/HrenyaSinclairViscosity.C
+  kineticTheoryModels/viscosityModel/none/noneViscosity.C
+  kineticTheoryModels/conductivityModel/conductivityModel/conductivityModel.C
+  kineticTheoryModels/conductivityModel/Gidaspow/GidaspowConductivity.C
+  kineticTheoryModels/conductivityModel/Syamlal/SyamlalConductivity.C
+  kineticTheoryModels/conductivityModel/HrenyaSinclair/HrenyaSinclairConductivity.C
+  kineticTheoryModels/radialModel/radialModel/radialModel.C
+  kineticTheoryModels/radialModel/CarnahanStarling/CarnahanStarlingRadial.C
+  kineticTheoryModels/radialModel/LunSavage/LunSavageRadial.C
+  kineticTheoryModels/radialModel/SinclairJackson/SinclairJacksonRadial.C
+  kineticTheoryModels/granularPressureModel/granularPressureModel/granularPressureModel.C
+  kineticTheoryModels/granularPressureModel/Lun/LunPressure.C
+  kineticTheoryModels/granularPressureModel/SyamlalRogersOBrien/SyamlalRogersOBrienPressure.C
+  kineticTheoryModels/frictionalStressModel/frictionalStressModel/frictionalStressModel.C
+  kineticTheoryModels/frictionalStressModel/JohnsonJackson/JohnsonJacksonFrictionalStress.C
+  kineticTheoryModels/frictionalStressModel/Schaeffer/SchaefferFrictionalStress.C
+  kineticTheoryModels/frictionalStressModel/JohnsonJacksonSchaeffer/JohnsonJacksonSchaefferFrictionalStress.C
+  kineticTheoryModels/derivedFvPatchFields/JohnsonJacksonParticleTheta/JohnsonJacksonParticleThetaFvPatchScalarField.C
+  kineticTheoryModels/derivedFvPatchFields/JohnsonJacksonParticleSlip/JohnsonJacksonParticleSlipFvPatchVectorField.C
+)
+add_library(phaseCompressibleTurbulenceModels ${_FILES})
+target_compile_features(phaseCompressibleTurbulenceModels PUBLIC cxx_std_11)
+target_include_directories(phaseCompressibleTurbulenceModels PUBLIC include PRIVATE includePrivate)

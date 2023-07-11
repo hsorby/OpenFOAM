@@ -1,0 +1,10 @@
+set(_FILES
+  alphaContactAngle/constantAlphaContactAngle/constantAlphaContactAngleFvPatchScalarField.C
+  alphaContactAngle/temperatureDependentAlphaContactAngle/temperatureDependentAlphaContactAngleFvPatchScalarField.C
+  alphaContactAngle/dynamicAlphaContactAngle/dynamicAlphaContactAngleFvPatchScalarField.C
+  alphaContactAngle/timeVaryingAlphaContactAngle/timeVaryingAlphaContactAngleFvPatchScalarField.C
+  alphaFixedPressure/alphaFixedPressureFvPatchScalarField.C
+)
+add_library(twoPhaseProperties ${_FILES})
+target_compile_features(twoPhaseProperties PUBLIC cxx_std_11)
+target_include_directories(twoPhaseProperties PUBLIC include PRIVATE includePrivate)

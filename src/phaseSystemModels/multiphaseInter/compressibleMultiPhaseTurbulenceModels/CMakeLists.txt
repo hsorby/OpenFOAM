@@ -1,0 +1,6 @@
+set(_FILES
+  compressibleMultiPhaseTurbulenceModels.C
+)
+add_library(compressibleMultiPhaseTurbulenceModels ${_FILES})
+target_compile_features(compressibleMultiPhaseTurbulenceModels PUBLIC cxx_std_11)
+target_include_directories(compressibleMultiPhaseTurbulenceModels PUBLIC include PRIVATE includePrivate)

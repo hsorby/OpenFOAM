@@ -1,0 +1,49 @@
+set(_FILES
+  turbulenceModel.C
+  LES/LESdeltas/LESdelta/LESdelta.C
+  LES/LESdeltas/cubeRootVolDelta/cubeRootVolDelta.C
+  LES/LESdeltas/PrandtlDelta/PrandtlDelta.C
+  LES/LESdeltas/vanDriestDelta/vanDriestDelta.C
+  LES/LESdeltas/smoothDelta/smoothDelta.C
+  LES/LESdeltas/maxDeltaxyz/maxDeltaxyz.C
+  LES/LESdeltas/IDDESDelta/IDDESDelta.C
+  LES/LESdeltas/maxDeltaxyzCubeRootLESDelta/maxDeltaxyzCubeRootLESDelta.C
+  LES/LESdeltas/DeltaOmegaTildeDelta/DeltaOmegaTildeDelta.C
+  LES/LESdeltas/SLADelta/SLADelta.C
+  LES/LESfilters/LESfilter/LESfilter.C
+  LES/LESfilters/simpleFilter/simpleFilter.C
+  LES/LESfilters/laplaceFilter/laplaceFilter.C
+  LES/LESfilters/anisotropicFilter/anisotropicFilter.C
+  DES/DESModel/DESModelBase.C
+  RAS/RASModel/RASModelBase.C
+  derivedFvPatchFields/fixedShearStress/fixedShearStressFvPatchVectorField.C
+  derivedFvPatchFields/porousBafflePressure/porousBafflePressureFvPatchField.C
+  derivedFvPatchFields/wallFunctions/wallFunction/wallFunctionCoefficients/wallFunctionCoefficients.C
+  derivedFvPatchFields/wallFunctions/wallFunction/wallFunctionBlenders/wallFunctionBlenders.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutWallFunction/nutWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutkWallFunction/nutkWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutkRoughWallFunction/nutkRoughWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutUBlendedWallFunction/nutUBlendedWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutUWallFunction/nutUWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutUSpaldingWallFunction/nutUSpaldingWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutUTabulatedWallFunction/nutUTabulatedWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutLowReWallFunction/nutLowReWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/nutWallFunctions/nutURoughWallFunction/nutURoughWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/epsilonWallFunctions/epsilonWallFunction/epsilonWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/omegaWallFunctions/omegaWallFunction/omegaWallFunctionFvPatchScalarField.C
+  derivedFvPatchFields/wallFunctions/kqRWallFunctions/kqRWallFunction/kqRWallFunctionFvPatchFields.C
+  derivedFvPatchFields/wallFunctions/kqRWallFunctions/kLowReWallFunction/kLowReWallFunctionFvPatchScalarField.C
+  RAS/derivedFvPatchFields/turbulentMixingLengthDissipationRateInlet/turbulentMixingLengthDissipationRateInletFvPatchScalarField.C
+  RAS/derivedFvPatchFields/turbulentMixingLengthFrequencyInlet/turbulentMixingLengthFrequencyInletFvPatchScalarField.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/generalizedNewtonianViscosityModel/generalizedNewtonianViscosityModel.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/generalizedNewtonianViscosityModel/generalizedNewtonianViscosityModelNew.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/CrossPowerLaw/CrossPowerLaw.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/BirdCarreau/BirdCarreau.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/Casson/Casson.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/HerschelBulkley/HerschelBulkley.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/powerLaw/powerLaw.C
+  laminar/generalizedNewtonian/generalizedNewtonianViscosityModels/strainRateFunction/strainRateFunction.C
+)
+add_library(turbulenceModels ${_FILES})
+target_compile_features(turbulenceModels PUBLIC cxx_std_11)
+target_include_directories(turbulenceModels PUBLIC include PRIVATE includePrivate)

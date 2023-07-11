@@ -1,0 +1,11 @@
+set(_FILES
+  temperaturePhaseChangeTwoPhaseMixtures/temperaturePhaseChangeTwoPhaseMixture.C
+  temperaturePhaseChangeTwoPhaseMixtures/temperaturePhaseChangeTwoPhaseMixtureNew.C
+  thermoIncompressibleTwoPhaseMixture/thermoIncompressibleTwoPhaseMixture.C
+  twoPhaseMixtureEThermo/twoPhaseMixtureEThermo.C
+  constant/constant.C
+  interfaceHeatResistance/interfaceHeatResistance.C
+)
+add_library(phaseTemperatureChangeTwoPhaseMixtures ${_FILES})
+target_compile_features(phaseTemperatureChangeTwoPhaseMixtures PUBLIC cxx_std_11)
+target_include_directories(phaseTemperatureChangeTwoPhaseMixtures PUBLIC include PRIVATE includePrivate)
