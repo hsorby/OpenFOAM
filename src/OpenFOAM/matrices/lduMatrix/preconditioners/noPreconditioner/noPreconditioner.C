@@ -5,8 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2015 OpenFOAM Foundation
-    Copyright (C) 2019 OpenCFD Ltd.
+    Copyright (C) 2011-2012 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -26,54 +25,36 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "noPreconditioner.H"
-
-// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
-
-namespace Foam
-{
-    defineTypeNameAndDebug(noPreconditioner, 0);
-
-    lduMatrix::preconditioner::
-        addsymMatrixConstructorToTable<noPreconditioner>
-        addnoPreconditionerSymMatrixConstructorToTable_;
-
-    lduMatrix::preconditioner::
-        addasymMatrixConstructorToTable<noPreconditioner>
-        addnoPreconditionerAsymMatrixConstructorToTable_;
-}
-
+#include "NoPreconditioner.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::noPreconditioner::noPreconditioner
+template<class Type, class DType, class LUType>
+Foam::NoPreconditioner<Type, DType, LUType>::NoPreconditioner
 (
-    const lduMatrix::solver& sol,
+    const typename LduMatrix<Type, DType, LUType>::solver& sol,
     const dictionary&
 )
 :
-    lduMatrix::preconditioner(sol)
+    LduMatrix<Type, DType, LUType>::preconditioner(sol)
 {}
 
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::noPreconditioner::precondition
+template<class Type, class DType, class LUType>
+void Foam::NoPreconditioner<Type, DType, LUType>::read(const dictionary&)
+{}
+
+
+template<class Type, class DType, class LUType>
+void Foam::NoPreconditioner<Type, DType, LUType>::precondition
 (
-    solveScalarField& wA,
-    const solveScalarField& rA,
-    const direction
+    Field<Type>& wA,
+    const Field<Type>& rA
 ) const
 {
-    solveScalar* __restrict__ wAPtr = wA.begin();
-    const solveScalar* __restrict__ rAPtr = rA.begin();
-
-    const label nCells = wA.size();
-
-    for (label cell=0; cell<nCells; cell++)
-    {
-        wAPtr[cell] = rAPtr[cell];
-    }
+    wA = rA;
 }
 
 

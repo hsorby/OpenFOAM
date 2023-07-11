@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2012-2015 OpenFOAM Foundation
+    Copyright (C) 2011-2012 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -23,36 +23,64 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Typedef
-    Foam::solverPerformance
-
-Description
-    SolverPerformance instantiated for a scalar
-
-SourceFiles
-    solverPerformance.C
-
 \*---------------------------------------------------------------------------*/
 
-#ifndef solverPerformance_H
-#define solverPerformance_H
+#include "diagonalSolver.H"
 
-#include "SolverPerformance.H"
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
 namespace Foam
 {
-    typedef SolverPerformance<scalar> solverPerformance;
-
-    // Specialization of the max function for scalar object
-    template<>
-    SolverPerformance<scalar> SolverPerformance<scalar>::max();
+defineTypeNameAndDebug(diagonalSolver, 0);
 }
+
+
+// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
+
+Foam::diagonalSolver::diagonalSolver
+(
+    const word& fieldName,
+    const lduMatrix& matrix,
+    const FieldField<Field, scalar>& interfaceBouCoeffs,
+    const FieldField<Field, scalar>& interfaceIntCoeffs,
+    const lduInterfaceFieldPtrsList& interfaces,
+    const dictionary& solverControls
+)
+:
+    lduMatrix::solver
+    (
+        fieldName,
+        matrix,
+        interfaceBouCoeffs,
+        interfaceIntCoeffs,
+        interfaces,
+        solverControls
+    )
+{}
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-#endif
+Foam::solverPerformance Foam::diagonalSolver::solve
+(
+    scalarField& psi,
+    const scalarField& source,
+    const direction cmpt
+) const
+{
+    psi = source/matrix_.diag();
+
+    return solverPerformance
+    (
+        typeName,
+        fieldName_,
+        0,
+        0,
+        0,
+        true,
+        false
+    );
+}
+
 
 // ************************************************************************* //

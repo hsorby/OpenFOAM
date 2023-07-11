@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2015 OpenFOAM Foundation
+    Copyright (C) 2013-2015 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,11 +25,29 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "fvMesh.H"
-#include "leastSquaresGrad.H"
+#include "LeastSquaresGrad.H"
+//#include "centredCFCCellToCellStencilObject.H"
+#include "centredCPCCellToCellStencilObject.H"
+#include "centredCECCellToCellStencilObject.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-makeFvGradScheme(leastSquaresGrad)
+// makeLeastSquaresGradScheme
+// (
+//     faceCellsLeastSquares,
+//     centredCFCCellToCellStencilObject
+// )
+
+makeLeastSquaresGradScheme
+(
+    pointCellsLeastSquares,
+    centredCPCCellToCellStencilObject
+)
+
+makeLeastSquaresGradScheme
+(
+    edgeCellsLeastSquares,
+    centredCECCellToCellStencilObject
+)
 
 // ************************************************************************* //

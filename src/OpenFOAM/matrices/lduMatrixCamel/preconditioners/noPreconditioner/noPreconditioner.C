@@ -5,7 +5,8 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2017 OpenFOAM Foundation
+    Copyright (C) 2011-2015 OpenFOAM Foundation
+    Copyright (C) 2019 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,16 +26,55 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "makeFvOption.H"
-#include "PhaseLimitStabilization.H"
+#include "noPreconditioner.H"
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
-makeFvOption(PhaseLimitStabilization, scalar);
-makeFvOption(PhaseLimitStabilization, vector);
-makeFvOption(PhaseLimitStabilization, sphericalTensor);
-makeFvOption(PhaseLimitStabilization, symmTensor);
-makeFvOption(PhaseLimitStabilization, tensor);
+namespace Foam
+{
+    defineTypeNameAndDebug(noPreconditioner, 0);
+
+    lduMatrix::preconditioner::
+        addsymMatrixConstructorToTable<noPreconditioner>
+        addnoPreconditionerSymMatrixConstructorToTable_;
+
+    lduMatrix::preconditioner::
+        addasymMatrixConstructorToTable<noPreconditioner>
+        addnoPreconditionerAsymMatrixConstructorToTable_;
+}
+
+
+// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
+
+Foam::noPreconditioner::noPreconditioner
+(
+    const lduMatrix::solver& sol,
+    const dictionary&
+)
+:
+    lduMatrix::preconditioner(sol)
+{}
+
+
+// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
+
+void Foam::noPreconditioner::precondition
+(
+    solveScalarField& wA,
+    const solveScalarField& rA,
+    const direction
+) const
+{
+    solveScalar* __restrict__ wAPtr = wA.begin();
+    const solveScalar* __restrict__ rAPtr = rA.begin();
+
+    const label nCells = wA.size();
+
+    for (label cell=0; cell<nCells; cell++)
+    {
+        wAPtr[cell] = rAPtr[cell];
+    }
+}
 
 
 // ************************************************************************* //

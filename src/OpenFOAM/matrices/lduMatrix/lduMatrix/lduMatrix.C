@@ -5,8 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2017 OpenFOAM Foundation
-    Copyright (C) 2019-2021 OpenCFD Ltd.
+    Copyright (C) 2011-2016 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -28,83 +27,71 @@ License
 
 #include "lduMatrix.H"
 #include "IOstreams.H"
-#include "Switch.H"
-#include "objectRegistry.H"
-#include "scalarIOField.H"
-#include "Time.H"
 
-// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
+// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-namespace Foam
-{
-    defineTypeNameAndDebug(lduMatrix, 1);
-}
-
-
-const Foam::scalar Foam::lduMatrix::defaultTolerance = 1e-6;
-
-const Foam::Enum
-<
-    Foam::lduMatrix::normTypes
->
-Foam::lduMatrix::normTypesNames_
-({
-    { normTypes::NO_NORM, "none" },
-    { normTypes::DEFAULT_NORM, "default" },
-    { normTypes::L1_SCALED_NORM, "L1_scaled" },
-});
-
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
-Foam::lduMatrix::lduMatrix(const lduMesh& mesh)
+template<class Type, class DType, class LUType>
+Foam::LduMatrix<Type, DType, LUType>::LduMatrix(const lduMesh& mesh)
 :
     lduMesh_(mesh),
-    lowerPtr_(nullptr),
     diagPtr_(nullptr),
-    upperPtr_(nullptr)
+    upperPtr_(nullptr),
+    lowerPtr_(nullptr),
+    sourcePtr_(nullptr),
+    interfaces_(0),
+    interfacesUpper_(0),
+    interfacesLower_(0)
 {}
 
 
-Foam::lduMatrix::lduMatrix(const lduMatrix& A)
+template<class Type, class DType, class LUType>
+Foam::LduMatrix<Type, DType, LUType>::LduMatrix(const LduMatrix& A)
 :
     lduMesh_(A.lduMesh_),
-    lowerPtr_(nullptr),
     diagPtr_(nullptr),
-    upperPtr_(nullptr)
+    upperPtr_(nullptr),
+    lowerPtr_(nullptr),
+    sourcePtr_(nullptr),
+    interfaces_(0),
+    interfacesUpper_(0),
+    interfacesLower_(0)
 {
-    if (A.lowerPtr_)
-    {
-        lowerPtr_ = new scalarField(*(A.lowerPtr_));
-    }
-
     if (A.diagPtr_)
     {
-        diagPtr_ = new scalarField(*(A.diagPtr_));
+        diagPtr_ = new Field<DType>(*(A.diagPtr_));
     }
 
     if (A.upperPtr_)
     {
-        upperPtr_ = new scalarField(*(A.upperPtr_));
+        upperPtr_ = new Field<LUType>(*(A.upperPtr_));
+    }
+
+    if (A.lowerPtr_)
+    {
+        lowerPtr_ = new Field<LUType>(*(A.lowerPtr_));
+    }
+
+    if (A.sourcePtr_)
+    {
+        sourcePtr_ = new Field<Type>(*(A.sourcePtr_));
     }
 }
 
 
-Foam::lduMatrix::lduMatrix(lduMatrix& A, bool reuse)
+template<class Type, class DType, class LUType>
+Foam::LduMatrix<Type, DType, LUType>::LduMatrix(LduMatrix& A, bool reuse)
 :
     lduMesh_(A.lduMesh_),
-    lowerPtr_(nullptr),
     diagPtr_(nullptr),
-    upperPtr_(nullptr)
+    upperPtr_(nullptr),
+    lowerPtr_(nullptr),
+    sourcePtr_(nullptr),
+    interfaces_(0),
+    interfacesUpper_(0),
+    interfacesLower_(0)
 {
     if (reuse)
     {
-        if (A.lowerPtr_)
-        {
-            lowerPtr_ = A.lowerPtr_;
-            A.lowerPtr_ = nullptr;
-        }
-
         if (A.diagPtr_)
         {
             diagPtr_ = A.diagPtr_;
@@ -116,60 +103,67 @@ Foam::lduMatrix::lduMatrix(lduMatrix& A, bool reuse)
             upperPtr_ = A.upperPtr_;
             A.upperPtr_ = nullptr;
         }
+
+        if (A.lowerPtr_)
+        {
+            lowerPtr_ = A.lowerPtr_;
+            A.lowerPtr_ = nullptr;
+        }
+
+        if (A.sourcePtr_)
+        {
+            sourcePtr_ = A.sourcePtr_;
+            A.sourcePtr_ = nullptr;
+        }
     }
     else
     {
-        if (A.lowerPtr_)
-        {
-            lowerPtr_ = new scalarField(*(A.lowerPtr_));
-        }
-
         if (A.diagPtr_)
         {
-            diagPtr_ = new scalarField(*(A.diagPtr_));
+            diagPtr_ = new Field<DType>(*(A.diagPtr_));
         }
 
         if (A.upperPtr_)
         {
-            upperPtr_ = new scalarField(*(A.upperPtr_));
+            upperPtr_ = new Field<LUType>(*(A.upperPtr_));
+        }
+
+        if (A.lowerPtr_)
+        {
+            lowerPtr_ = new Field<LUType>(*(A.lowerPtr_));
+        }
+
+        if (A.sourcePtr_)
+        {
+            sourcePtr_ = new Field<Type>(*(A.sourcePtr_));
         }
     }
 }
 
 
-Foam::lduMatrix::lduMatrix(const lduMesh& mesh, Istream& is)
+template<class Type, class DType, class LUType>
+Foam::LduMatrix<Type, DType, LUType>::LduMatrix
+(
+    const lduMesh& mesh,
+    Istream& is
+)
 :
     lduMesh_(mesh),
-    lowerPtr_(nullptr),
-    diagPtr_(nullptr),
-    upperPtr_(nullptr)
+    diagPtr_(new Field<DType>(is)),
+    upperPtr_(new Field<LUType>(is)),
+    lowerPtr_(new Field<LUType>(is)),
+    sourcePtr_(new Field<Type>(is)),
+    interfaces_(0),
+    interfacesUpper_(0),
+    interfacesLower_(0)
+{}
+
+
+// * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * * //
+
+template<class Type, class DType, class LUType>
+Foam::LduMatrix<Type, DType, LUType>::~LduMatrix()
 {
-    Switch hasLow(is);
-    Switch hasDiag(is);
-    Switch hasUp(is);
-
-    if (hasLow)
-    {
-        lowerPtr_ = new scalarField(is);
-    }
-    if (hasDiag)
-    {
-        diagPtr_ = new scalarField(is);
-    }
-    if (hasUp)
-    {
-        upperPtr_ = new scalarField(is);
-    }
-}
-
-
-Foam::lduMatrix::~lduMatrix()
-{
-    if (lowerPtr_)
-    {
-        delete lowerPtr_;
-    }
-
     if (diagPtr_)
     {
         delete diagPtr_;
@@ -179,124 +173,93 @@ Foam::lduMatrix::~lduMatrix()
     {
         delete upperPtr_;
     }
-}
-
-
-Foam::scalarField& Foam::lduMatrix::lower()
-{
-    if (!lowerPtr_)
-    {
-        if (upperPtr_)
-        {
-            lowerPtr_ = new scalarField(*upperPtr_);
-        }
-        else
-        {
-            lowerPtr_ = new scalarField(lduAddr().lowerAddr().size(), Zero);
-        }
-    }
-
-    return *lowerPtr_;
-}
-
-
-Foam::scalarField& Foam::lduMatrix::diag()
-{
-    if (!diagPtr_)
-    {
-        diagPtr_ = new scalarField(lduAddr().size(), Zero);
-    }
-
-    return *diagPtr_;
-}
-
-
-Foam::scalarField& Foam::lduMatrix::upper()
-{
-    if (!upperPtr_)
-    {
-        if (lowerPtr_)
-        {
-            upperPtr_ = new scalarField(*lowerPtr_);
-        }
-        else
-        {
-            upperPtr_ = new scalarField(lduAddr().lowerAddr().size(), Zero);
-        }
-    }
-
-    return *upperPtr_;
-}
-
-
-Foam::scalarField& Foam::lduMatrix::lower(const label nCoeffs)
-{
-    if (!lowerPtr_)
-    {
-        if (upperPtr_)
-        {
-            lowerPtr_ = new scalarField(*upperPtr_);
-        }
-        else
-        {
-            lowerPtr_ = new scalarField(nCoeffs, Zero);
-        }
-    }
-
-    return *lowerPtr_;
-}
-
-
-Foam::scalarField& Foam::lduMatrix::diag(const label size)
-{
-    if (!diagPtr_)
-    {
-        diagPtr_ = new scalarField(size, Zero);
-    }
-
-    return *diagPtr_;
-}
-
-
-Foam::scalarField& Foam::lduMatrix::upper(const label nCoeffs)
-{
-    if (!upperPtr_)
-    {
-        if (lowerPtr_)
-        {
-            upperPtr_ = new scalarField(*lowerPtr_);
-        }
-        else
-        {
-            upperPtr_ = new scalarField(nCoeffs, Zero);
-        }
-    }
-
-    return *upperPtr_;
-}
-
-
-const Foam::scalarField& Foam::lduMatrix::lower() const
-{
-    if (!lowerPtr_ && !upperPtr_)
-    {
-        FatalErrorInFunction
-            << "lowerPtr_ or upperPtr_ unallocated"
-            << abort(FatalError);
-    }
 
     if (lowerPtr_)
     {
-        return *lowerPtr_;
+        delete lowerPtr_;
     }
-    else
+
+    if (sourcePtr_)
     {
-        return *upperPtr_;
+        delete sourcePtr_;
     }
 }
 
 
-const Foam::scalarField& Foam::lduMatrix::diag() const
+// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
+
+template<class Type, class DType, class LUType>
+Foam::Field<DType>& Foam::LduMatrix<Type, DType, LUType>::diag()
+{
+    if (!diagPtr_)
+    {
+        diagPtr_ = new Field<DType>(lduAddr().size(), Zero);
+    }
+
+    return *diagPtr_;
+}
+
+
+template<class Type, class DType, class LUType>
+Foam::Field<LUType>& Foam::LduMatrix<Type, DType, LUType>::upper()
+{
+    if (!upperPtr_)
+    {
+        if (lowerPtr_)
+        {
+            upperPtr_ = new Field<LUType>(*lowerPtr_);
+        }
+        else
+        {
+            upperPtr_ = new Field<LUType>
+            (
+                lduAddr().lowerAddr().size(),
+                Zero
+            );
+        }
+    }
+
+    return *upperPtr_;
+}
+
+
+template<class Type, class DType, class LUType>
+Foam::Field<LUType>& Foam::LduMatrix<Type, DType, LUType>::lower()
+{
+    if (!lowerPtr_)
+    {
+        if (upperPtr_)
+        {
+            lowerPtr_ = new Field<LUType>(*upperPtr_);
+        }
+        else
+        {
+            lowerPtr_ = new Field<LUType>
+            (
+                lduAddr().lowerAddr().size(),
+                Zero
+            );
+        }
+    }
+
+    return *lowerPtr_;
+}
+
+
+template<class Type, class DType, class LUType>
+Foam::Field<Type>& Foam::LduMatrix<Type, DType, LUType>::source()
+{
+    if (!sourcePtr_)
+    {
+        sourcePtr_ = new Field<Type>(lduAddr().size(), Zero);
+    }
+
+    return *sourcePtr_;
+}
+
+
+template<class Type, class DType, class LUType>
+const Foam::Field<DType>& Foam::LduMatrix<Type, DType, LUType>::diag() const
 {
     if (!diagPtr_)
     {
@@ -309,7 +272,8 @@ const Foam::scalarField& Foam::lduMatrix::diag() const
 }
 
 
-const Foam::scalarField& Foam::lduMatrix::upper() const
+template<class Type, class DType, class LUType>
+const Foam::Field<LUType>& Foam::LduMatrix<Type, DType, LUType>::upper() const
 {
     if (!lowerPtr_ && !upperPtr_)
     {
@@ -329,146 +293,91 @@ const Foam::scalarField& Foam::lduMatrix::upper() const
 }
 
 
-void Foam::lduMatrix::setResidualField
-(
-    const scalarField& residual,
-    const word& fieldName,
-    const bool initial
-) const
+template<class Type, class DType, class LUType>
+const Foam::Field<LUType>& Foam::LduMatrix<Type, DType, LUType>::lower() const
 {
-    if (!mesh().hasDb())
+    if (!lowerPtr_ && !upperPtr_)
     {
-        return;
+        FatalErrorInFunction
+            << "lowerPtr_ or upperPtr_ unallocated"
+            << abort(FatalError);
     }
 
-    scalarIOField* residualPtr =
-        mesh().thisDb().getObjectPtr<scalarIOField>
-        (
-            initial
-          ? IOobject::scopedName("initialResidual", fieldName)
-          : IOobject::scopedName("residual", fieldName)
-        );
-
-    if (residualPtr)
+    if (lowerPtr_)
     {
-        const IOdictionary* dataPtr =
-            mesh().thisDb().findObject<IOdictionary>("data");
-
-        if (dataPtr)
-        {
-            if (initial && dataPtr->found("firstIteration"))
-            {
-                *residualPtr = residual;
-                DebugInfo
-                    << "Setting residual field for first solver iteration "
-                    << "for solver field: " << fieldName << endl;
-            }
-        }
-        else
-        {
-            *residualPtr = residual;
-            DebugInfo
-                << "Setting residual field for solver field "
-                << fieldName << endl;
-        }
+        return *lowerPtr_;
     }
+    else
+    {
+        return *upperPtr_;
+    }
+}
+
+
+template<class Type, class DType, class LUType>
+const Foam::Field<Type>& Foam::LduMatrix<Type, DType, LUType>::source() const
+{
+    if (!sourcePtr_)
+    {
+        FatalErrorInFunction
+            << "sourcePtr_ unallocated"
+            << abort(FatalError);
+    }
+
+    return *sourcePtr_;
 }
 
 
 // * * * * * * * * * * * * * * * Friend Operators  * * * * * * * * * * * * * //
 
-Foam::Ostream& Foam::operator<<(Ostream& os, const lduMatrix& ldum)
-{
-    Switch hasLow = ldum.hasLower();
-    Switch hasDiag = ldum.hasDiag();
-    Switch hasUp = ldum.hasUpper();
-
-    os  << hasLow << token::SPACE << hasDiag << token::SPACE
-        << hasUp << token::SPACE;
-
-    if (hasLow)
-    {
-        os  << ldum.lower();
-    }
-
-    if (hasDiag)
-    {
-        os  << ldum.diag();
-    }
-
-    if (hasUp)
-    {
-        os  << ldum.upper();
-    }
-
-    os.check(FUNCTION_NAME);
-
-    return os;
-}
-
-
+template<class Type, class DType, class LUType>
 Foam::Ostream& Foam::operator<<
 (
     Ostream& os,
-    const InfoProxy<lduMatrix>& iproxy
+    const LduMatrix<Type, DType, LUType>& ldum
 )
 {
-    const auto& ldum = *iproxy;
-
-    Switch hasLow = ldum.hasLower();
-    Switch hasDiag = ldum.hasDiag();
-    Switch hasUp = ldum.hasUpper();
-
-    os  << "Lower:" << hasLow
-        << " Diag:" << hasDiag
-        << " Upper:" << hasUp << endl;
-
-    if (hasLow)
+    if (ldum.diagPtr_)
     {
-        os  << "lower:" << ldum.lower().size() << endl;
-    }
-    if (hasDiag)
-    {
-        os  << "diag :" << ldum.diag().size() << endl;
-    }
-    if (hasUp)
-    {
-        os  << "upper:" << ldum.upper().size() << endl;
+        os  << "Diagonal = "
+            << *ldum.diagPtr_
+            << endl << endl;
     }
 
+    if (ldum.upperPtr_)
+    {
+        os  << "Upper triangle = "
+            << *ldum.upperPtr_
+            << endl << endl;
+    }
 
-    //if (hasLow)
-    //{
-    //    os  << "lower contents:" << endl;
-    //    forAll(ldum.lower(), i)
-    //    {
-    //        os  << "i:" << i << "\t" << ldum.lower()[i] << endl;
-    //    }
-    //    os  << endl;
-    //}
-    //if (hasDiag)
-    //{
-    //    os  << "diag contents:" << endl;
-    //    forAll(ldum.diag(), i)
-    //    {
-    //        os  << "i:" << i << "\t" << ldum.diag()[i] << endl;
-    //    }
-    //    os  << endl;
-    //}
-    //if (hasUp)
-    //{
-    //    os  << "upper contents:" << endl;
-    //    forAll(ldum.upper(), i)
-    //    {
-    //        os  << "i:" << i << "\t" << ldum.upper()[i] << endl;
-    //    }
-    //    os  << endl;
-    //}
+    if (ldum.lowerPtr_)
+    {
+        os  << "Lower triangle = "
+            << *ldum.lowerPtr_
+            << endl << endl;
+    }
+
+    if (ldum.sourcePtr_)
+    {
+        os  << "Source = "
+            << *ldum.sourcePtr_
+            << endl << endl;
+    }
 
     os.check(FUNCTION_NAME);
 
     return os;
 }
 
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include "LduMatrixOperations.C"
+#include "LduMatrixATmul.C"
+#include "LduMatrixUpdateMatrixInterfaces.C"
+#include "LduMatrixPreconditioner.C"
+#include "LduMatrixSmoother.C"
+#include "LduMatrixSolver.C"
 
 // ************************************************************************* //

@@ -6,7 +6,7 @@
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
     Copyright (C) 2011-2016 OpenFOAM Foundation
-    Copyright (C) 2017-2019 OpenCFD Ltd.
+    Copyright (C) 2017-2023 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -24,37 +24,31 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Description
-    Multiply a given vector (second argument) by the matrix or its transpose
-    and return the result in the first argument.
-
 \*---------------------------------------------------------------------------*/
 
-#include "lduMatrix.H"
+#include "LduMatrix.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-void Foam::lduMatrix::Amul
+template<class Type, class DType, class LUType>
+void Foam::LduMatrix<Type, DType, LUType>::Amul
 (
-    solveScalarField& Apsi,
-    const tmp<solveScalarField>& tpsi,
-    const FieldField<Field, scalar>& interfaceBouCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces,
-    const direction cmpt
+    Field<Type>& Apsi,
+    const tmp<Field<Type>>& tpsi
 ) const
 {
-    solveScalar* __restrict__ ApsiPtr = Apsi.begin();
+    Type* __restrict__ ApsiPtr = Apsi.begin();
 
-    const solveScalarField& psi = tpsi();
-    const solveScalar* const __restrict__ psiPtr = psi.begin();
+    const Field<Type>& psi = tpsi();
+    const Type* const __restrict__ psiPtr = psi.begin();
 
-    const scalar* const __restrict__ diagPtr = diag().begin();
+    const DType* const __restrict__ diagPtr = diag().begin();
 
     const label* const __restrict__ uPtr = lduAddr().upperAddr().begin();
     const label* const __restrict__ lPtr = lduAddr().lowerAddr().begin();
 
-    const scalar* const __restrict__ upperPtr = upper().begin();
-    const scalar* const __restrict__ lowerPtr = lower().begin();
+    const LUType* const __restrict__ upperPtr = upper().begin();
+    const LUType* const __restrict__ lowerPtr = lower().begin();
 
     const label startRequest = UPstream::nRequests();
 
@@ -62,37 +56,32 @@ void Foam::lduMatrix::Amul
     initMatrixInterfaces
     (
         true,
-        interfaceBouCoeffs,
-        interfaces,
+        interfacesUpper_,
         psi,
-        Apsi,
-        cmpt
+        Apsi
     );
 
     const label nCells = diag().size();
     for (label cell=0; cell<nCells; cell++)
     {
-        ApsiPtr[cell] = diagPtr[cell]*psiPtr[cell];
+        ApsiPtr[cell] = dot(diagPtr[cell], psiPtr[cell]);
     }
 
 
     const label nFaces = upper().size();
-
     for (label face=0; face<nFaces; face++)
     {
-        ApsiPtr[uPtr[face]] += lowerPtr[face]*psiPtr[lPtr[face]];
-        ApsiPtr[lPtr[face]] += upperPtr[face]*psiPtr[uPtr[face]];
+        ApsiPtr[uPtr[face]] += dot(lowerPtr[face], psiPtr[lPtr[face]]);
+        ApsiPtr[lPtr[face]] += dot(upperPtr[face], psiPtr[uPtr[face]]);
     }
 
     // Update interface interfaces
     updateMatrixInterfaces
     (
         true,
-        interfaceBouCoeffs,
-        interfaces,
+        interfacesUpper_,
         psi,
         Apsi,
-        cmpt,
         startRequest
     );
 
@@ -100,27 +89,25 @@ void Foam::lduMatrix::Amul
 }
 
 
-void Foam::lduMatrix::Tmul
+template<class Type, class DType, class LUType>
+void Foam::LduMatrix<Type, DType, LUType>::Tmul
 (
-    solveScalarField& Tpsi,
-    const tmp<solveScalarField>& tpsi,
-    const FieldField<Field, scalar>& interfaceIntCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces,
-    const direction cmpt
+    Field<Type>& Tpsi,
+    const tmp<Field<Type>>& tpsi
 ) const
 {
-    solveScalar* __restrict__ TpsiPtr = Tpsi.begin();
+    Type* __restrict__ TpsiPtr = Tpsi.begin();
 
-    const solveScalarField& psi = tpsi();
-    const solveScalar* const __restrict__ psiPtr = psi.begin();
+    const Field<Type>& psi = tpsi();
+    const Type* const __restrict__ psiPtr = psi.begin();
 
-    const scalar* const __restrict__ diagPtr = diag().begin();
+    const DType* const __restrict__ diagPtr = diag().begin();
 
     const label* const __restrict__ uPtr = lduAddr().upperAddr().begin();
     const label* const __restrict__ lPtr = lduAddr().lowerAddr().begin();
 
-    const scalar* const __restrict__ lowerPtr = lower().begin();
-    const scalar* const __restrict__ upperPtr = upper().begin();
+    const LUType* const __restrict__ lowerPtr = lower().begin();
+    const LUType* const __restrict__ upperPtr = upper().begin();
 
     const label startRequest = UPstream::nRequests();
 
@@ -128,35 +115,31 @@ void Foam::lduMatrix::Tmul
     initMatrixInterfaces
     (
         true,
-        interfaceIntCoeffs,
-        interfaces,
+        interfacesLower_,
         psi,
-        Tpsi,
-        cmpt
+        Tpsi
     );
 
     const label nCells = diag().size();
     for (label cell=0; cell<nCells; cell++)
     {
-        TpsiPtr[cell] = diagPtr[cell]*psiPtr[cell];
+        TpsiPtr[cell] = dot(diagPtr[cell], psiPtr[cell]);
     }
 
     const label nFaces = upper().size();
     for (label face=0; face<nFaces; face++)
     {
-        TpsiPtr[uPtr[face]] += upperPtr[face]*psiPtr[lPtr[face]];
-        TpsiPtr[lPtr[face]] += lowerPtr[face]*psiPtr[uPtr[face]];
+        TpsiPtr[uPtr[face]] += dot(upperPtr[face], psiPtr[lPtr[face]]);
+        TpsiPtr[lPtr[face]] += dot(lowerPtr[face], psiPtr[uPtr[face]]);
     }
 
     // Update interface interfaces
     updateMatrixInterfaces
     (
         true,
-        interfaceIntCoeffs,
-        interfaces,
+        interfacesLower_,
         psi,
         Tpsi,
-        cmpt,
         startRequest
     );
 
@@ -164,169 +147,123 @@ void Foam::lduMatrix::Tmul
 }
 
 
-void Foam::lduMatrix::sumA
+template<class Type, class DType, class LUType>
+void Foam::LduMatrix<Type, DType, LUType>::sumA
 (
-    solveScalarField& sumA,
-    const FieldField<Field, scalar>& interfaceBouCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces
+    Field<Type>& sumA
 ) const
 {
-    solveScalar* __restrict__ sumAPtr = sumA.begin();
+    Type* __restrict__ sumAPtr = sumA.begin();
 
-    const scalar* __restrict__ diagPtr = diag().begin();
+    const DType* __restrict__ diagPtr = diag().begin();
 
     const label* __restrict__ uPtr = lduAddr().upperAddr().begin();
     const label* __restrict__ lPtr = lduAddr().lowerAddr().begin();
 
-    const scalar* __restrict__ lowerPtr = lower().begin();
-    const scalar* __restrict__ upperPtr = upper().begin();
+    const LUType* __restrict__ lowerPtr = lower().begin();
+    const LUType* __restrict__ upperPtr = upper().begin();
 
     const label nCells = diag().size();
     const label nFaces = upper().size();
 
     for (label cell=0; cell<nCells; cell++)
     {
-        sumAPtr[cell] = diagPtr[cell];
+        sumAPtr[cell] = dot(diagPtr[cell], pTraits<Type>::one);
     }
 
     for (label face=0; face<nFaces; face++)
     {
-        sumAPtr[uPtr[face]] += lowerPtr[face];
-        sumAPtr[lPtr[face]] += upperPtr[face];
+        sumAPtr[uPtr[face]] += dot(lowerPtr[face], pTraits<Type>::one);
+        sumAPtr[lPtr[face]] += dot(upperPtr[face], pTraits<Type>::one);
     }
 
     // Add the interface internal coefficients to diagonal
     // and the interface boundary coefficients to the sum-off-diagonal
-    forAll(interfaces, patchi)
+    forAll(interfaces_, patchi)
     {
-        if (interfaces.set(patchi))
+        if (interfaces_.set(patchi))
         {
             const labelUList& pa = lduAddr().patchAddr(patchi);
-            const scalarField& pCoeffs = interfaceBouCoeffs[patchi];
+            const Field<LUType>& pCoeffs = interfacesUpper_[patchi];
 
             forAll(pa, face)
             {
-                sumAPtr[pa[face]] -= pCoeffs[face];
+                sumAPtr[pa[face]] -= dot(pCoeffs[face], pTraits<Type>::one);
             }
         }
     }
 }
 
 
-void Foam::lduMatrix::residual
+template<class Type, class DType, class LUType>
+void Foam::LduMatrix<Type, DType, LUType>::residual
 (
-    solveScalarField& rA,
-    const solveScalarField& psi,
-    const scalarField& source,
-    const FieldField<Field, scalar>& interfaceBouCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces,
-    const direction cmpt
+    Field<Type>& rA,
+    const Field<Type>& psi
 ) const
 {
-    solveScalar* __restrict__ rAPtr = rA.begin();
+    Type* __restrict__ rAPtr = rA.begin();
 
-    const solveScalar* const __restrict__ psiPtr = psi.begin();
-    const scalar* const __restrict__ diagPtr = diag().begin();
-    const scalar* const __restrict__ sourcePtr = source.begin();
+    const Type* const __restrict__ psiPtr = psi.begin();
+    const DType* const __restrict__ diagPtr = diag().begin();
+    const Type* const __restrict__ sourcePtr = source().begin();
 
     const label* const __restrict__ uPtr = lduAddr().upperAddr().begin();
     const label* const __restrict__ lPtr = lduAddr().lowerAddr().begin();
 
-    const scalar* const __restrict__ upperPtr = upper().begin();
-    const scalar* const __restrict__ lowerPtr = lower().begin();
+    const LUType* const __restrict__ upperPtr = upper().begin();
+    const LUType* const __restrict__ lowerPtr = lower().begin();
 
     // Parallel boundary initialisation.
     // Note: there is a change of sign in the coupled
-    // interface update.  The reason for this is that the
-    // internal coefficients are all located at the l.h.s. of
-    // the matrix whereas the "implicit" coefficients on the
-    // coupled boundaries are all created as if the
-    // coefficient contribution is of a source-kind (i.e. they
-    // have a sign as if they are on the r.h.s. of the matrix.
-    // To compensate for this, it is necessary to turn the
-    // sign of the contribution.
+    // interface update to add the contibution to the r.h.s.
 
     const label startRequest = UPstream::nRequests();
 
     // Initialise the update of interfaced interfaces
     initMatrixInterfaces
     (
-        false,
-        interfaceBouCoeffs,
-        interfaces,
+        false,          // negate interface contributions
+        interfacesUpper_,
         psi,
-        rA,
-        cmpt
+        rA
     );
 
     const label nCells = diag().size();
     for (label cell=0; cell<nCells; cell++)
     {
-        rAPtr[cell] = sourcePtr[cell] - diagPtr[cell]*psiPtr[cell];
+        rAPtr[cell] = sourcePtr[cell] - dot(diagPtr[cell], psiPtr[cell]);
     }
 
 
     const label nFaces = upper().size();
-
     for (label face=0; face<nFaces; face++)
     {
-        rAPtr[uPtr[face]] -= lowerPtr[face]*psiPtr[lPtr[face]];
-        rAPtr[lPtr[face]] -= upperPtr[face]*psiPtr[uPtr[face]];
+        rAPtr[uPtr[face]] -= dot(lowerPtr[face], psiPtr[lPtr[face]]);
+        rAPtr[lPtr[face]] -= dot(upperPtr[face], psiPtr[uPtr[face]]);
     }
 
     // Update interface interfaces
     updateMatrixInterfaces
     (
         false,
-        interfaceBouCoeffs,
-        interfaces,
+        interfacesUpper_,
         psi,
         rA,
-        cmpt,
         startRequest
     );
 }
 
 
-Foam::tmp<Foam::Field<Foam::solveScalar>> Foam::lduMatrix::residual
+template<class Type, class DType, class LUType>
+Foam::tmp<Foam::Field<Type>> Foam::LduMatrix<Type, DType, LUType>::residual
 (
-    const solveScalarField& psi,
-    const scalarField& source,
-    const FieldField<Field, scalar>& interfaceBouCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces,
-    const direction cmpt
+    const Field<Type>& psi
 ) const
 {
-    auto trA = tmp<solveScalarField>::New(psi.size());
-    residual(trA.ref(), psi, source, interfaceBouCoeffs, interfaces, cmpt);
+    auto trA = tmp<Field<Type>>::New(psi.size());
+    residual(trA.ref(), psi);
     return trA;
-}
-
-
-Foam::tmp<Foam::scalarField> Foam::lduMatrix::H1() const
-{
-    auto tH1 = tmp<scalarField>::New(lduAddr().size(), Zero);
-
-    if (lowerPtr_ || upperPtr_)
-    {
-        scalar* __restrict__ H1Ptr = tH1.ref().begin();
-
-        const label* __restrict__ uPtr = lduAddr().upperAddr().begin();
-        const label* __restrict__ lPtr = lduAddr().lowerAddr().begin();
-
-        const scalar* __restrict__ lowerPtr = lower().begin();
-        const scalar* __restrict__ upperPtr = upper().begin();
-
-        const label nFaces = upper().size();
-
-        for (label face=0; face<nFaces; face++)
-        {
-            H1Ptr[uPtr[face]] -= lowerPtr[face];
-            H1Ptr[lPtr[face]] -= upperPtr[face];
-        }
-    }
-
-    return tH1;
 }
 
 

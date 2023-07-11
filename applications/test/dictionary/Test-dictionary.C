@@ -5,8 +5,8 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2012 OpenFOAM Foundation
-    Copyright (C) 2021 OpenCFD Ltd.
+    Copyright (C) 2011 OpenFOAM Foundation
+    Copyright (C) 2020 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,116 +25,193 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    dictionaryTest
 
 Description
 
 \*---------------------------------------------------------------------------*/
 
-#include "argList.H"
+#include "OSspecific.H"
+
+#include "scalar.H"
+
 #include "IOstreams.H"
-#include "IOobject.H"
-#include "IFstream.H"
-#include "dictionary.H"
-#include "stringOps.H"
+#include "Dictionary.H"
+#include "PtrDictionary.H"
 
 using namespace Foam;
+
+class ent
+:
+    public Dictionary<ent>::link
+{
+    word keyword_;
+    int i_;
+
+public:
+
+    ent(const word& keyword, int i)
+    :
+        keyword_(keyword),
+        i_(i)
+    {}
+
+    const word& keyword() const
+    {
+        return keyword_;
+    }
+
+    friend Ostream& operator<<(Ostream& os, const ent& e)
+    {
+        os  << e.keyword_ << ' ' << e.i_ << endl;
+        return os;
+    }
+};
+
+
+class Scalar
+{
+    scalar data_;
+
+public:
+
+    Scalar()
+    :
+        data_(0)
+    {}
+
+    Scalar(scalar val)
+    :
+        data_(val)
+    {}
+
+    ~Scalar()
+    {
+        Info<<"delete Scalar: " << data_ << endl;
+    }
+
+    friend Ostream& operator<<(Ostream& os, const Scalar& val)
+    {
+        os  << val.data_;
+        return os;
+    }
+};
+
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 //  Main program:
 
 int main(int argc, char *argv[])
 {
-    argList::noParallel();
-    argList::addArgument("dict .. dictN");
-    argList args(argc, argv, false, true);
+    Dictionary<ent>* dictPtr = new Dictionary<ent>;
+    Dictionary<ent>& dict = *dictPtr;
 
+    for (int i = 0; i<10; i++)
     {
-        dictionary dict;
-        dict.add(word("ab" + getEnv("WM_MPLIB") + "cd"), 16);
-
-        string s("DDD_${ab${WM_MPLIB}cd}_EEE");
-        stringOps::inplaceExpand(s, dict, true, false);
-        Info<< "variable expansion:" << s << endl;
+        ent* ePtr = new ent(word("ent") + name(i), i);
+        dict.append(ePtr->keyword(), ePtr);
+        dict.swapUp(ePtr);
     }
 
-    Info<< nl
-        << "FOAM_CASE=" << getEnv("FOAM_CASE") << nl
-        << "FOAM_CASENAME=" << getEnv("FOAM_CASENAME") << nl
-        << endl;
+    Info<< dict << endl;
 
-    if (args.size() <= 1)
+    dict.swapDown(dict.first());
+
+    forAllConstIter(Dictionary<ent>, dict, iter)
     {
-        {
-            dictionary dict1(IFstream("testDict")());
-            dict1.writeEntry("dict1", Info);
+        Info<< "element : " << *iter;
+    }
 
-            Info<< nl
-                << "toc: " << dict1.toc() << nl
-                << "keys: " << dict1.keys() << nl
-                << "patterns: " << dict1.keys(true) << endl;
+    Info<< "keys: " << dict.toc() << endl;
 
-            dictionary dict2(std::move(dict1));
+    delete dictPtr;
 
-            Info<< "dict1.toc(): " << dict1.name() << " " << dict1.toc() << nl
-                << "dict2.toc(): " << dict2.name() << " " << dict2.toc()
-                << endl;
+    Dictionary<ent> dict2;
 
-            // copy back
-            dict1 = dict2;
-            Info<< "dict1.toc(): " << dict1.name() << " " << dict1.toc()
-                << endl;
+    for (int i = 0; i<10; i++)
+    {
+        ent* ePtr = new ent(word("ent") + name(i), i);
+        dict2.append(ePtr->keyword(), ePtr);
+        dict2.swapUp(ePtr);
+    }
 
-            dictionary dict3(dict2.findDict("boundaryField"));
-            dictionary dict4(dict2.findDict("NONEXISTENT"));
+    Info<< "dict:\n" << dict2 << endl;
 
-            Info<< "dictionary construct from pointer" << nl
-                << "ok = " << dict3.name() << " " << dict3.toc() << nl
-                << "no = " << dict4.name() << " " << dict4.toc() << endl;
-        }
+    Info<< nl << "Testing transfer: " << nl << endl;
+    Info<< "original: " << dict2 << endl;
 
-        IOobject::writeDivider(Info);
+    Dictionary<ent> newDict;
+    newDict.transfer(dict2);
 
-        {
-            dictionary dict(IFstream("testDictRegex")());
-            dict.add(keyType("fooba[rz]", keyType::REGEX), "anything");
+    Info<< nl << "source: " << dict2 << nl
+        << "keys: " << dict2.toc() << nl
+        << "target: " << newDict << nl
+        << "keys: " << newDict.toc() << endl;
 
-            dict.writeEntry("testDictRegex", Info);
-            Info<< nl
-                << "toc: " << dict.toc() << nl
-                << "keys: " << dict.keys() << nl
-                << "patterns: " << dict.keys(true) << endl;
 
-            Info<< "Pattern find \"abc\" in top directory : "
-                << dict.lookup("abc") << endl;
-            Info<< "Pattern find \"abc\" in sub directory : "
-                << dict.subDict("someDict").lookup("abc") << nl;
-            Info<< "Recursive pattern find \"def\" in sub directory : "
-                << dict.subDict("someDict").lookup("def", true) << nl;
-            Info<< "Recursive pattern find \"foo\" in sub directory : "
-                << dict.subDict("someDict").lookup("foo", true) << nl;
-            Info<< "Recursive pattern find \"fooz\" in sub directory : "
-                << dict.subDict("someDict").lookup("fooz", true) << nl;
-            Info<< "Recursive pattern find \"bar\" in sub directory : "
-                << dict.subDict("someDict").lookup("bar", true) << nl;
-            Info<< "Recursive pattern find \"xxx\" in sub directory : "
-                << dict.subDict("someDict").lookup("xxx", true) << nl;
-        }
+    PtrDictionary<Scalar> scalarDict;
+    for (int i = 0; i<10; i++)
+    {
+        word key("ent" + name(i));
+        scalarDict.insert(key, new Scalar(1.3*i));
+    }
+
+    Info<< nl << "scalarDict1: " << endl;
+    forAllConstIter(PtrDictionary<Scalar>, scalarDict, iter)
+    {
+        Info<< " = " << iter() << endl;
+    }
+
+    PtrDictionary<Scalar> scalarDict2;
+    for (int i = 8; i<15; i++)
+    {
+        word key("ent" + name(i));
+        scalarDict2.insert(key, new Scalar(1.3*i));
+    }
+    Info<< nl << "scalarDict2: " << endl;
+    forAllConstIter(PtrDictionary<Scalar>, scalarDict2, iter)
+    {
+        std::cout<< "iter: " << typeid(*iter).name() << '\n';
+
+        Info<< "elem = " << *iter << endl;
+    }
+
+    // FIXME: the deduction seems to be different here.
+    // - returns pointer (as perhaps actually expected) not the
+    //  underlying value.
+    forAllConstIters(scalarDict2, iter)
+    {
+        std::cout<< "iter: " << typeid(*iter).name() << '\n';
+
+        // Info<< "elem = " << *(*iter) << endl;
+    }
+
+    std::cout<< "iter type: "
+        << typeid(stdFoam::begin(scalarDict2)).name() << '\n';
+
+    scalarDict.transfer(scalarDict2);
+
+
+    const Scalar* p = scalarDict.cfind("ent8");
+
+    // This does not (yet) work
+    // Scalar* q = scalarDict.remove("ent10");
+
+    if (p)
+    {
+        Info<< "found: " << *p << endl;
     }
     else
     {
-        IOobject::writeDivider(Info);
-        for (label argi=1; argi < args.size(); ++argi)
-        {
-            const auto dictFile = args.get<fileName>(argi);
-            IFstream is(dictFile);
-
-            dictionary dict(is);
-
-            Info<< dict << endl;
-        }
+        Info<< "no p: " << endl;
     }
 
+    scalarDict.clear();
+
+    // Info<< " = " << *iter << endl;
+
+
+    Info<< nl << "Done." << endl;
     return 0;
 }
 

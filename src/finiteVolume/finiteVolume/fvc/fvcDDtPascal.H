@@ -5,8 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011 OpenFOAM Foundation
-    Copyright (C) 2020 OpenCFD Ltd.
+    Copyright (C) 2011-2016 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -24,27 +23,60 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Typedef
-    Foam::primitivePatchInterpolation
+InNamespace
+    Foam::fvc
 
 Description
-    Foam::primitivePatchInterpolation
+    Calculate the substantive (total) derivative.
+
+SourceFiles
+    fvcDDt.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef primitivePatchInterpolation_H
-#define primitivePatchInterpolation_H
 
-#include "primitivePatch.H"
-#include "PrimitivePatchInterpolation.H"
+#ifndef fvcDDt_H
+#define fvcDDt_H
+
+#include "volFieldsFwd.H"
+#include "surfaceFieldsFwd.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-    typedef PrimitivePatchInterpolation<primitivePatch>
-        primitivePatchInterpolation;
+
+/*---------------------------------------------------------------------------*\
+                     Namespace fvc functions Declaration
+\*---------------------------------------------------------------------------*/
+
+namespace fvc
+{
+    template<class Type>
+    tmp<GeometricField<Type, fvPatchField, volMesh>> DDt
+    (
+        const surfaceScalarField&,
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
+
+    template<class Type>
+    tmp<GeometricField<Type, fvPatchField, volMesh>> DDt
+    (
+        const tmp<surfaceScalarField>&,
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 }
+
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+} // End namespace Foam
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#ifdef NoRepository
+    #include "fvcDDt.C"
+#endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

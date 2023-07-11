@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2012-2015 OpenFOAM Foundation
+    Copyright (C) 2011-2015 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,25 +25,11 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "solverPerformance.H"
-#include "fieldTypes.H"
+#include "fvMesh.H"
+#include "leastSquaresGrad.H"
 
-namespace Foam
-{
-    makeSolverPerformance(scalar);
-    makeSolverPerformance(vector);
-    makeSolverPerformance(sphericalTensor);
-    makeSolverPerformance(symmTensor);
-    makeSolverPerformance(tensor);
-};
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-
-template<>
-Foam::SolverPerformance<Foam::scalar>
-Foam::SolverPerformance<Foam::scalar>::max()
-{
-    return *this;
-}
-
+makeFvGradScheme(leastSquaresGrad)
 
 // ************************************************************************* //

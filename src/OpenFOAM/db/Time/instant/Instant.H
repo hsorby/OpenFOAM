@@ -5,6 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
+    Copyright (C) 2011 OpenFOAM Foundation
     Copyright (C) 2018-2022 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
@@ -24,173 +25,100 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::Instant
+    Foam::instant
 
 Description
-    A tuple of scalar value and key.
-    The value often corresponds to a time value, thus the naming of the class.
-    The key will usually be a time name or a file name etc.
+    An instant of time. Contains the time value and name.
+    Uses Foam::Time when formatting the name.
+
+SourceFiles
+    instant.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef Foam_Instant_H
-#define Foam_Instant_H
+#ifndef Foam_instant_H
+#define Foam_instant_H
 
-#include "scalar.H"
-#include <utility>  // std::move
+#include "Instant.H"
+#include "word.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
 
+// Forward Declarations
+template<class T> class Pair;
+template<class T> class UList;
+
 /*---------------------------------------------------------------------------*\
-                           Class Instant Declaration
+                           Class instant Declaration
 \*---------------------------------------------------------------------------*/
 
-template<class T>
-class Instant
+class instant
+:
+    public Instant<word>
 {
-    // Private Data
-
-        //- The value (eg, time)
-        scalar val_;
-
-        //- The name/key
-        T key_;
-
-
 public:
 
-    // Public Classes
+    // Static Data Members
 
-        //- Less function for sorting
-        struct less
-        {
-            bool operator()(const Instant& a, const Instant& b) const noexcept
-            {
-                return a.value() < b.value();
-            }
-        };
+        //- The type name (eg, for pTraits)
+        static const char* const typeName;
 
 
     // Generated Methods
 
+        //- Default construct, with value = 0 and empty name
+        instant() = default;
+
         //- Copy construct
-        Instant(const Instant&) = default;
+        instant(const instant&) = default;
 
         //- Move construct
-        Instant(Instant&&) = default;
+        instant(instant&&) = default;
 
         //- Copy assignment
-        Instant& operator=(const Instant&) = default;
+        instant& operator=(const instant&) = default;
 
         //- Move assignment
-        Instant& operator=(Instant&&) = default;
+        instant& operator=(instant&&) = default;
 
 
     // Constructors
 
-        //- Default construct, with value = 0 and empty name
-        Instant()
-        :
-            val_(0),
-            key_()
-        {}
+        //- Inherit all constructors (eg, copy/move construct from components)
+        using Instant<word>::Instant;
 
-        //- Copy construct from components
-        Instant(scalar val, const T& key)
-        :
-            val_(val),
-            key_(key)
-        {}
+        //- Construct from timeValue, auto generating the name
+        explicit instant(scalar timeValue);
 
-        //- Move construct from components
-        Instant(scalar val, T&& key)
-        :
-            val_(val),
-            key_(std::move(key))
-        {}
+        //- Copy construct from timeName, parsing timeName for a value
+        explicit instant(const word& timeName);
+
+        //- Move construct from timeName, parsing timeName for a value
+        explicit instant(word&& timeName);
 
 
-    // Member Functions
+    // Helper Functions (for searching)
 
-        //- The value (const access)
-        scalar value() const noexcept { return val_; }
+        //- Find and return index of given start time (linear search)
+        static label findStart
+        (
+            const UList<instant>& times,
+            const scalar timeVal
+        );
 
-        //- The value (non-const access)
-        scalar& value() noexcept { return val_; }
-
-        //- The name/key (const access)
-        const T& name() const noexcept { return key_; }
-
-        //- The name/key (non-const access)
-        T& name() noexcept { return key_; }
-
-
-        //- True if values are equal (includes SMALL for rounding)
-        bool equal(scalar val) const noexcept
-        {
-            return ((val_ > val - SMALL) && (val_ < val + SMALL));
-        }
-
-        //- True if values are equal (includes SMALL for rounding)
-        template<class T2>
-        bool equal(const Instant<T2>& other) const noexcept
-        {
-            return (*this).equal(other.value());
-        }
+        //- Find lower/upper indices for given time value in list of instances
+        //- (linear search) continuing \em after the given start index.
+        //  \returns the range indices or (-1,-1) if unsuccessful.
+        static Pair<label> findRange
+        (
+            const UList<instant>& times,
+            const scalar timeVal,
+            const label start = -1
+        );
 };
-
-
-// * * * * * * * * * * * * * * * Global Operators  * * * * * * * * * * * * * //
-
-template<class T1, class T2>
-inline bool operator==(const Instant<T1>& a, const Instant<T2>& b) noexcept
-{
-    return a.equal(b.value());
-}
-
-
-template<class T1, class T2>
-inline bool operator!=(const Instant<T1>& a, const Instant<T2>& b) noexcept
-{
-    return !a.equal(b.value());
-}
-
-
-template<class T1, class T2>
-inline bool operator<(const Instant<T1>& a, const Instant<T2>& b) noexcept
-{
-    return (a.value() < b.value());
-}
-
-
-template<class T1, class T2>
-inline bool operator>(const Instant<T1>& a, const Instant<T2>& b) noexcept
-{
-    return (b.value() < a.value());
-}
-
-
-// * * * * * * * * * * * * * * * IOstream Operators  * * * * * * * * * * * * //
-
-//- Read instant tuple from Istream
-template<class T>
-inline Istream& operator>>(Istream& is, Instant<T>& inst)
-{
-    is >> inst.value() >> inst.name();
-    return is;
-}
-
-
-//- Write instant tuple to Ostream
-template<class T>
-inline Ostream& operator<<(Ostream& os, const Instant<T>& inst)
-{
-    os << inst.value() << '\t' << inst.name();
-    return os;
-}
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

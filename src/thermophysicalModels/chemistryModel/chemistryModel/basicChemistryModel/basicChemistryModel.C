@@ -5,8 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2018 OpenFOAM Foundation
-    Copyright (C) 2020 OpenCFD Ltd.
+    Copyright (C) 2011-2017 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -26,61 +25,38 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "basicChemistryModel.H"
-#include "fvMesh.H"
-#include "Time.H"
-
-/* * * * * * * * * * * * * * * private static data * * * * * * * * * * * * * */
-
-namespace Foam
-{
-    defineTypeNameAndDebug(basicChemistryModel, 0);
-}
-
-// * * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * //
-
-void Foam::basicChemistryModel::correct()
-{}
-
+#include "BasicChemistryModel.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::basicChemistryModel::basicChemistryModel(basicThermo& thermo)
+template<class ReactionThermo>
+Foam::BasicChemistryModel<ReactionThermo>::BasicChemistryModel
+(
+    ReactionThermo& thermo
+)
 :
-    IOdictionary
-    (
-        IOobject
-        (
-            thermo.phasePropertyName("chemistryProperties"),
-            thermo.db().time().constant(),
-            thermo.db(),
-            IOobject::MUST_READ_IF_MODIFIED,
-            IOobject::NO_WRITE
-        )
-    ),
-    mesh_(thermo.p().mesh()),
-    chemistry_(get<Switch>("chemistry")),
-    deltaTChemIni_(get<scalar>("initialChemicalTimeStep")),
-    deltaTChemMax_(getOrDefault<scalar>("maxChemicalTimeStep", GREAT)),
-    deltaTChem_
-    (
-        IOobject
-        (
-            thermo.phasePropertyName("deltaTChem"),
-            mesh().time().constant(),
-            mesh(),
-            IOobject::NO_READ,
-            IOobject::NO_WRITE
-        ),
-        mesh(),
-        dimensionedScalar("deltaTChem0", dimTime, deltaTChemIni_)
-    )
+    basicChemistryModel(thermo),
+    thermo_(thermo)
 {}
+
+
+// * * * * * * * * * * * * * * * * Selectors * * * * * * * * * * * * * * * * //
+
+template<class ReactionThermo>
+Foam::autoPtr<Foam::BasicChemistryModel<ReactionThermo>>
+Foam::BasicChemistryModel<ReactionThermo>::New(ReactionThermo& thermo)
+{
+    return basicChemistryModel::New<BasicChemistryModel<ReactionThermo>>
+    (
+        thermo
+    );
+}
 
 
 // * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
 
-Foam::basicChemistryModel::~basicChemistryModel()
+template<class ReactionThermo>
+Foam::BasicChemistryModel<ReactionThermo>::~BasicChemistryModel()
 {}
 
 

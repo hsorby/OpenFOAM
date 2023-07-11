@@ -5,8 +5,8 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2013 OpenFOAM Foundation
-    Copyright (C) 2019-2023 OpenCFD Ltd.
+    Copyright (C) 2011-2018 OpenFOAM Foundation
+    Copyright (C) 2020 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -26,32 +26,61 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "MeshObject.H"
+#include "basicChemistryModel.H"
+#include "fvMesh.H"
+#include "Time.H"
 
-/* * * * * * * * * * * * * * * Static Member Data  * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * private static data * * * * * * * * * * * * * */
 
 namespace Foam
 {
-    defineTypeNameAndDebug(meshObject, 0);
+    defineTypeNameAndDebug(basicChemistryModel, 0);
 }
+
+// * * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * //
+
+void Foam::basicChemistryModel::correct()
+{}
 
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::meshObject::meshObject(const word& objName, const objectRegistry& obr)
+Foam::basicChemistryModel::basicChemistryModel(basicThermo& thermo)
 :
-    regIOobject
+    IOdictionary
     (
         IOobject
         (
-            objName,
-            obr.instance(),
-            obr,
-            IOobject::NO_READ,
-            IOobject::NO_WRITE,
-            IOobject::REGISTER
+            thermo.phasePropertyName("chemistryProperties"),
+            thermo.db().time().constant(),
+            thermo.db(),
+            IOobject::MUST_READ_IF_MODIFIED,
+            IOobject::NO_WRITE
         )
+    ),
+    mesh_(thermo.p().mesh()),
+    chemistry_(get<Switch>("chemistry")),
+    deltaTChemIni_(get<scalar>("initialChemicalTimeStep")),
+    deltaTChemMax_(getOrDefault<scalar>("maxChemicalTimeStep", GREAT)),
+    deltaTChem_
+    (
+        IOobject
+        (
+            thermo.phasePropertyName("deltaTChem"),
+            mesh().time().constant(),
+            mesh(),
+            IOobject::NO_READ,
+            IOobject::NO_WRITE
+        ),
+        mesh(),
+        dimensionedScalar("deltaTChem0", dimTime, deltaTChemIni_)
     )
+{}
+
+
+// * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
+
+Foam::basicChemistryModel::~basicChemistryModel()
 {}
 
 

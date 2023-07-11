@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2012 OpenFOAM Foundation
+    Copyright (C) 2011-2016 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,58 +25,53 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "diagonalSolver.H"
-
-// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
-
-namespace Foam
-{
-defineTypeNameAndDebug(diagonalSolver, 0);
-}
-
+#include "DiagonalSolver.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::diagonalSolver::diagonalSolver
+template<class Type, class DType, class LUType>
+Foam::DiagonalSolver<Type, DType, LUType>::DiagonalSolver
 (
     const word& fieldName,
-    const lduMatrix& matrix,
-    const FieldField<Field, scalar>& interfaceBouCoeffs,
-    const FieldField<Field, scalar>& interfaceIntCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces,
-    const dictionary& solverControls
+    const LduMatrix<Type, DType, LUType>& matrix,
+    const dictionary& solverDict
 )
 :
-    lduMatrix::solver
+    LduMatrix<Type, DType, LUType>::solver
     (
         fieldName,
         matrix,
-        interfaceBouCoeffs,
-        interfaceIntCoeffs,
-        interfaces,
-        solverControls
+        solverDict
     )
 {}
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-Foam::solverPerformance Foam::diagonalSolver::solve
+template<class Type, class DType, class LUType>
+void Foam::DiagonalSolver<Type, DType, LUType>::read
 (
-    scalarField& psi,
-    const scalarField& source,
-    const direction cmpt
+    const dictionary&
+)
+{}
+
+
+template<class Type, class DType, class LUType>
+Foam::SolverPerformance<Type>
+Foam::DiagonalSolver<Type, DType, LUType>::solve
+(
+    Field<Type>& psi
 ) const
 {
-    psi = source/matrix_.diag();
+    psi = this->matrix_.source()/this->matrix_.diag();
 
-    return solverPerformance
+    return SolverPerformance<Type>
     (
         typeName,
-        fieldName_,
-        0,
-        0,
-        0,
+        this->fieldName_,
+        Zero,
+        Zero,
+        Zero,
         true,
         false
     );

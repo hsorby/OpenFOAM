@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2016 OpenFOAM Foundation
+    Copyright (C) 2013-2016 OpenFOAM Foundation
     Copyright (C) 2020-2021 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
@@ -26,50 +26,18 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "leastSquaresVectors.H"
-#include "volFields.H"
-
-// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
-
-namespace Foam
-{
-    defineTypeNameAndDebug(leastSquaresVectors, 0);
-}
-
+#include "LeastSquaresVectors.H"
 
 // * * * * * * * * * * * * * * * * Constructors * * * * * * * * * * * * * * //
 
-Foam::leastSquaresVectors::leastSquaresVectors(const fvMesh& mesh)
+template<class Stencil>
+Foam::fv::LeastSquaresVectors<Stencil>::LeastSquaresVectors
+(
+    const fvMesh& mesh
+)
 :
-    MeshObject<fvMesh, Foam::MoveableMeshObject, leastSquaresVectors>(mesh),
-    pVectors_
-    (
-        IOobject
-        (
-            "LeastSquaresP",
-            mesh_.pointsInstance(),
-            mesh_,
-            IOobject::NO_READ,
-            IOobject::NO_WRITE,
-            IOobject::NO_REGISTER
-        ),
-        mesh_,
-        dimensionedVector(dimless/dimLength, Zero)
-    ),
-    nVectors_
-    (
-        IOobject
-        (
-            "LeastSquaresN",
-            mesh_.pointsInstance(),
-            mesh_,
-            IOobject::NO_READ,
-            IOobject::NO_WRITE,
-            IOobject::NO_REGISTER
-        ),
-        mesh_,
-        dimensionedVector(dimless/dimLength, Zero)
-    )
+    MeshObject<fvMesh, Foam::MoveableMeshObject, LeastSquaresVectors>(mesh),
+    vectors_(mesh.nCells())
 {
     calcLeastSquaresVectors();
 }
@@ -77,139 +45,64 @@ Foam::leastSquaresVectors::leastSquaresVectors(const fvMesh& mesh)
 
 // * * * * * * * * * * * * * * * * Destructor * * * * * * * * * * * * * * * //
 
-Foam::leastSquaresVectors::~leastSquaresVectors()
+template<class Stencil>
+Foam::fv::LeastSquaresVectors<Stencil>::~LeastSquaresVectors()
 {}
 
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::leastSquaresVectors::calcLeastSquaresVectors()
+template<class Stencil>
+void Foam::fv::LeastSquaresVectors<Stencil>::calcLeastSquaresVectors()
 {
     DebugInFunction << "Calculating least square gradient vectors" << nl;
 
-    const fvMesh& mesh = mesh_;
+    const fvMesh& mesh = this->mesh_;
+    const extendedCentredCellToCellStencil& stencil = this->stencil();
 
-    // Set local references to mesh data
-    const labelUList& owner = mesh_.owner();
-    const labelUList& neighbour = mesh_.neighbour();
+    stencil.collectData(mesh.C(), vectors_);
 
-    const volVectorField& C = mesh.C();
-    const surfaceScalarField& w = mesh.weights();
-    const surfaceScalarField& magSf = mesh.magSf();
+    // Create the base form of the dd-tensor
+    // including components for the "empty" directions
+    const symmTensor dd0(sqr((Vector<label>::one - mesh.geometricD())/2));
 
-
-    // Set up temporary storage for the dd tensor (before inversion)
-    symmTensorField dd(mesh_.nCells(), Zero);
-
-    forAll(owner, facei)
+    forAll(vectors_, i)
     {
-        const label own = owner[facei];
-        const label nei = neighbour[facei];
+        List<vector>& lsvi = vectors_[i];
+        symmTensor dd(dd0);
 
-        const vector d(C[nei] - C[own]);
-        const symmTensor wdd((magSf[facei]/magSqr(d))*sqr(d));
-
-        dd[own] += (1.0 - w[facei])*wdd;
-        dd[nei] += w[facei]*wdd;
-    }
-
-
-    surfaceVectorField::Boundary& pVectorsBf =
-        pVectors_.boundaryFieldRef();
-
-    forAll(pVectorsBf, patchi)
-    {
-        const fvsPatchScalarField& pw = w.boundaryField()[patchi];
-        const fvsPatchScalarField& pMagSf = magSf.boundaryField()[patchi];
-
-        const fvPatch& p = pw.patch();
-        const labelUList& faceCells = p.patch().faceCells();
-
-        // Build the d-vectors
-        const vectorField pd(p.delta());
-
-        if (pw.coupled())
+        // The current cell is 0 in the stencil
+        // Calculate the deltas and sum the weighted dd
+        for (label j = 1; j < lsvi.size(); ++j)
         {
-            forAll(pd, patchFacei)
-            {
-                const vector& d = pd[patchFacei];
-
-                dd[faceCells[patchFacei]] +=
-                    ((1 - pw[patchFacei])*pMagSf[patchFacei]/magSqr(d))*sqr(d);
-            }
+            lsvi[j] = lsvi[j] - lsvi[0];
+            const scalar magSqrLsvi = magSqr(lsvi[j]);
+            dd += sqr(lsvi[j])/magSqrLsvi;
+            lsvi[j] /= magSqrLsvi;
         }
-        else
-        {
-            forAll(pd, patchFacei)
-            {
-                const vector& d = pd[patchFacei];
 
-                dd[faceCells[patchFacei]] +=
-                    (pMagSf[patchFacei]/magSqr(d))*sqr(d);
-            }
+        // Invert dd
+        dd = inv(dd);
+
+        // Remove the components corresponding to the empty directions
+        dd -= dd0;
+
+        // Finalize the gradient weighting vectors
+        lsvi[0] = Zero;
+        for (label j = 1; j < lsvi.size(); ++j)
+        {
+            lsvi[j] = dd & lsvi[j];
+            lsvi[0] -= lsvi[j];
         }
     }
 
-
-    // Invert the dd tensors - including failsafe checks
-    const symmTensorField invDd(inv(dd));
-
-
-    // Revisit all faces and calculate the pVectors_ and nVectors_ vectors
-    forAll(owner, facei)
-    {
-        const label own = owner[facei];
-        const label nei = neighbour[facei];
-
-        const vector d(C[nei] - C[own]);
-        const scalar magSfByMagSqrd = magSf[facei]/magSqr(d);
-
-        pVectors_[facei] = (1.0 - w[facei])*magSfByMagSqrd*(invDd[own] & d);
-        nVectors_[facei] = -w[facei]*magSfByMagSqrd*(invDd[nei] & d);
-    }
-
-    forAll(pVectorsBf, patchi)
-    {
-        fvsPatchVectorField& patchLsP = pVectorsBf[patchi];
-
-        const fvsPatchScalarField& pw = w.boundaryField()[patchi];
-        const fvsPatchScalarField& pMagSf = magSf.boundaryField()[patchi];
-
-        const fvPatch& p = pw.patch();
-        const labelUList& faceCells = p.faceCells();
-
-        // Build the d-vectors
-        const vectorField pd(p.delta());
-
-        if (pw.coupled())
-        {
-            forAll(pd, patchFacei)
-            {
-                const vector& d = pd[patchFacei];
-
-                patchLsP[patchFacei] =
-                    ((1.0 - pw[patchFacei])*pMagSf[patchFacei]/magSqr(d))
-                   *(invDd[faceCells[patchFacei]] & d);
-            }
-        }
-        else
-        {
-            forAll(pd, patchFacei)
-            {
-                const vector& d = pd[patchFacei];
-
-                patchLsP[patchFacei] =
-                    pMagSf[patchFacei]*(1.0/magSqr(d))
-                   *(invDd[faceCells[patchFacei]] & d);
-            }
-        }
-    }
-
-    DebugInfo << "Finished calculating least square gradient vectors" << nl;
+    DebugInfo
+        << "Finished calculating least square gradient vectors" << endl;
 }
 
 
-bool Foam::leastSquaresVectors::movePoints()
+template<class Stencil>
+bool Foam::fv::LeastSquaresVectors<Stencil>::movePoints()
 {
     calcLeastSquaresVectors();
     return true;

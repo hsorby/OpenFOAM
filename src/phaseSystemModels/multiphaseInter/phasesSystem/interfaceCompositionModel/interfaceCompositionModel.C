@@ -25,137 +25,350 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "interfaceCompositionModel.H"
+#include "InterfaceCompositionModel.H"
 #include "phaseModel.H"
 #include "phasePair.H"
+#include "pureMixture.H"
+#include "multiComponentMixture.H"
+#include "rhoThermo.H"
+#include "zeroGradientFvPatchFields.H"
 
-// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
+using namespace Foam::multiphaseInter;
 
-namespace Foam
+// * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
+
+template<class Thermo, class OtherThermo>
+template<class ThermoType>
+const typename Foam::multiComponentMixture<ThermoType>::thermoType&
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::getLocalThermo
+(
+    const word& speciesName,
+    const multiComponentMixture<ThermoType>& globalThermo
+) const
 {
-namespace multiphaseInter
-{
-    defineTypeNameAndDebug(interfaceCompositionModel, 0);
-    defineRunTimeSelectionTable(interfaceCompositionModel, dictionary);
+    return
+        globalThermo.getLocalThermo
+        (
+            globalThermo.species().find(speciesName)
+        );
 }
+
+
+template<class Thermo, class OtherThermo>
+template<class ThermoType>
+const typename Foam::pureMixture<ThermoType>::thermoType&
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::getLocalThermo
+(
+    const word& speciesName,
+    const pureMixture<ThermoType>& globalThermo
+) const
+{
+    return globalThermo.cellMixture(0);
 }
 
-const Foam::Enum
-<
-    Foam::multiphaseInter::interfaceCompositionModel::modelVariable
->
-Foam::multiphaseInter::interfaceCompositionModel::modelVariableNames_
+
+template<class Thermo, class OtherThermo>
+template<class ThermoType>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::getSpecieMassFraction
+(
+    const word& speciesName,
+    const multiComponentMixture<ThermoType>& mixture
+) const
 {
-    { modelVariable::T, "temperature" },
-    { modelVariable::P, "pressure" },
-    { modelVariable::Y, "massFraction" },
-    { modelVariable::alpha, "alphaVolumeFraction" },
-};
+    const fvMesh& mesh = fromThermo_.p().mesh();
+
+    auto tY = tmp<volScalarField>::New
+    (
+        IOobject
+        (
+            "tY",
+            mesh.time().timeName(),
+            mesh,
+            IOobject::NO_READ,
+            IOobject::NO_WRITE
+        ),
+        mesh,
+        dimensionedScalar(dimless, Zero),
+        fvPatchFieldBase::zeroGradientType()
+    );
+
+    auto& Ys = tY.ref();
+
+    Ys = mixture.Y(speciesName);
+
+    return tY;
+}
+
+
+template<class Thermo, class OtherThermo>
+template<class ThermoType>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::getSpecieMassFraction
+(
+    const word& speciesName,
+    const pureMixture<ThermoType>& mixture
+) const
+{
+    const fvMesh& mesh = fromThermo_.p().mesh();
+
+    return tmp<volScalarField>::New
+    (
+        IOobject
+        (
+            "tY",
+            mesh.time().timeName(),
+            mesh,
+            IOobject::NO_READ,
+            IOobject::NO_WRITE
+        ),
+        mesh,
+        scalar(1),
+        dimless,
+        fvPatchFieldBase::zeroGradientType()
+    );
+}
+
+
+template<class Thermo, class OtherThermo>
+template<class ThermoType>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::MwMixture
+(
+    const pureMixture<ThermoType>& mixture
+) const
+{
+    const fvMesh& mesh = fromThermo_.p().mesh();
+
+    return tmp<volScalarField>::New
+    (
+        IOobject
+        (
+            "tM",
+            mesh.time().timeName(),
+            mesh,
+            IOobject::NO_READ,
+            IOobject::NO_WRITE
+        ),
+        mesh,
+        dimensionedScalar
+        (
+            "Mw",
+            dimMass/dimMoles,
+            1e-3*mixture.cellMixture(0).W()
+        ),
+        fvPatchFieldBase::zeroGradientType()
+    );
+}
+
+
+template<class Thermo, class OtherThermo>
+template<class ThermoType>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::MwMixture
+(
+    const multiComponentMixture<ThermoType>& mixture
+) const
+{
+    return refCast<const basicSpecieMixture>(mixture).W();
+}
 
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::multiphaseInter::interfaceCompositionModel::interfaceCompositionModel
+template<class Thermo, class OtherThermo>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::InterfaceCompositionModel
 (
     const dictionary& dict,
     const phasePair& pair
 )
 :
-    modelVariable_
+    interfaceCompositionModel(dict, pair),
+    fromThermo_
     (
-        modelVariableNames_.getOrDefault
+        pair.from().mesh().lookupObject<Thermo>
         (
-            "variable",
-            dict,
-            modelVariable::T
+            IOobject::groupName
+            (
+                basicThermo::dictName,
+                pair.from().name()
+            )
         )
     ),
-    includeVolChange_(dict.getOrDefault("includeVolChange", true)),
-    pair_(pair),
-    speciesName_(dict.getOrDefault<word>("species", "none")),
-    mesh_(pair_.from().mesh())
+    toThermo_
+    (
+        pair.to().mesh().lookupObject<OtherThermo>
+        (
+            IOobject::groupName
+            (
+                basicThermo::dictName,
+                pair.to().name()
+            )
+        )
+    ),
+    Le_("Le", dimless, 1.0, dict)
 {}
 
 
-// * * * * * * * * * * * * * * * * Selectors * * * * * * * * * * * * * * * * //
+// * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * * //
 
-Foam::autoPtr<Foam::multiphaseInter::interfaceCompositionModel>
-Foam::multiphaseInter::interfaceCompositionModel::New
+template<class Thermo, class OtherThermo>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::Dto
 (
-    const dictionary& dict,
-    const phasePair& pair
-)
+    const word& speciesName
+) const
 {
-    const word modelType
+    const typename OtherThermo::thermoType& toThermoType =
+        getLocalThermo
+        (
+            speciesName,
+            toThermo_
+        );
+
+    const volScalarField& p = toThermo_.p();
+
+    const volScalarField& T = toThermo_.T();
+
+    auto tmpD = tmp<volScalarField>::New
     (
-        dict.get<word>("type")
-      + "<"
-      + pair.phase1().thermo().type()
-      + ","
-      + pair.phase2().thermo().type()
-      + ">"
+        IOobject
+        (
+            IOobject::groupName("D", pair_.name()),
+            p.time().timeName(),
+            p.mesh()
+        ),
+        p.mesh(),
+        dimensionedScalar(dimArea/dimTime, Zero)
     );
 
-    Info<< "Selecting interfaceCompositionModel for "
-        << pair << ": " << modelType << endl;
+    auto& D = tmpD.ref();
 
-    auto* ctorPtr = dictionaryConstructorTable(modelType);
-
-    if (!ctorPtr)
+    forAll(p, celli)
     {
-        FatalIOErrorInLookup
-        (
-            dict,
-            "interfaceCompositionModel",
-            modelType,
-            *dictionaryConstructorTablePtr_
-        ) << exit(FatalIOError);
+        D[celli] =
+            toThermoType.alphah(p[celli], T[celli])
+           /toThermoType.rho(p[celli], T[celli]);
     }
 
-    return ctorPtr(dict, pair);
+    D /= Le_;
+    D.correctBoundaryConditions();
+
+    return tmpD;
 }
 
 
-// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
-
-const Foam::word Foam::multiphaseInter::interfaceCompositionModel
-::transferSpecie() const
+template<class Thermo, class OtherThermo>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::Dfrom
+(
+    const word& speciesName
+) const
 {
-    return speciesName_;
+    const typename Thermo::thermoType& fromThermoType =
+        getLocalThermo
+        (
+            speciesName,
+            fromThermo_
+        );
+
+    const volScalarField& p(fromThermo_.p());
+
+    const volScalarField& T(fromThermo_.T());
+
+    auto tmpD = tmp<volScalarField>::New
+    (
+        IOobject
+        (
+            IOobject::groupName("D", pair_.name()),
+            p.time().timeName(),
+            p.mesh()
+        ),
+        p.mesh(),
+        dimensionedScalar(dimArea/dimTime, Zero)
+    );
+
+    auto& D = tmpD.ref();
+
+    forAll(p, celli)
+    {
+        D[celli] =
+            fromThermoType.alphah(p[celli], T[celli])
+           /fromThermoType.rho(p[celli], T[celli]);
+    }
+
+    D /= Le_;
+    D.correctBoundaryConditions();
+
+    return tmpD;
 }
 
 
-const Foam::phasePair& Foam::multiphaseInter::interfaceCompositionModel
-::pair() const
+template<class Thermo, class OtherThermo>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::L
+(
+    const word& speciesName,
+    const volScalarField& Tf
+) const
 {
-    return pair_;
+    const typename Thermo::thermoType& fromThermo =
+        getLocalThermo(speciesName, fromThermo_);
+    const typename OtherThermo::thermoType& toThermo =
+        getLocalThermo(speciesName, toThermo_);
+
+    const volScalarField& p(fromThermo_.p());
+
+    auto tmpL = tmp<volScalarField>::New
+    (
+        IOobject
+        (
+            IOobject::groupName("L", pair_.name()),
+            p.time().timeName(),
+            p.mesh()
+        ),
+        p.mesh(),
+        dimensionedScalar(dimEnergy/dimMass, Zero),
+        fvPatchFieldBase::zeroGradientType()
+    );
+
+    auto& L = tmpL.ref();
+
+    // from Thermo (from) to Thermo (to)
+    forAll(p, celli)
+    {
+        L[celli] = fromThermo.Hc() - toThermo.Hc();
+    }
+
+    L.correctBoundaryConditions();
+
+    return tmpL;
 }
 
 
-const Foam::multiphaseInterSystem& Foam::multiphaseInter
-::interfaceCompositionModel::fluid() const
+template<class Thermo, class OtherThermo>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::dY
+(
+    const word& speciesName,
+    const volScalarField& Tf
+) const
 {
-    return pair().to().fluid();
+    NotImplemented;
+    return nullptr;
 }
 
 
-const Foam::word& Foam::multiphaseInter::interfaceCompositionModel
-::variable() const
+template<class Thermo, class OtherThermo>
+Foam::tmp<Foam::volScalarField>
+Foam::InterfaceCompositionModel<Thermo, OtherThermo>::Yf
+(
+    const word& speciesName,
+    const volScalarField& Tf
+) const
 {
-    return modelVariableNames_[modelVariable_];
-}
-
-
-bool Foam::multiphaseInter::interfaceCompositionModel::includeDivU()
-const noexcept
-{
-    return true;
-}
-
-
-bool Foam::multiphaseInter::interfaceCompositionModel::includeVolChange()
-{
-    return includeVolChange_;
+    NotImplemented;
+    return nullptr;
 }
 
 

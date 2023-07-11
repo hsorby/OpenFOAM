@@ -26,18 +26,18 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "lduMatrix.H"
+#include "LduMatrix.H"
+#include "lduInterfaceField.H"
 
-// * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
+// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::lduMatrix::initMatrixInterfaces
+template<class Type, class DType, class LUType>
+void Foam::LduMatrix<Type, DType, LUType>::initMatrixInterfaces
 (
     const bool add,
-    const FieldField<Field, scalar>& coupleCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces,
-    const solveScalarField& psiif,
-    solveScalarField& result,
-    const direction cmpt
+    const FieldField<Field, LUType>& interfaceCoeffs,
+    const Field<Type>& psiif,
+    Field<Type>& result
 ) const
 {
     const UPstream::commsTypes commsType = UPstream::defaultCommsType;
@@ -48,19 +48,18 @@ void Foam::lduMatrix::initMatrixInterfaces
      || commsType == UPstream::commsTypes::nonBlocking
     )
     {
-        forAll(interfaces, interfacei)
+        forAll(interfaces_, interfacei)
         {
-            if (interfaces.set(interfacei))
+            if (interfaces_.set(interfacei))
             {
-                interfaces[interfacei].initInterfaceMatrixUpdate
+                interfaces_[interfacei].initInterfaceMatrixUpdate
                 (
                     result,
                     add,
-                    mesh().lduAddr(),
+                    lduMesh_.lduAddr(),
                     interfacei,
                     psiif,
-                    coupleCoeffs[interfacei],
-                    cmpt,
+                    interfaceCoeffs[interfacei],
                     commsType
                 );
             }
@@ -75,21 +74,20 @@ void Foam::lduMatrix::initMatrixInterfaces
         for
         (
             label interfacei=patchSchedule.size()/2;
-            interfacei<interfaces.size();
+            interfacei<interfaces_.size();
             interfacei++
         )
         {
-            if (interfaces.set(interfacei))
+            if (interfaces_.set(interfacei))
             {
-                interfaces[interfacei].initInterfaceMatrixUpdate
+                interfaces_[interfacei].initInterfaceMatrixUpdate
                 (
                     result,
                     add,
-                    mesh().lduAddr(),
+                    lduMesh_.lduAddr(),
                     interfacei,
                     psiif,
-                    coupleCoeffs[interfacei],
-                    cmpt,
+                    interfaceCoeffs[interfacei],
                     UPstream::commsTypes::blocking
                 );
             }
@@ -105,14 +103,13 @@ void Foam::lduMatrix::initMatrixInterfaces
 }
 
 
-void Foam::lduMatrix::updateMatrixInterfaces
+template<class Type, class DType, class LUType>
+void Foam::LduMatrix<Type, DType, LUType>::updateMatrixInterfaces
 (
     const bool add,
-    const FieldField<Field, scalar>& coupleCoeffs,
-    const lduInterfaceFieldPtrsList& interfaces,
-    const solveScalarField& psiif,
-    solveScalarField& result,
-    const direction cmpt,
+    const FieldField<Field, LUType>& interfaceCoeffs,
+    const Field<Type>& psiif,
+    Field<Type>& result,
     const label startRequest
 ) const
 {
@@ -132,13 +129,6 @@ void Foam::lduMatrix::updateMatrixInterfaces
 
         DynamicList<int> indices;  // (work array)
 
-        // const label maxPolling =
-        // (
-        //     (UPstream::nPollProcInterfaces < 0)
-        //   ? (UPstream::nRequests() - startRequest)
-        //   : UPstream::nPollProcInterfaces
-        // );
-
         for
         (
             bool pollingActive = (UPstream::nPollProcInterfaces < 0);
@@ -151,9 +141,9 @@ void Foam::lduMatrix::updateMatrixInterfaces
         {
             pollingActive = false;
 
-            forAll(interfaces, interfacei)
+            forAll(interfaces_, interfacei)
             {
-                auto* intf = interfaces.get(interfacei);
+                auto* intf = interfaces_.get(interfacei);
 
                 if (intf && !intf->updatedMatrix())
                 {
@@ -163,11 +153,10 @@ void Foam::lduMatrix::updateMatrixInterfaces
                         (
                             result,
                             add,
-                            mesh().lduAddr(),
+                            lduMesh_.lduAddr(),
                             interfacei,
                             psiif,
-                            coupleCoeffs[interfacei],
-                            cmpt,
+                            interfaceCoeffs[interfacei],
                             commsType
                         );
                     }
@@ -176,52 +165,6 @@ void Foam::lduMatrix::updateMatrixInterfaces
                         pollingActive = true;
                     }
                 }
-            }
-        }
-
-        // [OLDER]
-        // Alternative for consuming interfaces as they become available.
-        // Within the loop, the ready() calls an MPI_Test
-        // that can trigger progression. However, a bit less reliably
-        // (and less efficient) since it is implies multiple calls to
-        // MPI_Test to progress the MPI transfer, but no guarantee that
-        // any of them will actually complete within nPollProcInterfaces
-        // calls.
-
-        for (label i = 0; i < UPstream::nPollProcInterfaces; ++i)
-        {
-            bool allUpdated = true;
-
-            forAll(interfaces, interfacei)
-            {
-                auto* intf = interfaces.get(interfacei);
-
-                if (intf && !intf->updatedMatrix())
-                {
-                    if (intf->ready())
-                    {
-                        intf->updateInterfaceMatrix
-                        (
-                            result,
-                            add,
-                            mesh().lduAddr(),
-                            interfacei,
-                            psiif,
-                            coupleCoeffs[interfacei],
-                            cmpt,
-                            commsType
-                        );
-                    }
-                    else
-                    {
-                        allUpdated = false;
-                    }
-                }
-            }
-
-            if (allUpdated)
-            {
-                break;  // Early exit
             }
         }
     }
@@ -243,10 +186,9 @@ void Foam::lduMatrix::updateMatrixInterfaces
         // Check/no-check for updatedMatrix() ?
         const bool noCheck = (commsType == UPstream::commsTypes::blocking);
 
-        // Consume anything still outstanding
-        forAll(interfaces, interfacei)
+        forAll(interfaces_, interfacei)
         {
-            auto* intf = interfaces.get(interfacei);
+            auto* intf = interfaces_.get(interfacei);
 
             if (intf && (noCheck || !intf->updatedMatrix()))
             {
@@ -254,11 +196,10 @@ void Foam::lduMatrix::updateMatrixInterfaces
                 (
                     result,
                     add,
-                    mesh().lduAddr(),
+                    lduMesh_.lduAddr(),
                     interfacei,
                     psiif,
-                    coupleCoeffs[interfacei],
-                    cmpt,
+                    interfaceCoeffs[interfacei],
                     commsType
                 );
             }
@@ -269,37 +210,35 @@ void Foam::lduMatrix::updateMatrixInterfaces
         const lduSchedule& patchSchedule = this->patchSchedule();
 
         // Loop over all the "normal" interfaces relating to standard patches
-        for (const auto& sched : patchSchedule)
+        for (const auto& schedEval : patchSchedule)
         {
-            const label interfacei = sched.patch;
+            const label interfacei = schedEval.patch;
 
-            if (interfaces.set(interfacei))
+            if (interfaces_.set(interfacei))
             {
-                if (sched.init)
+                if (schedEval.init)
                 {
-                    interfaces[interfacei].initInterfaceMatrixUpdate
+                    interfaces_[interfacei].initInterfaceMatrixUpdate
                     (
                         result,
                         add,
-                        mesh().lduAddr(),
+                        lduMesh_.lduAddr(),
                         interfacei,
                         psiif,
-                        coupleCoeffs[interfacei],
-                        cmpt,
+                        interfaceCoeffs[interfacei],
                         commsType
                     );
                 }
                 else
                 {
-                    interfaces[interfacei].updateInterfaceMatrix
+                    interfaces_[interfacei].updateInterfaceMatrix
                     (
                         result,
                         add,
-                        mesh().lduAddr(),
+                        lduMesh_.lduAddr(),
                         interfacei,
                         psiif,
-                        coupleCoeffs[interfacei],
-                        cmpt,
+                        interfaceCoeffs[interfacei],
                         commsType
                     );
                 }
@@ -311,21 +250,20 @@ void Foam::lduMatrix::updateMatrixInterfaces
         for
         (
             label interfacei=patchSchedule.size()/2;
-            interfacei<interfaces.size();
+            interfacei<interfaces_.size();
             interfacei++
         )
         {
-            if (interfaces.set(interfacei))
+            if (interfaces_.set(interfacei))
             {
-                interfaces[interfacei].updateInterfaceMatrix
+                interfaces_[interfacei].updateInterfaceMatrix
                 (
                     result,
                     add,
-                    mesh().lduAddr(),
+                    lduMesh_.lduAddr(),
                     interfacei,
                     psiif,
-                    coupleCoeffs[interfacei],
-                    cmpt,
+                    interfaceCoeffs[interfacei],
                     UPstream::commsTypes::blocking
                 );
             }
