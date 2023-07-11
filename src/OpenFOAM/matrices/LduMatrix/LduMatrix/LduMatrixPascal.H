@@ -58,7 +58,7 @@ SourceFiles
 #include "Field.H"
 #include "FieldField.H"
 #include "LduInterfaceFieldPtrsList.H"
-#include "SolverPerformance.H"
+#include "SolverPerformancePascal.H"
 #include "typeInfo.H"
 #include "autoPtr.H"
 #include "runTimeSelectionTables.H"

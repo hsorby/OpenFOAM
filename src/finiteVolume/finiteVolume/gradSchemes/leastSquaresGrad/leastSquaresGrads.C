@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "LeastSquaresGrad.H"
+#include "LeastSquaresGradPascal.H"
 //#include "centredCFCCellToCellStencilObject.H"
 #include "centredCPCCellToCellStencilObject.H"
 #include "centredCECCellToCellStencilObject.H"

@@ -159,7 +159,7 @@ bool Foam::functionObjects::specieReactionRates<ChemistryModelType>::write()
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
 #include "addToRunTimeSelectionTable.H"
-#include "BasicChemistryModel.H"
+#include "BasicChemistryModelPascal.H"
 #include "psiReactionThermo.H"
 #include "rhoReactionThermo.H"
 

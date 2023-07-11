@@ -137,7 +137,7 @@ public:
     #include "BasicChemistryModel.C"
 #endif
 
-#include "BasicChemistryModelI.H"
+#include "BasicChemistryModelIPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

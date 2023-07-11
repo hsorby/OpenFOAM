@@ -39,7 +39,7 @@ SourceFiles
 
 #include "autoPtr.H"
 #include "CombustionModel.H"
-#include "BasicChemistryModel.H"
+#include "BasicChemistryModelPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

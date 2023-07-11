@@ -37,7 +37,7 @@ SourceFiles
 #ifndef TGaussSeidelSmoother_H
 #define TGaussSeidelSmoother_H
 
-#include "LduMatrix.H"
+#include "LduMatrixPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

@@ -39,7 +39,7 @@ SourceFiles
 #ifndef Foam_instant_H
 #define Foam_instant_H
 
-#include "Instant.H"
+#include "InstantPascal.H"
 #include "word.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

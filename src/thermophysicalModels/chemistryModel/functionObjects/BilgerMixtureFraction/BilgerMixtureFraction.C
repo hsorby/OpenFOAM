@@ -34,7 +34,7 @@ License
 #include "basicChemistryModel.H"
 #include "psiReactionThermo.H"
 #include "rhoReactionThermo.H"
-#include "BasicChemistryModel.H"
+#include "BasicChemistryModelPascal.H"
 #include "addToRunTimeSelectionTable.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

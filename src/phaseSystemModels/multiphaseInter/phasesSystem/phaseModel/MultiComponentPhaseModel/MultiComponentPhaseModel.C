@@ -34,7 +34,7 @@ License
 #include "fvmLaplacian.H"
 #include "fvcDdt.H"
 #include "fvcDiv.H"
-#include "fvcDDt.H"
+#include "fvcDDtPascal.H"
 #include "fvMatrix.H"
 #include "fvcFlux.H"
 #include "CMULES.H"

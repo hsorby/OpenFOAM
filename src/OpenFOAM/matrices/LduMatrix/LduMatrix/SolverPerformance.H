@@ -37,7 +37,7 @@ SourceFiles
 #ifndef solverPerformance_H
 #define solverPerformance_H
 
-#include "SolverPerformance.H"
+#include "SolverPerformancePascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

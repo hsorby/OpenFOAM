@@ -30,7 +30,7 @@ License
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #include "interfaceCompositionModel.H"
-#include "InterfaceCompositionModel.H"
+#include "InterfaceCompositionModelPascal.H"
 #include "Henry.H"
 #include "NonRandomTwoLiquid.H"
 #include "Raoult.H"

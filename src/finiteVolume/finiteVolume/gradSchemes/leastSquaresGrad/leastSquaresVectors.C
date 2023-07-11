@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "LeastSquaresVectors.H"
+#include "LeastSquaresVectorsPascal.H"
 
 // * * * * * * * * * * * * * * * * Constructors * * * * * * * * * * * * * * //
 

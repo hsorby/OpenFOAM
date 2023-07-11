@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "PrimitivePatch.H"
+#include "PrimitivePatchPascal.H"
 #include "Map.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //

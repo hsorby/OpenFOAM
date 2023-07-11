@@ -37,7 +37,7 @@ Description
 
 \*---------------------------------------------------------------------------*/
 
-#include "PrimitivePatch.H"
+#include "PrimitivePatchPascal.H"
 #include "DynamicList.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //

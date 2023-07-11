@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "PrimitivePatchInterpolation.H"
+#include "PrimitivePatchInterpolationPascal.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 

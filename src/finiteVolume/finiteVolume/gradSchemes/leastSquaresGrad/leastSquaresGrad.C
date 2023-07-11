@@ -26,8 +26,8 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "LeastSquaresGrad.H"
-#include "LeastSquaresVectors.H"
+#include "LeastSquaresGradPascal.H"
+#include "LeastSquaresVectorsPascal.H"
 #include "gaussGrad.H"
 #include "fvMesh.H"
 #include "volMesh.H"

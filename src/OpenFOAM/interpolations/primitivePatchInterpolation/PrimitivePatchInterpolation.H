@@ -36,7 +36,7 @@ Description
 #define primitivePatchInterpolation_H
 
 #include "primitivePatch.H"
-#include "PrimitivePatchInterpolation.H"
+#include "PrimitivePatchInterpolationPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

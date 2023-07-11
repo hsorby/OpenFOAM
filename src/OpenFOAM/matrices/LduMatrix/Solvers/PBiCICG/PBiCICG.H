@@ -39,7 +39,7 @@ SourceFiles
 #ifndef PBiCICG_H
 #define PBiCICG_H
 
-#include "LduMatrix.H"
+#include "LduMatrixPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

@@ -37,7 +37,7 @@ SourceFiles
 #ifndef Foam_DiagonalSolver_H
 #define Foam_DiagonalSolver_H
 
-#include "LduMatrix.H"
+#include "LduMatrixPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

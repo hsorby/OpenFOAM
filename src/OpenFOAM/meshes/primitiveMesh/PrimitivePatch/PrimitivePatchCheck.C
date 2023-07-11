@@ -29,7 +29,7 @@ Description
 
 \*---------------------------------------------------------------------------*/
 
-#include "PrimitivePatch.H"
+#include "PrimitivePatchPascal.H"
 #include "Map.H"
 #include "DynamicList.H"
 
