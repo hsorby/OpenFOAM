@@ -63,3 +63,4 @@ set(_FILES
 add_library(fileFormats ${_FILES})
 target_compile_features(fileFormats PUBLIC cxx_std_11)
 target_include_directories(fileFormats PUBLIC include PRIVATE includePrivate)
+target_link_libraries(fileFormats PUBLIC OpenFOAM)

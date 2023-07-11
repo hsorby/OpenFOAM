@@ -36,7 +36,7 @@ Description
 #define barycentric_H
 
 #include "scalar.H"
-#include "Barycentric.H"
+#include "BarycentricPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

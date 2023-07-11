@@ -15,7 +15,7 @@ include(CheckIncludeFileCXX)
 check_include_file_cxx("mach-o/dyld.h" HAVE_MACH0_DYLD_H)
 
 set(CMAKE_CXX_STANDARD 14)
-add_compile_definitions(WM_LABEL_SIZE=32 WM_DP NoRepository)
+add_compile_definitions(WM_LABEL_SIZE=32 WM_DP NoRepository OPENFOAM=2306)
 if (HAVE_MACH0_DYLD_H)
   add_compile_definitions(HAVE_MACH0_DYLD_H)
 endif()
@@ -25,6 +25,10 @@ find_package(ZLIB REQUIRED)
 find_package(FLEX REQUIRED)
 
 set (CMAKE_CXX_FLAGS "-ftemplate-depth-100 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-undefined-var-template -Wno-old-style-cast")
+
+set(BUILD git-repo)
+set(PATCH 1)
+set(VERSION ${_PROJECT_VERSION})
 
 add_subdirectory(src)
 

@@ -57,7 +57,7 @@ SourceFiles
 #include "lduMatrix.H"
 #include "Field.H"
 #include "FieldField.H"
-#include "LduInterfaceFieldPtrsList.H"
+#include "LduInterfaceFieldPtrsListPascal.H"
 #include "SolverPerformancePascal.H"
 #include "typeInfo.H"
 #include "autoPtr.H"

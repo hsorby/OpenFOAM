@@ -298,7 +298,7 @@ const scalar solverPerformance##Type::vsmall_(VSMALL);                         \
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-    #include "SolverPerformance.C"
+    #include "SolverPerformancePascal.C"
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

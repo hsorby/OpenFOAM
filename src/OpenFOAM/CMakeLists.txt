@@ -1,5 +1,7 @@
+configure_file(global/foamConfig.Cver global/foamConfig.C @ONLY)
+
 set(_FILES
-  global/foamConfig.Cver
+  ${CMAKE_CURRENT_BINARY_DIR}/global/foamConfig.C
   global/globals.C
   global/argList/argList.C
   global/argList/argListHelp.C
@@ -812,5 +814,8 @@ target_include_directories(OpenFOAM PUBLIC
   global/constants/thermodynamic
   global/constants/universal
   primitives/Scalar
+  primitives/random/Random
+  db/IOobjects/GlobalIOField
+  db/IOobjects/GlobalIOList
 )
 target_link_libraries(OpenFOAM PUBLIC OSspecific ZLIB::ZLIB)

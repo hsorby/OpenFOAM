@@ -34,7 +34,7 @@ Description
 #ifndef Foam_LduInterfaceFieldPtrsList_H
 #define Foam_LduInterfaceFieldPtrsList_H
 
-#include "LduInterfaceField.H"
+#include "LduInterfaceFieldPascal.H"
 #include "UPtrList.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

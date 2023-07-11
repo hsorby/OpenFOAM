@@ -51,7 +51,7 @@ See also
 #ifndef Foam_CompactSpatialTensor_H
 #define Foam_CompactSpatialTensor_H
 
-#include "SpatialTensor.H"
+#include "SpatialTensorPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
