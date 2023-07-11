@@ -296,7 +296,7 @@ set(_FILES
   interpolation/surfaceInterpolation/schemes/quadraticLinearUpwindFit/quadraticLinearUpwindFit.C
   interpolation/surfaceInterpolation/schemes/quadraticUpwindFit/quadraticUpwindFit.C
   interpolation/surfaceInterpolation/schemes/cubicUpwindFit/cubicUpwindFit.C
-  interpolation/surfaceInterpolation/schemes/quadraticLinearPureUpwindFit/quadraticLinearPureUpwindFit.C
+#  interpolation/surfaceInterpolation/schemes/quadraticLinearPureUpwindFit/quadraticLinearPureUpwindFit.C
   interpolation/surfaceInterpolation/schemes/linearPureUpwindFit/linearPureUpwindFit.C
   interpolation/surfaceInterpolation/schemes/linearUpwind/linearUpwind.C
   interpolation/surfaceInterpolation/schemes/linearUpwind/linearUpwindV.C
@@ -353,8 +353,8 @@ set(_FILES
   finiteVolume/gradSchemes/gradScheme/gradSchemes.C
   finiteVolume/gradSchemes/gaussGrad/gaussGrads.C
   finiteVolume/gradSchemes/iterativeGaussGrad/iterativeGaussGrads.C
-  finiteVolume/gradSchemes/leastSquaresGrad/leastSquaresVectors.C
-  finiteVolume/gradSchemes/leastSquaresGrad/leastSquaresGrads.C
+  finiteVolume/gradSchemes/leastSquaresGradCamel/leastSquaresVectors.C
+  finiteVolume/gradSchemes/leastSquaresGradCamel/leastSquaresGrads.C
   finiteVolume/gradSchemes/LeastSquaresGrad/LeastSquaresGrads.C
   finiteVolume/gradSchemes/fourthGrad/fourthGrads.C
   finiteVolume/gradSchemes/limitedGradSchemes/faceLimitedGrad/faceLimitedGrads.C
@@ -423,4 +423,179 @@ set(_FILES
 )
 add_library(finiteVolume ${_FILES})
 target_compile_features(finiteVolume PUBLIC cxx_std_11)
-target_include_directories(finiteVolume PUBLIC include PRIVATE includePrivate)
+target_include_directories(finiteVolume PUBLIC
+  include
+  includePrivate
+  cfdTools/general/CorrectPhi
+  cfdTools/general/MRF
+  cfdTools/general/constrainPressure
+  cfdTools/general/fvOptions
+  cfdTools/general/levelSet
+  cfdTools/general/porosityModel/DarcyForchheimer
+  cfdTools/general/porosityModel/powerLaw
+  cfdTools/general/porosityModel/solidification
+  cfdTools/general/solutionControl/solutionControl
+  expressions/PatchFunction1
+  expressions/base
+  expressions/fields/fvPatchFields
+  expressions/patch
+  expressions/volume
+  fields/fvPatchFields/basic/basicSymmetry
+  fields/fvPatchFields/basic/calculated
+  fields/fvPatchFields/basic/coupled
+  fields/fvPatchFields/basic/directionMixed
+  fields/fvPatchFields/basic/extrapolatedCalculated
+  fields/fvPatchFields/basic/fixedGradient
+  fields/fvPatchFields/basic/fixedValue
+  fields/fvPatchFields/basic/mixed
+  fields/fvPatchFields/basic/sliced
+  fields/fvPatchFields/basic/transform
+  fields/fvPatchFields/basic/zeroGradient
+  fields/fvPatchFields/constraint/calculatedProcessor
+  fields/fvPatchFields/constraint/cyclic
+  fields/fvPatchFields/constraint/cyclicACMI
+  fields/fvPatchFields/constraint/cyclicAMI
+  fields/fvPatchFields/constraint/cyclicSlip
+  fields/fvPatchFields/constraint/empty
+  fields/fvPatchFields/constraint/jumpCyclic
+  fields/fvPatchFields/constraint/jumpCyclicAMI
+  fields/fvPatchFields/constraint/nonuniformTransformCyclic
+  fields/fvPatchFields/constraint/processor
+  fields/fvPatchFields/constraint/processorCyclic
+  fields/fvPatchFields/constraint/symmetry
+  fields/fvPatchFields/constraint/symmetryPlane
+  fields/fvPatchFields/constraint/wedge
+  fields/fvPatchFields/derived/acousticWaveTransmissive
+  fields/fvPatchFields/derived/advective
+  fields/fvPatchFields/derived/codedFixedValue
+  fields/fvPatchFields/derived/codedMixed
+  fields/fvPatchFields/derived/fan
+  fields/fvPatchFields/derived/fixedInternalValueFvPatchField
+  fields/fvPatchFields/derived/fixedJump
+  fields/fvPatchFields/derived/fixedJumpAMI
+  fields/fvPatchFields/derived/fixedMean
+  fields/fvPatchFields/derived/fixedMeanOutletInlet
+  fields/fvPatchFields/derived/fixedNormalSlip
+  fields/fvPatchFields/derived/fixedProfile
+  fields/fvPatchFields/derived/freestream
+  fields/fvPatchFields/derived/inletOutlet
+  fields/fvPatchFields/derived/mappedField
+  fields/fvPatchFields/derived/mappedField/Sampled
+  fields/fvPatchFields/derived/mappedField/mappedMixedFieldFvPatchField
+  fields/fvPatchFields/derived/mappedFixedInternalValue
+  fields/fvPatchFields/derived/mappedFixedPushedInternalValue
+  fields/fvPatchFields/derived/mappedFixedValue
+  fields/fvPatchFields/derived/mappedMixed
+  fields/fvPatchFields/derived/outletInlet
+  fields/fvPatchFields/derived/outletMappedUniformInlet
+  fields/fvPatchFields/derived/partialSlip
+  fields/fvPatchFields/derived/scaledFixedValue
+  fields/fvPatchFields/derived/slip
+  fields/fvPatchFields/derived/timeVaryingMappedFixedValue
+  fields/fvPatchFields/derived/turbulentDigitalFilterInlet
+  fields/fvPatchFields/derived/turbulentDigitalFilterInlet/IntegralScaleBox
+  fields/fvPatchFields/derived/turbulentInlet
+  fields/fvPatchFields/derived/uniformFixedGradient
+  fields/fvPatchFields/derived/uniformFixedValue
+  fields/fvPatchFields/derived/uniformInletOutlet
+  fields/fvPatchFields/derived/uniformJump
+  fields/fvPatchFields/derived/uniformJumpAMI
+  fields/fvPatchFields/derived/uniformMixed
+  fields/fvPatchFields/derived/waveTransmissive
+  fields/fvPatchFields/fvPatchField
+  fields/fvsPatchFields/basic/calculated
+  fields/fvsPatchFields/basic/coupled
+  fields/fvsPatchFields/basic/fixedValue
+  fields/fvsPatchFields/basic/sliced
+  fields/fvsPatchFields/constraint/cyclic
+  fields/fvsPatchFields/constraint/cyclicACMI
+  fields/fvsPatchFields/constraint/cyclicAMI
+  fields/fvsPatchFields/constraint/cyclicSlip
+  fields/fvsPatchFields/constraint/empty
+  fields/fvsPatchFields/constraint/nonuniformTransformCyclic
+  fields/fvsPatchFields/constraint/processor
+  fields/fvsPatchFields/constraint/processorCyclic
+  fields/fvsPatchFields/constraint/symmetry
+  fields/fvsPatchFields/constraint/symmetryPlane
+  fields/fvsPatchFields/constraint/wedge
+  fields/fvsPatchFields/fvsPatchField
+  finiteVolume/convectionSchemes/boundedConvectionScheme
+  finiteVolume/convectionSchemes/convectionScheme
+  finiteVolume/convectionSchemes/gaussConvectionScheme
+  finiteVolume/convectionSchemes/multivariateGaussConvectionScheme
+  finiteVolume/d2dt2Schemes/EulerD2dt2Scheme
+  finiteVolume/d2dt2Schemes/d2dt2Scheme
+  finiteVolume/d2dt2Schemes/steadyStateD2dt2Scheme
+  finiteVolume/ddtSchemes/CoEulerDdtScheme
+  finiteVolume/ddtSchemes/CrankNicolsonDdtScheme
+  finiteVolume/ddtSchemes/EulerDdtScheme
+  finiteVolume/ddtSchemes/SLTSDdtScheme
+  finiteVolume/ddtSchemes/backwardDdtScheme
+  finiteVolume/ddtSchemes/boundedDdtScheme
+  finiteVolume/ddtSchemes/ddtScheme
+  finiteVolume/ddtSchemes/localEulerDdtScheme
+  finiteVolume/ddtSchemes/steadyStateDdtScheme
+  finiteVolume/divSchemes/divScheme
+  finiteVolume/divSchemes/gaussDivScheme
+  finiteVolume/fvc
+  finiteVolume/fvm
+  finiteVolume/gradSchemes/LeastSquaresGrad
+  finiteVolume/gradSchemes/fourthGrad
+  finiteVolume/gradSchemes/gaussGrad
+  finiteVolume/gradSchemes/gradScheme
+  finiteVolume/gradSchemes/iterativeGaussGrad
+  finiteVolume/gradSchemes/leastSquaresGradCamel
+  finiteVolume/gradSchemes/limitedGradSchemes/cellLimitedGrad
+  finiteVolume/laplacianSchemes/gaussLaplacianScheme
+  finiteVolume/laplacianSchemes/laplacianScheme
+  finiteVolume/laplacianSchemes/relaxedNonOrthoGaussLaplacianScheme
+  finiteVolume/snGradSchemes/CentredFitSnGrad
+  finiteVolume/snGradSchemes/correctedSnGrad
+  finiteVolume/snGradSchemes/faceCorrectedSnGrad
+  finiteVolume/snGradSchemes/limitedSnGrad
+  finiteVolume/snGradSchemes/orthogonalSnGrad
+  finiteVolume/snGradSchemes/relaxedSnGrad
+  finiteVolume/snGradSchemes/skewCorrectedSnGrad
+  finiteVolume/snGradSchemes/snGradScheme
+  finiteVolume/snGradSchemes/uncorrectedSnGrad
+  functionObjects/fieldSelections/fieldSelection
+  functionObjects/fieldSelections/volFieldSelection
+  fvMatrices/fvMatrix
+  fvMatrices/solvers/MULES
+  fvMesh
+  fvMesh/extendedStencil/cellToCell
+  fvMesh/extendedStencil/cellToFace
+  fvMesh/extendedStencil/faceToCell
+  fvMesh/fvMeshSubset
+  fvMesh/fvMeshTools
+  fvMesh/fvPatches/fvPatch
+  fvMesh/simplifiedFvMesh/columnFvMesh
+  fvMesh/singleCellFvMesh
+  fvMesh/wallDist/patchDistMethods/meshWave/wallDistData
+  fvMesh/wallDist/patchDistMethods/patchDistMethod
+  fvMesh/wallDist/wallDistAddressing
+  interpolation/interpolation/interpolation
+  interpolation/interpolation/interpolationCell
+  interpolation/interpolation/interpolationCellPatchConstrained
+  interpolation/interpolation/interpolationCellPoint
+  interpolation/interpolation/interpolationCellPointFace
+  interpolation/interpolation/interpolationCellPointWallModified
+  interpolation/interpolation/interpolationPointMVC
+  interpolation/surfaceInterpolation/limitedSchemes/LimitedScheme
+  interpolation/surfaceInterpolation/limitedSchemes/PhiScheme
+  interpolation/surfaceInterpolation/limitedSchemes/limitedSurfaceInterpolationScheme
+  interpolation/surfaceInterpolation/multivariateSchemes/multivariateIndependentScheme
+  interpolation/surfaceInterpolation/multivariateSchemes/multivariateScheme
+  interpolation/surfaceInterpolation/multivariateSchemes/multivariateSelectionScheme
+  interpolation/surfaceInterpolation/multivariateSchemes/multivariateSurfaceInterpolationScheme
+  interpolation/surfaceInterpolation/schemes/CentredFitScheme
+  interpolation/surfaceInterpolation/schemes/FitData
+  interpolation/surfaceInterpolation/schemes/UpwindFitScheme
+  interpolation/surfaceInterpolation/surfaceInterpolation
+  interpolation/surfaceInterpolation/surfaceInterpolationScheme
+  interpolation/volPointInterpolation
+  lduPrimitiveMeshAssembly
+  fields/fvPatchFields/derived/pressurePIDControlInletVelocity
+  expressions/fields/pointPatchFields
+)
+target_link_libraries(finiteVolume PUBLIC OpenFOAM fileFormats meshTools)

@@ -13,3 +13,4 @@ set(_FILES
 add_library(Pstream ${_FILES})
 target_compile_features(Pstream PUBLIC cxx_std_11)
 target_include_directories(Pstream PUBLIC include PRIVATE includePrivate)
+target_link_libraries(Pstream PUBLIC OpenFOAM)

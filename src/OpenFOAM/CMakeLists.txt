@@ -819,4 +819,4 @@ target_include_directories(OpenFOAM PUBLIC
   db/IOobjects/GlobalIOList
   meshes/primitiveShapes/triangle
 )
-target_link_libraries(OpenFOAM PUBLIC OSspecific ZLIB::ZLIB)
+target_link_libraries(OpenFOAM PUBLIC OSspecific Pstream ZLIB::ZLIB)

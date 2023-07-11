@@ -249,5 +249,40 @@ set(_FILES
 )
 add_library(meshTools ${_FILES})
 target_compile_features(meshTools PUBLIC cxx_std_11)
-target_include_directories(meshTools PUBLIC include PRIVATE includePrivate)
-target_link_libraries(meshTools PUBLIC OpenFOAM)
+target_include_directories(meshTools PUBLIC
+  include
+  includePrivate
+  AMIInterpolation/AMIInterpolation
+  AMIInterpolation/patches/cyclicACMI/cyclicACMIPointPatchField
+  AMIInterpolation/patches/cyclicAMI/cyclicAMIPointPatchField
+  AMIInterpolation/patches/cyclicAMI/cyclicAMIPolyPatch
+  PatchFunction1/CodedField
+  PatchFunction1/ConstantField
+  PatchFunction1/MappedFile
+  PatchFunction1/PatchFunction1
+  PatchFunction1/UniformValueField
+  PatchFunction1/coordinateScaling
+  algorithms/MeshWave
+  algorithms/PatchEdgeFaceWave
+  algorithms/PointEdgeWave
+  cellDist
+  cellDist/directionalWallPoint
+  cellDist/patchWave
+  cellDist/wallPoint
+  coordSet/writers/common
+  coordSet/writers/vtk
+  edgeMesh/extendedEdgeMesh
+  fields/pointPatchFields/uniformFixedValue
+  indexedOctree
+  mappedPatches/mappedPolyPatch
+  meshStructure
+  meshTools
+  output/vtk/mesh
+  output/vtk/patch
+  polyTopoChange
+  topoSet/topoSets
+  triSurface/booleanOps/surfaceIntersection
+  triSurface/triSurfaceTools
+  tetOverlapVolume
+)
+target_link_libraries(meshTools PUBLIC OpenFOAM fileFormats surfMesh)

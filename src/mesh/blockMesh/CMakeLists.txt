@@ -38,6 +38,8 @@ set(_FILES
   PDRblockMesh/PDRblockLocation.C
   PDRblockMesh/PDRblockOuter.C
 )
-add_library(blockMesh ${_FILES})
-target_compile_features(blockMesh PUBLIC cxx_std_11)
-target_include_directories(blockMesh PUBLIC include PRIVATE includePrivate)
+add_library(blockMeshLib ${_FILES})
+target_compile_features(blockMeshLib PUBLIC cxx_std_11)
+target_include_directories(blockMeshLib PUBLIC include includePrivate blockMeshTools)
+target_link_libraries(blockMeshLib PUBLIC OpenFOAM meshTools)
+set_target_properties(blockMeshLib PROPERTIES OUTPUT_NAME blockMesh)

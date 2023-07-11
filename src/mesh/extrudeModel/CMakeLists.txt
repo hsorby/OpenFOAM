@@ -15,4 +15,5 @@ set(_FILES
 )
 add_library(extrudeModel ${_FILES})
 target_compile_features(extrudeModel PUBLIC cxx_std_11)
-target_include_directories(extrudeModel PUBLIC include PRIVATE includePrivate)
+target_include_directories(extrudeModel PUBLIC include includePrivate)
+target_link_libraries(extrudeModel PUBLIC OpenFOAM surfMesh meshTools blockMeshLib)

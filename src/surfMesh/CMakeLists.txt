@@ -66,5 +66,29 @@ set(_FILES
 )
 add_library(surfMesh ${_FILES})
 target_compile_features(surfMesh PUBLIC cxx_std_11)
-target_include_directories(surfMesh PUBLIC include PRIVATE includePrivate)
-target_link_libraries(surfMesh PUBLIC OpenFOAM)
+target_include_directories(surfMesh PUBLIC
+  include
+  includePrivate
+  MeshedSurface
+  MeshedSurfaceProxy
+  UnsortedMeshedSurface
+  polySurface
+  readers/boundary
+  readers/ensight
+  surfMesh
+  surfaceFormats/abaqus
+  surfaceFormats/ac3d
+  surfaceFormats/gts
+  surfaceFormats/nas
+  surfaceFormats/obj
+  surfaceFormats/off
+  surfaceFormats/smesh
+  surfaceFormats/starcd
+  surfaceFormats/stl
+  surfaceFormats/tri
+  surfaceFormats/vtk
+  surfaceFormats/vtp
+  surfaceFormats/x3d
+  surfaceFormats/fire
+)
+target_link_libraries(surfMesh PUBLIC OpenFOAM fileFormats)
