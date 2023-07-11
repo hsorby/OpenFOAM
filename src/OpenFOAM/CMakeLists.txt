@@ -805,5 +805,12 @@ target_include_directories(OpenFOAM PUBLIC
   primitives/nullObject
   primitives/traits
   db/IOobject
+  global/constants/atomic
+  global/constants/electromagnetic
+  global/constants/fundamental
+  global/constants/physicoChemical
+  global/constants/thermodynamic
+  global/constants/universal
+  primitives/Scalar
 )
 target_link_libraries(OpenFOAM PUBLIC OSspecific ZLIB::ZLIB)

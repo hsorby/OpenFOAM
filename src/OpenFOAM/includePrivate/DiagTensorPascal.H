@@ -42,8 +42,8 @@ SourceFiles
 #ifndef Foam_DiagTensor_H
 #define Foam_DiagTensor_H
 
-#include "Tensor.H"
-#include "SphericalTensor.H"
+#include "TensorPascal.H"
+#include "SphericalTensorPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

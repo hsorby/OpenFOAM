@@ -39,8 +39,8 @@ SourceFiles
 #ifndef Foam_SymmTensor_H
 #define Foam_SymmTensor_H
 
-#include "Vector.H"
-#include "SphericalTensor.H"
+#include "VectorPascal.H"
+#include "SphericalTensorPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

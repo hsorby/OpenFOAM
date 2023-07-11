@@ -44,7 +44,7 @@ SourceFiles
 #ifndef symmTensor_H
 #define symmTensor_H
 
-#include "SymmTensor.H"
+#include "SymmTensorPascal.H"
 #include "vector.H"
 #include "sphericalTensor.H"
 #include "tensor.H"

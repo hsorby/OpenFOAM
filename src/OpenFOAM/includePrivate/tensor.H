@@ -45,7 +45,7 @@ SourceFiles
 #ifndef Foam_tensor_H
 #define Foam_tensor_H
 
-#include "Tensor.H"
+#include "TensorPascal.H"
 #include "vector.H"
 #include "sphericalTensor.H"
 #include "symmTensor.H"

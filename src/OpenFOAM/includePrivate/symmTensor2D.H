@@ -53,7 +53,7 @@ SourceFiles
 #ifndef symmTensor2D_H
 #define symmTensor2D_H
 
-#include "SymmTensor2D.H"
+#include "SymmTensor2DPascal.H"
 #include "vector2D.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

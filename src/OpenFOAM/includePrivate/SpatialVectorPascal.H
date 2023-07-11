@@ -51,7 +51,7 @@ See also
 #ifndef Foam_SpatialVector_H
 #define Foam_SpatialVector_H
 
-#include "Vector.H"
+#include "VectorPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

@@ -43,8 +43,8 @@ SourceFiles
 #define Foam_SymmTensor2D_H
 
 #include "contiguous.H"
-#include "Vector2D.H"
-#include "SphericalTensor2D.H"
+#include "Vector2DPascal.H"
+#include "SphericalTensor2DPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

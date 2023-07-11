@@ -43,8 +43,8 @@ See also
 #define Foam_Tensor_H
 
 #include "MatrixSpace.H"
-#include "Vector.H"
-#include "SphericalTensor.H"
+#include "VectorPascal.H"
+#include "SphericalTensorPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

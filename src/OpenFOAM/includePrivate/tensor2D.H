@@ -70,7 +70,7 @@ SourceFiles
 #ifndef tensor2D_H
 #define tensor2D_H
 
-#include "Tensor2D.H"
+#include "Tensor2DPascal.H"
 #include "complex.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
