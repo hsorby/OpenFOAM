@@ -11,6 +11,9 @@ project(${PROJECT_NAME} VERSION ${_PROJECT_VERSION} LANGUAGES CXX C)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmakemodules)
 
+option(OPENFOAM_SHARED_LIBS "Build shared libraries" OFF)
+set(BUILD_SHARED_LIBS ${OPENFOAM_SHARED_LIBS})
+
 include(CheckIncludeFileCXX)
 check_include_file_cxx("mach-o/dyld.h" HAVE_MACH0_DYLD_H)
 

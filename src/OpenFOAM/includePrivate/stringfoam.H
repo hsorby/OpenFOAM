@@ -52,6 +52,7 @@ SourceFiles
 
 #include "char.H"
 #include "Hasher.H"
+
 #include <cstdlib>
 #include <cstring>
 #include <string>

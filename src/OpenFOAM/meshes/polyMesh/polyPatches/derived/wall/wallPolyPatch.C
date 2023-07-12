@@ -35,7 +35,7 @@ namespace Foam
 {
     defineTypeNameAndDebug(wallPolyPatch, 0);
 
-    addToRunTimeSelectionTable(polyPatch, wallPolyPatch, word);
+//    addToRunTimeSelectionTable(polyPatch, wallPolyPatch, word);
     addToRunTimeSelectionTable(polyPatch, wallPolyPatch, dictionary);
 }
 

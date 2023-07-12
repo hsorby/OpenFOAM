@@ -37,7 +37,7 @@ set(_FILES
   stl/STLCore.C
   stl/STLReader.C
   stl/STLAsciiParseManual.C
-  stl/STLAsciiParseRagel.cc
+#  stl/STLAsciiParseRagel.cc
   vtk/base/foamVtkCore.C
   vtk/base/foamVtkPTraits.C
   vtk/file/foamVtkFileWriter.C
@@ -83,3 +83,6 @@ target_include_directories(fileFormats PUBLIC
   vtk/write
 )
 target_link_libraries(fileFormats PUBLIC OpenFOAM)
+if (BUILD_SHARED_LIBS)
+  target_link_options(OpenFOAM PUBLIC -undefined dynamic_lookup)
+endif()

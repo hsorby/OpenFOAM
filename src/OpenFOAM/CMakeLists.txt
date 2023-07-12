@@ -827,3 +827,6 @@ target_include_directories(OpenFOAM PUBLIC
   meshes/primitiveShapes/triangle
 )
 target_link_libraries(OpenFOAM PUBLIC OSspecific Pstream ZLIB::ZLIB)
+if (BUILD_SHARED_LIBS)
+  target_link_options(OpenFOAM PUBLIC -undefined dynamic_lookup)
+endif()

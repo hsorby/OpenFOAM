@@ -1,4 +1,7 @@
 
+# Define this directory for furture include use.
+set(OPENFOAM_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
 add_subdirectory(OSspecific/POSIX)
 
 add_subdirectory(OpenFOAM)
