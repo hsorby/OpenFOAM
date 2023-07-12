@@ -37,6 +37,7 @@ set(_FILES
   stl/STLCore.C
   stl/STLReader.C
   stl/STLAsciiParseManual.C
+  stl/STLAsciiParseRagel.cc
   vtk/base/foamVtkCore.C
   vtk/base/foamVtkPTraits.C
   vtk/file/foamVtkFileWriter.C
@@ -60,7 +61,13 @@ set(_FILES
   vtk/write/foamVtkPolyWriter.C
   vtk/write/foamVtkSurfaceWriter.C
 )
-add_library(fileFormats ${_FILES})
+set(_INTERFACE_FILES ${CMAKE_CURRENT_BINARY_DIR}/STLAsciiParseFlex.C)
+FLEX_TARGET(MyScanner stl/STLAsciiParseFlex.L "${_INTERFACE_FILES}" COMPILE_FLAGS --c++)
+
+set(_RAGEL_FILE ${CMAKE_CURRENT_BINARY_DIR}/STLAsciiParseRagel.C)
+RAGEL_TARGET(RagelScanner stl/STLAsciiParseRagel.rl "${_RAGEL_FILE}")
+
+add_library(fileFormats ${_FILES} ${_INTERFACE_FILES} ${_RAGEL_FILE})
 target_compile_features(fileFormats PUBLIC cxx_std_11)
 target_include_directories(fileFormats PUBLIC
   include

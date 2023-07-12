@@ -23,6 +23,11 @@ endif()
 find_package(SCOTCH REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(FLEX REQUIRED)
+find_package(RAGEL REQUIRED)
+
+add_subdirectory(cmakemodules/lemon)
+
+include(GenerateLemon)
 
 set (CMAKE_CXX_FLAGS "-ftemplate-depth-100 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-undefined-var-template -Wno-old-style-cast")
 
@@ -30,6 +35,9 @@ set(BUILD git-repo)
 set(PATCH 1)
 set(VERSION ${_PROJECT_VERSION})
 
+
 add_subdirectory(src)
 
 add_subdirectory(applications)
+
+

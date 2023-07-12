@@ -159,6 +159,7 @@ set(_FILES
   expressions/fields/fieldExpr.C
   expressions/fields/fieldExprDriver.C
   expressions/fields/fieldExprDriverFields.C
+  expressions/fields/fieldExprScanner.cc
   expressions/Function1/makeFunction1Expression.C
   primitives/ops/flipOp.C
   primitives/predicates/scalar/scalarPredicates.C
@@ -590,7 +591,13 @@ set(_FILES
   parallel/globalIndex/globalIndex.C
   meshes/data/data.C
 )
-add_library(OpenFOAM ${_FILES})
+
+get_target_property(_lemon_template lemon LEMON_TEMPLATE)
+set(_some_output fieldExprLemonParser.C)
+set(_some_output ${CMAKE_CURRENT_BINARY_DIR}/fieldExprLemonParser.C)
+lemon_target(MyName expressions/fields/fieldExprLemonParser.lyy-m4 "${_some_output}" COMPILE_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR}/include -I${CMAKE_CURRENT_SOURCE_DIR}/expressions/fields TEMPLATE "${_lemon_template}" )
+
+add_library(OpenFOAM ${_FILES} ${_some_output})
 target_compile_features(OpenFOAM PUBLIC cxx_std_11)
 target_include_directories(OpenFOAM PUBLIC
   include

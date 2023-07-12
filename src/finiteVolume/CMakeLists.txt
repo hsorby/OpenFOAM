@@ -239,10 +239,12 @@ set(_FILES
   expressions/patch/patchExpr.C
   expressions/patch/patchExprDriver.C
   expressions/patch/patchExprDriverFields.C
+  expressions/patch/patchExprScanner.cc
   expressions/PatchFunction1/makePatchFunction1Expression.C
   expressions/volume/volumeExpr.C
   expressions/volume/volumeExprDriver.C
   expressions/volume/volumeExprDriverFields.C
+  expressions/volume/volumeExprScanner.cc
   expressions/fields/base/patchExprFieldBase.C
   expressions/fields/fvPatchFields/exprFixedValueFvPatchFields.C
   expressions/fields/fvPatchFields/exprMixedFvPatchFields.C
