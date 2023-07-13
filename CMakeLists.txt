@@ -14,14 +14,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmakemodules)
 option(OPENFOAM_SHARED_LIBS "Build shared libraries" ON)
 set(BUILD_SHARED_LIBS ${OPENFOAM_SHARED_LIBS})
 
-include(CheckIncludeFileCXX)
-check_include_file_cxx("mach-o/dyld.h" HAVE_MACH0_DYLD_H)
-
 set(CMAKE_CXX_STANDARD 14)
 add_compile_definitions(WM_LABEL_SIZE=32 WM_DP NoRepository OPENFOAM=2306)
-if (HAVE_MACH0_DYLD_H)
-  add_compile_definitions(HAVE_MACH0_DYLD_H)
-endif()
 
 find_package(SCOTCH REQUIRED)
 find_package(ZLIB REQUIRED)
