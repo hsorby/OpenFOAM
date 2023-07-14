@@ -98,7 +98,7 @@ SourceFiles
 #define distributionModels_general_H
 
 #include "distributionModel.H"
-#include "Vector.H"
+#include "VectorPascal.H"
 #include "VectorSpace.H"
 #include "Field.H"
 

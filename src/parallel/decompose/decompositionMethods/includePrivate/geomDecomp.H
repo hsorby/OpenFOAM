@@ -49,7 +49,7 @@ SourceFiles
 
 #include "decompositionMethod.H"
 #include "cartesianCS.H"
-#include "Vector.H"
+#include "VectorPascal.H"
 #include "tmp.H"
 
 namespace Foam

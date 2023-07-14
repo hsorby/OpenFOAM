@@ -42,7 +42,7 @@ SourceFiles
 
 #include "Barycentric.H"
 #include "Tensor.H"
-#include "Vector.H"
+#include "VectorPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
