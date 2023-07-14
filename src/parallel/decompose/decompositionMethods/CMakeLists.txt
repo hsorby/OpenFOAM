@@ -20,3 +20,4 @@ set(_FILES
 add_library(decompositionMethods ${_FILES})
 target_compile_features(decompositionMethods PUBLIC cxx_std_11)
 target_include_directories(decompositionMethods PUBLIC include PRIVATE includePrivate)
+target_link_libraries(decompositionMethods PUBLIC meshTools finiteVolume)

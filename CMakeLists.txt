@@ -32,7 +32,6 @@ set(BUILD git-repo)
 set(PATCH 1)
 set(VERSION ${_PROJECT_VERSION})
 
-
 add_subdirectory(src)
 
 add_subdirectory(applications)

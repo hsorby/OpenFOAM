@@ -20,6 +20,8 @@ add_subdirectory(mesh/blockMesh)
 add_subdirectory(dynamicMesh)
 add_subdirectory(genericPatchFields)
 
+add_subdirectory(parallel/decompose/decompositionMethods)
+
 #add_subdirectory(renumber/renumberMethods)
 #add_subdirectory(renumber/SloanRenumber)
 #add_subdirectory(renumber/zoltanRenumber)
