@@ -13,4 +13,5 @@ set(_FILES
 )
 add_library(dynamicFvMesh ${_FILES})
 target_compile_features(dynamicFvMesh PUBLIC cxx_std_11)
-target_include_directories(dynamicFvMesh PUBLIC include PRIVATE includePrivate)
+target_include_directories(dynamicFvMesh PUBLIC include includePrivate dynamicRefineFvMesh simplifiedDynamicFvMesh)
+target_link_libraries(dynamicFvMesh PUBLIC dynamicMesh)
