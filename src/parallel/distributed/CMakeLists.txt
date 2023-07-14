@@ -4,4 +4,5 @@ set(_FILES
 )
 add_library(distributed ${_FILES})
 target_compile_features(distributed PUBLIC cxx_std_11)
-target_include_directories(distributed PUBLIC include PRIVATE includePrivate)
+target_include_directories(distributed PUBLIC include PRIVATE includePrivate distributedTriSurfaceMesh)
+target_link_libraries(distributed PUBLIC meshTools finiteVolume decompositionMethods)

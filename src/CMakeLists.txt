@@ -40,6 +40,10 @@ add_subdirectory(lagrangian/distributionModels)
 
 add_subdirectory(parallel/decompose/decompose)
 
+add_subdirectory(parallel/reconstruct/reconstruct)
+add_subdirectory(parallel/reconstruct/faReconstruct)
+add_subdirectory(parallel/distributed)
+
 #add_subdirectory(renumber/renumberMethods)
 #add_subdirectory(renumber/SloanRenumber)
 #add_subdirectory(renumber/zoltanRenumber)

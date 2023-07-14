@@ -295,7 +295,7 @@ Ostream& operator<<(Ostream& os, const Cloud<ParticleType>& c);
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-    #include "Cloud.C"
+    #include "CloudPascal.C"
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
