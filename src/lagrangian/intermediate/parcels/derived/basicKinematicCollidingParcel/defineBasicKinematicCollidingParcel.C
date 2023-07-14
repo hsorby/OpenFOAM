@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "basicKinematicCollidingParcel.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

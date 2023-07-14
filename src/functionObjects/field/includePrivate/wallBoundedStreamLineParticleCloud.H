@@ -38,7 +38,7 @@ SourceFiles
 #ifndef Foam_wallBoundedStreamLineParticleCloud_H
 #define Foam_wallBoundedStreamLineParticleCloud_H
 
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "wallBoundedStreamLineParticle.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

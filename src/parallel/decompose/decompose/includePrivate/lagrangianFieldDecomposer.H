@@ -41,7 +41,7 @@ SourceFiles
 #ifndef Foam_lagrangianFieldDecomposer_H
 #define Foam_lagrangianFieldDecomposer_H
 
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "CompactIOField.H"
 #include "indexedParticle.H"
 #include "passiveParticle.H"

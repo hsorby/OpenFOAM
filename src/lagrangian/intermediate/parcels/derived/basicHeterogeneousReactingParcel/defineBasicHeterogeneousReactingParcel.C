@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "basicHeterogeneousReactingParcel.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

@@ -38,7 +38,7 @@ License
 #include "fvMeshDistribute.H"
 #include "polyTopoChange.H"
 #include "mapDistributePolyMesh.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 //#include "globalIndex.H"
 #include "cellSet.H"
 #include "treeDataCell.H"

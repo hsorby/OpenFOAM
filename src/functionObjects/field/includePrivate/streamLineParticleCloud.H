@@ -38,7 +38,7 @@ SourceFiles
 #ifndef Foam_streamLineParticleCloud_H
 #define Foam_streamLineParticleCloud_H
 
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "streamLineParticle.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "vtkCloud.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "dictionary.H"
 #include "fvMesh.H"
 #include "foamVtkOutputOptions.H"

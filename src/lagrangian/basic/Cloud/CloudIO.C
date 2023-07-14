@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "TimeFoam.H"
 #include "IOPosition.H"
 #include "IOdictionary.H"

@@ -38,7 +38,7 @@ SourceFiles
 #ifndef DSMCCloud_H
 #define DSMCCloud_H
 
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "DSMCBaseCloud.H"
 #include "IOdictionary.H"
 #include "autoPtr.H"

@@ -38,7 +38,7 @@ SourceFiles
 #ifndef injectedParticleCloud_H
 #define injectedParticleCloud_H
 
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "injectedParticle.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

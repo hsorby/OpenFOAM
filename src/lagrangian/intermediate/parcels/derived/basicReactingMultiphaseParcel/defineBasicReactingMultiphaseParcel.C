@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "basicReactingMultiphaseParcel.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

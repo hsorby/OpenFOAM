@@ -34,7 +34,7 @@ Description
 #ifndef basicKinematicCollidingCloud_H
 #define basicKinematicCollidingCloud_H
 
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "KinematicCloud.H"
 #include "CollidingCloud.H"
 #include "basicKinematicCollidingParcel.H"

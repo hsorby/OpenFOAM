@@ -38,7 +38,7 @@ Description
 #include "vector.H"
 #include "barycentric.H"
 #include "barycentricTensor.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "IDLList.H"
 #include "pointField.H"
 #include "faceList.H"

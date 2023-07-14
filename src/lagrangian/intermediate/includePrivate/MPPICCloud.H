@@ -42,7 +42,7 @@ SourceFiles
 #define MPPICCloud_H
 
 #include "particle.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "IOdictionary.H"
 #include "autoPtr.H"
 #include "fvMesh.H"

@@ -27,7 +27,7 @@ License
 
 #include "ensightOutputCloud.H"
 #include "fvMesh.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "passiveParticle.H"
 #include "globalIndex.H"
 

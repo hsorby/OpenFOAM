@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "dataCloud.H"
-#include "Cloud.H"
+#include "CloudPascal.H"
 #include "dictionary.H"
 #include "fvMesh.H"
 #include "pointList.H"
