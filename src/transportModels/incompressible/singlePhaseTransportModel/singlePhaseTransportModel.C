@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "singlePhaseTransportModel.H"
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "volFields.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //

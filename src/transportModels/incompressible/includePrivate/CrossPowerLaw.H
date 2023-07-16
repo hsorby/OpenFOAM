@@ -38,7 +38,7 @@ SourceFiles
 #ifndef CrossPowerLaw_H
 #define CrossPowerLaw_H
 
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "dimensionedScalar.H"
 #include "volFields.H"
 

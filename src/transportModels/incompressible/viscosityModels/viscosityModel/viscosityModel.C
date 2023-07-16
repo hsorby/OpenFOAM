@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "volFields.H"
 #include "fvcGrad.H"
 

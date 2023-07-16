@@ -49,7 +49,7 @@ SourceFiles
 #include "laminarModel.H"
 #include "RASModel.H"
 #include "LESModel.H"
-#include "incompressible/transportModel/transportModel.H"
+#include "transportModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

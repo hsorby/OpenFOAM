@@ -41,7 +41,7 @@ SourceFiles
 #ifndef Arrhenius_H
 #define Arrhenius_H
 
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "dimensionedScalar.H"
 #include "volFields.H"
 

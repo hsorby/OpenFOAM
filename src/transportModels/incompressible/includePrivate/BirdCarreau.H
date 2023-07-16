@@ -41,7 +41,7 @@ SourceFiles
 #ifndef BirdCarreau_H
 #define BirdCarreau_H
 
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "dimensionedScalar.H"
 #include "volFields.H"
 

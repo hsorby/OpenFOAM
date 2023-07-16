@@ -9,4 +9,5 @@ set(_FILES
 )
 add_library(interfaceProperties ${_FILES})
 target_compile_features(interfaceProperties PUBLIC cxx_std_11)
-target_include_directories(interfaceProperties PUBLIC include PRIVATE includePrivate)
+target_include_directories(interfaceProperties PUBLIC include includePrivate)
+target_link_libraries(interfaceProperties PUBLIC finiteVolume lagrangian)

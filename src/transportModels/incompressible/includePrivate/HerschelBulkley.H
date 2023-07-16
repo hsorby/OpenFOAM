@@ -38,7 +38,7 @@ SourceFiles
 #ifndef HerschelBulkley_H
 #define HerschelBulkley_H
 
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "dimensionedScalar.H"
 #include "volFields.H"
 

@@ -8,3 +8,4 @@ set(_FILES
 add_library(twoPhaseProperties ${_FILES})
 target_compile_features(twoPhaseProperties PUBLIC cxx_std_11)
 target_include_directories(twoPhaseProperties PUBLIC include PRIVATE includePrivate)
+target_link_libraries(twoPhaseProperties PUBLIC sampling interfaceProperties)

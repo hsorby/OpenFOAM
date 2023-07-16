@@ -36,9 +36,9 @@ SourceFiles
 #ifndef incompressibleThreePhaseMixture_H
 #define incompressibleThreePhaseMixture_H
 
-#include "incompressible/transportModel/transportModel.H"
+#include "transportModel.H"
 #include "IOdictionary.H"
-#include "incompressible/viscosityModels/viscosityModel/viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "dimensionedScalar.H"
 #include "volFields.H"
 

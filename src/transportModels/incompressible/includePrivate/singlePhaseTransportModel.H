@@ -40,7 +40,7 @@ SourceFiles
 #ifndef singlePhaseTransportModel_H
 #define singlePhaseTransportModel_H
 
-#include "incompressible/transportModel/transportModel.H"
+#include "transportModel.H"
 #include "IOdictionary.H"
 #include "autoPtr.H"
 

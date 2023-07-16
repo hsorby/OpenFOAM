@@ -64,7 +64,7 @@ SourceFiles
 #ifndef Casson_H
 #define Casson_H
 
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "dimensionedScalar.H"
 #include "volFields.H"
 

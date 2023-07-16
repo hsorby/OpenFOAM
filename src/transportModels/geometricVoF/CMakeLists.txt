@@ -19,4 +19,5 @@ set(_FILES
 )
 add_library(geometricVoF ${_FILES})
 target_compile_features(geometricVoF PUBLIC cxx_std_11)
-target_include_directories(geometricVoF PUBLIC include PRIVATE includePrivate)
+target_include_directories(geometricVoF PUBLIC include PRIVATE includePrivate sampledInterface advectionSchemes/isoAdvection)
+target_link_libraries(geometricVoF PUBLIC finiteVolume interfaceProperties sampling)

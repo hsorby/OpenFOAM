@@ -4,3 +4,4 @@ set(_FILES
 add_library(immiscibleIncompressibleTwoPhaseMixture ${_FILES})
 target_compile_features(immiscibleIncompressibleTwoPhaseMixture PUBLIC cxx_std_11)
 target_include_directories(immiscibleIncompressibleTwoPhaseMixture PUBLIC include PRIVATE includePrivate)
+target_link_libraries(immiscibleIncompressibleTwoPhaseMixture PUBLIC incompressibleTransportModels)

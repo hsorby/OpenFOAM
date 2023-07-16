@@ -38,7 +38,7 @@ SourceFiles
 #ifndef viscosityModels_powerLaw_H
 #define viscosityModels_powerLaw_H
 
-#include "viscosityModel.H"
+#include "incompressibleViscosityModel.H"
 #include "dimensionedScalar.H"
 #include "volFields.H"
 

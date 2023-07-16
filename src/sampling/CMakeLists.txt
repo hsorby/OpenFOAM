@@ -69,4 +69,26 @@ set(_FILES
 )
 add_library(sampling ${_FILES})
 target_compile_features(sampling PUBLIC cxx_std_11)
-target_include_directories(sampling PUBLIC include PRIVATE includePrivate)
+target_include_directories(sampling
+  PUBLIC
+    include
+    functions/Function1/Sample
+    meshToMesh
+    meshToMesh0
+    probes
+    sampledSurface/distanceSurface
+    sampledSurface/isoSurface
+    sampledSurface/sampledCuttingPlane
+    sampledSurface/sampledCuttingSurface
+    sampledSurface/sampledFaceZone
+    sampledSurface/sampledMeshedSurface
+    sampledSurface/sampledPatch
+    sampledSurface/sampledPatchInternalField
+    sampledSurface/sampledPlane
+    sampledSurface/sampledSurface
+    sampledSurface/sampledSurfaces
+    sampledSurface/thresholdCellFaces
+    surface/cutting
+    surface/isoSurface
+    includePrivate)
+target_link_libraries(sampling PUBLIC finiteVolume lagrangian)
