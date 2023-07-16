@@ -3,5 +3,5 @@ set(_FILES
 )
 add_library(compressibleTransportModels ${_FILES})
 target_compile_features(compressibleTransportModels PUBLIC cxx_std_11)
-target_include_directories(compressibleTransportModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(compressibleTransportModels PUBLIC include includePrivate)
 target_link_libraries(compressibleTransportModels PUBLIC finiteVolume lagrangian)

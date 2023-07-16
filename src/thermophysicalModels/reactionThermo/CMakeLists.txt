@@ -20,4 +20,22 @@ set(_FILES
 )
 add_library(reactionThermophysicalModels ${_FILES})
 target_compile_features(reactionThermophysicalModels PUBLIC cxx_std_11)
-target_include_directories(reactionThermophysicalModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(reactionThermophysicalModels
+  PUBLIC
+    include
+    includePrivate
+    chemistryReaders/chemistryReader
+    chemistryReaders/foamChemistryReader
+    functionObjects/moleFractions
+    mixtures/SpecieMixture
+    mixtures/egrMixture
+    mixtures/homogeneousMixture
+    mixtures/inhomogeneousMixture
+    mixtures/multiComponentMixture
+    mixtures/reactingMixture
+    mixtures/singleComponentMixture
+    mixtures/singleStepReactingMixture
+    mixtures/veryInhomogeneousMixture
+    psiuReactionThermo
+)
+target_link_libraries(reactionThermophysicalModels PUBLIC finiteVolume fluidThermophysicalModels solidSpecie)

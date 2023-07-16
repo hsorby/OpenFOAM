@@ -184,6 +184,3 @@ target_include_directories(finiteArea PUBLIC
   finiteArea/d2dt2Schemes/EulerFaD2dt2Scheme
 )
 target_link_libraries(finiteArea PUBLIC OpenFOAM fileFormats meshTools blockMeshLib)
-if (BUILD_SHARED_LIBS)
-  target_link_options(OpenFOAM PUBLIC -undefined dynamic_lookup)
-endif()

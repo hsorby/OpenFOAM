@@ -9,3 +9,4 @@ set(_FILES
 add_library(laminarFlameSpeedModels ${_FILES})
 target_compile_features(laminarFlameSpeedModels PUBLIC cxx_std_11)
 target_include_directories(laminarFlameSpeedModels PUBLIC include PRIVATE includePrivate)
+target_link_libraries(laminarFlameSpeedModels PUBLIC finiteVolume reactionThermophysicalModels)

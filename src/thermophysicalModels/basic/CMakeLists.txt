@@ -16,4 +16,15 @@ set(_FILES
 )
 add_library(fluidThermophysicalModels ${_FILES})
 target_compile_features(fluidThermophysicalModels PUBLIC cxx_std_11)
-target_include_directories(fluidThermophysicalModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(fluidThermophysicalModels
+  PUBLIC
+    include
+    includePrivate
+    basicThermo
+    heThermo
+    mixtures/pureMixture
+    mixtures/pureZoneMixture
+    psiThermo
+    rhoThermo
+)
+target_link_libraries(fluidThermophysicalModels PUBLIC finiteVolume compressibleTransportModels specie)

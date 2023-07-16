@@ -7,4 +7,5 @@ set(_FILES
 )
 add_library(solidThermo ${_FILES})
 target_compile_features(solidThermo PUBLIC cxx_std_11)
-target_include_directories(solidThermo PUBLIC include PRIVATE includePrivate)
+target_include_directories(solidThermo PUBLIC include includePrivate solidThermo)
+target_link_libraries(solidThermo PUBLIC finiteVolume fluidThermophysicalModels reactionThermophysicalModels)

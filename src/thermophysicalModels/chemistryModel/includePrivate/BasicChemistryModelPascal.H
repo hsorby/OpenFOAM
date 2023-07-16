@@ -134,7 +134,7 @@ public:
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-    #include "BasicChemistryModel.C"
+    #include "BasicChemistryModelPascal.C"
 #endif
 
 #include "BasicChemistryModelIPascal.H"

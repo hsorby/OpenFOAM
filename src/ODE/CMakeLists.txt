@@ -20,5 +20,5 @@ set(_FILES
 )
 add_library(ODE ${_FILES})
 target_compile_features(ODE PUBLIC cxx_std_11)
-target_include_directories(ODE PUBLIC include PRIVATE includePrivate)
+target_include_directories(ODE PUBLIC include includePrivate)
 target_link_libraries(ODE PUBLIC OpenFOAM)

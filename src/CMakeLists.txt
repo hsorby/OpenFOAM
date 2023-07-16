@@ -63,6 +63,20 @@ add_subdirectory(randomProcesses)
 
 add_subdirectory(ODE)
 
+add_subdirectory(thermophysicalModels/chemistryModel)
+add_subdirectory(thermophysicalModels/radiation)
+add_subdirectory(thermophysicalModels/basic)
+add_subdirectory(thermophysicalModels/specie)
+add_subdirectory(thermophysicalModels/barotropicCompressibilityModel)
+add_subdirectory(thermophysicalModels/reactionThermo)
+add_subdirectory(thermophysicalModels/laminarFlameSpeed)
+add_subdirectory(thermophysicalModels/SLGThermo)
+add_subdirectory(thermophysicalModels/thermophysicalProperties)
+add_subdirectory(thermophysicalModels/solidThermo)
+add_subdirectory(thermophysicalModels/solidChemistryModel)
+add_subdirectory(thermophysicalModels/solidSpecie)
+
+
 #add_subdirectory(renumber/renumberMethods)
 #add_subdirectory(renumber/SloanRenumber)
 #add_subdirectory(renumber/zoltanRenumber)
