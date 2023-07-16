@@ -46,4 +46,51 @@ set(_FILES
 )
 add_library(turbulenceModels ${_FILES})
 target_compile_features(turbulenceModels PUBLIC cxx_std_11)
-target_include_directories(turbulenceModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(turbulenceModels
+  PUBLIC
+    include
+    includePrivate
+    Base/SpalartAllmaras
+    Base/kOmegaSST
+    DES/DESModel
+    DES/SpalartAllmarasDDES
+    DES/SpalartAllmarasDES
+    DES/SpalartAllmarasIDDES
+    DES/kOmegaSSTDES
+    DES/kOmegaSSTIDDES
+    LES/DeardorffDiffStress
+    LES/LESModel
+    LES/LESeddyViscosity
+    LES/Smagorinsky
+    LES/WALE
+    LES/dynamicKEqn
+    LES/dynamicLagrangian
+    LES/kEqn
+    LES/sigma
+    RAS/EBRSM
+    RAS/LRR
+    RAS/LaunderSharmaKE
+    RAS/RASModel
+    RAS/RNGkEpsilon
+    RAS/SSG
+    RAS/SpalartAllmaras
+    RAS/kEpsilon
+    RAS/kEpsilonPhitF
+    RAS/kOmega
+    RAS/kOmegaSST
+    RAS/kOmegaSSTLM
+    RAS/kOmegaSSTSAS
+    RAS/realizableKE
+    ReynoldsStress
+    TurbulenceModel
+    derivedFvPatchFields/wallFunctions/kqRWallFunctions/kqRWallFunction
+    eddyViscosity
+    laminar/Maxwell
+    laminar/Stokes
+    laminar/generalizedNewtonian
+    laminar/laminarModel
+    linearViscousStress
+    nonlinearEddyViscosity
+    DES/kOmegaSSTDDES
+)
+target_link_libraries(turbulenceModels PUBLIC finiteVolume)

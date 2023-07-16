@@ -25,8 +25,8 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "IncompressibleTurbulenceModel.H"
-#include "incompressible/transportModel/transportModel.H"
+#include "IncompressibleTurbulenceModelPascal.H"
+#include "transportModel.H"
 #include "addToRunTimeSelectionTable.H"
 #include "makeTurbulenceModel.H"
 

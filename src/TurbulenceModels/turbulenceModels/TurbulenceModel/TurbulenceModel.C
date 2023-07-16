@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "TurbulenceModel.H"
+#include "TurbulenceModelPascal.H"
 #include "volFields.H"
 #include "surfaceFields.H"
 

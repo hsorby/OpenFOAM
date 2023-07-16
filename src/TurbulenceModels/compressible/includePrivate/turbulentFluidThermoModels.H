@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "CompressibleTurbulenceModel.H"
+#include "CompressibleTurbulenceModelPascal.H"
 #include "compressibleTransportModel.H"
 #include "fluidThermo.H"
 #include "addToRunTimeSelectionTable.H"

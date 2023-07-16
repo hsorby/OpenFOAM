@@ -12,4 +12,5 @@ set(_FILES
 )
 add_library(incompressibleTurbulenceModels ${_FILES})
 target_compile_features(incompressibleTurbulenceModels PUBLIC cxx_std_11)
-target_include_directories(incompressibleTurbulenceModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(incompressibleTurbulenceModels PUBLIC include includePrivate IncompressibleTurbulenceModel turbulentTransportModels)
+target_link_libraries(incompressibleTurbulenceModels PUBLIC turbulenceModels incompressibleTransportModels)

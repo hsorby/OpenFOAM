@@ -44,7 +44,7 @@ SourceFiles
 #ifndef LESModel_H
 #define LESModel_H
 
-#include "TurbulenceModel.H"
+#include "TurbulenceModelPascal.H"
 #include "LESdelta.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
