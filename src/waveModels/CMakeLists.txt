@@ -25,3 +25,4 @@ set(_FILES
 add_library(waveModels ${_FILES})
 target_compile_features(waveModels PUBLIC cxx_std_11)
 target_include_directories(waveModels PUBLIC include PRIVATE includePrivate)
+target_link_libraries(waveModels PUBLIC fvMotionSolvers)
