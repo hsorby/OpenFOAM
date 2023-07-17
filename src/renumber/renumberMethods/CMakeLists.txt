@@ -10,4 +10,5 @@ set(_FILES
 add_library(renumberMethods ${_FILES})
 target_compile_features(renumberMethods PUBLIC cxx_std_11)
 target_link_libraries(renumberMethods PUBLIC OpenFOAM)
-target_include_directories(renumberMethods PUBLIC include PRIVATE includePrivate)
+target_include_directories(renumberMethods PUBLIC include includePrivate structuredRenumber)
+target_link_libraries(renumberMethods PUBLIC decompositionMethods)

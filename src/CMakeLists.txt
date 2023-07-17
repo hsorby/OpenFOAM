@@ -91,9 +91,14 @@ add_subdirectory(fvMotionSolver)
 
 add_subdirectory(mesh/snappyHexMesh)
 
-#add_subdirectory(renumber/renumberMethods)
-#add_subdirectory(renumber/SloanRenumber)
-#add_subdirectory(renumber/zoltanRenumber)
+add_subdirectory(renumber/renumberMethods)
+if(HAVE_BOOST)
+  add_subdirectory(renumber/SloanRenumber)
+endif()
+if(HAVE_ZOLTAN)
+  add_subdirectory(renumber/zoltanRenumber)
+endif()
+
 #add_subdirectory(regionFaModels)
 #add_subdirectory(Pstream/mpi)
 #add_subdirectory(dynamicFaMesh/interfaceTrackingFvMesh)
