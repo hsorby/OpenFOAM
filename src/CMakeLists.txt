@@ -83,6 +83,8 @@ add_subdirectory(TurbulenceModels/schemes)
 
 add_subdirectory(combustionModels)
 
+add_subdirectory(overset)
+
 #add_subdirectory(renumber/renumberMethods)
 #add_subdirectory(renumber/SloanRenumber)
 #add_subdirectory(renumber/zoltanRenumber)
@@ -96,7 +98,6 @@ add_subdirectory(combustionModels)
 #add_subdirectory(fvAgglomerationMethods/pairPatchAgglomeration)
 #add_subdirectory(fvAgglomerationMethods/MGridGenGamgAgglomeration)
 #add_subdirectory(rigidBodyDynamics)
-#add_subdirectory(overset)
 #add_subdirectory(sixDoFRigidBodyState)
 #add_subdirectory(functionObjects/solvers)
 #add_subdirectory(functionObjects/field)

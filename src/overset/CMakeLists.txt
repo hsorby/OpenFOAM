@@ -30,4 +30,13 @@ set(_FILES
 )
 add_library(overset ${_FILES})
 target_compile_features(overset PUBLIC cxx_std_11)
-target_include_directories(overset PUBLIC include PRIVATE includePrivate)
+target_include_directories(overset
+  PUBLIC
+    include
+    includePrivate
+    cellCellStencil/cellCellStencil
+    cellCellStencil/trackingInverseDistance
+    oversetFvMesh
+    oversetPolyPatch
+)
+target_link_libraries(overset PUBLIC finiteVolume decompositionMethods dynamicFvMesh sampling)
