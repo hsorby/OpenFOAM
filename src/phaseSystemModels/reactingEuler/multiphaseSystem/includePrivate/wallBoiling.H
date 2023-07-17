@@ -43,7 +43,7 @@ SourceFiles
 #define wallBoiling_H
 
 #include "nucleationModel.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

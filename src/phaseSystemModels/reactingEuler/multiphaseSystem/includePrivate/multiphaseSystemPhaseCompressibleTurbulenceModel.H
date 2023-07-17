@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2015-2016 OpenFOAM Foundation
+    Copyright (C) 2015-2018 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -35,7 +35,7 @@ Description
 #define phaseCompressibleTurbulenceModel_H
 
 #include "phaseCompressibleTurbulenceModelFwd.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "ThermalDiffusivity.H"
 #include "phaseModel.H"
 

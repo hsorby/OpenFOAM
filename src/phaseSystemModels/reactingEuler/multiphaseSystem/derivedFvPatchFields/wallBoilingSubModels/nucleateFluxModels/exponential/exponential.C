@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "exponential.H"
+#include "nucleateFluxModelsExponential.H"
 #include "addToRunTimeSelectionTable.H"
 #include "uniformDimensionedFields.H"
 #include "phasePairKey.H"

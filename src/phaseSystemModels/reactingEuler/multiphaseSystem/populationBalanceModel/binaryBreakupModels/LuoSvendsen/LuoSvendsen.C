@@ -28,7 +28,7 @@ License
 
 #include "LuoSvendsen.H"
 #include "addToRunTimeSelectionTable.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 #include "tableBounds.H"
 #include "MathFunctions.H"
 

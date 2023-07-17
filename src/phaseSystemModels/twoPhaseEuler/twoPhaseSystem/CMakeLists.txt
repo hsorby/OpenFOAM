@@ -66,4 +66,11 @@ set(_FILES
 )
 add_library(compressibleTwoPhaseSystem ${_FILES})
 target_compile_features(compressibleTwoPhaseSystem PUBLIC cxx_std_11)
-target_include_directories(compressibleTwoPhaseSystem PUBLIC include PRIVATE includePrivate)
+target_include_directories(compressibleTwoPhaseSystem
+  PUBLIC
+    include
+    includePrivate
+    BlendedInterfacialModel
+    twoPhaseSystem
+)
+target_link_libraries(compressibleTwoPhaseSystem PUBLIC finiteVolume incompressibleTransportModels compressibleTransportModels fluidThermophysicalModels compressibleTurbulenceModels)

@@ -28,3 +28,4 @@ set(_FILES
 add_library(phaseCompressibleTurbulenceModels ${_FILES})
 target_compile_features(phaseCompressibleTurbulenceModels PUBLIC cxx_std_11)
 target_include_directories(phaseCompressibleTurbulenceModels PUBLIC include PRIVATE includePrivate)
+target_link_libraries(phaseCompressibleTurbulenceModels PUBLIC compressibleTwoPhaseSystem finiteVolume compressibleTurbulenceModels incompressibleTurbulenceModels)

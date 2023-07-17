@@ -9,4 +9,5 @@ set(_FILES
 )
 add_library(saturationModel ${_FILES})
 target_compile_features(saturationModel PUBLIC cxx_std_11)
-target_include_directories(saturationModel PUBLIC include PRIVATE includePrivate)
+target_include_directories(saturationModel PUBLIC include includePrivate)
+target_link_libraries(saturationModel PUBLIC finiteVolume)

@@ -28,7 +28,7 @@ License
 
 #include "MovingPhaseModel.H"
 #include "phaseSystem.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 #include "fixedValueFvPatchFields.H"
 #include "slipFvPatchFields.H"
 #include "partialSlipFvPatchFields.H"

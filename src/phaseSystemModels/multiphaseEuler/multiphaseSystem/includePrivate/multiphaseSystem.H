@@ -45,7 +45,7 @@ SourceFiles
 #ifndef Foam_multiphaseEuler_multiphaseSystem_H
 #define Foam_multiphaseEuler_multiphaseSystem_H
 
-#include "incompressible/transportModel/transportModel.H"
+#include "transportModel.H"
 #include "IOdictionary.H"
 #include "phaseModel.H"
 #include "PtrDictionary.H"

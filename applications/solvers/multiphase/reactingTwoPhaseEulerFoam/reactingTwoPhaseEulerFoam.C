@@ -41,7 +41,7 @@ Description
 
 #include "fvCFD.H"
 #include "twoPhaseSystem.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "twoPhaseSystemPhaseCompressibleTurbulenceModel.H"
 #include "pimpleControl.H"
 #include "localEulerDdtScheme.H"
 #include "fvcSmooth.H"

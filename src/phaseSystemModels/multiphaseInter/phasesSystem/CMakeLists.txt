@@ -8,7 +8,7 @@ set(_FILES
   multiphaseSystem/multiphaseSystem.C
   multiphaseSystem/multiphaseSystemNew.C
   multiphaseSystem/multiphaseSystems.C
-  interfaceCompositionModel/interfaceCompositionModel.C
+  interfaceCompositionModelCamel/interfaceCompositionModel.C
   InterfaceCompositionModel/InterfaceCompositionModels.C
   interfaceModels/porousModels/porousModel/porousModel.C
   interfaceModels/porousModels/VollerPrakash/VollerPrakash.C
@@ -18,4 +18,20 @@ set(_FILES
 )
 add_library(incompressibleMultiphaseSystems ${_FILES})
 target_compile_features(incompressibleMultiphaseSystems PUBLIC cxx_std_11)
-target_include_directories(incompressibleMultiphaseSystems PUBLIC include PRIVATE includePrivate)
+target_include_directories(incompressibleMultiphaseSystems
+  PUBLIC
+    include
+    includePrivate
+    InterfaceCompositionModel
+    MassTransferPhaseSystem
+    massTransferModels/Lee
+    massTransferModels/diffusionGasEvaporation
+    massTransferModels/interfaceHeatResistance
+    massTransferModels/interfaceOxideRate
+    massTransferModels/kineticGasEvaporation
+    phaseModel/MovingPhaseModel
+    phaseModel/MultiComponentPhaseModel
+    phaseModel/PurePhaseModel
+    phaseModel/StaticPhaseModel
+)
+target_link_libraries(incompressibleMultiphaseSystems PUBLIC finiteVolume incompressibleTransportModels compressibleTransportModels fluidThermophysicalModels compressibleTurbulenceModels geometricVoF saturationModel)

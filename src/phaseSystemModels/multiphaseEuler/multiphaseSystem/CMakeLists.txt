@@ -21,3 +21,4 @@ set(_FILES
 add_library(multiphaseSystem ${_FILES})
 target_compile_features(multiphaseSystem PUBLIC cxx_std_11)
 target_include_directories(multiphaseSystem PUBLIC include PRIVATE includePrivate)
+target_link_libraries(multiphaseSystem PUBLIC finiteVolume incompressibleTransportModels compressibleTransportModels fluidThermophysicalModels compressibleTurbulenceModels)

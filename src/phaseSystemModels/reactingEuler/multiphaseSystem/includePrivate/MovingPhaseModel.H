@@ -48,7 +48,7 @@ SourceFiles
 #define MovingPhaseModel_H
 
 #include "phaseModel.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

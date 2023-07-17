@@ -33,7 +33,7 @@ License
 #include "phaseSystem.H"
 #include "compressibleTurbulenceModel.H"
 #include "ThermalDiffusivity.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "saturationModel.H"
 #include "wallFvPatch.H"
 #include "uniformDimensionedFields.H"

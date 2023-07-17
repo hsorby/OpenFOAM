@@ -104,7 +104,7 @@ set(_FILES
   interfacialModels/wallLubricationModels/Antal/Antal.C
   interfacialModels/wallLubricationModels/Frank/Frank.C
   interfacialModels/wallLubricationModels/TomiyamaWallLubrication/TomiyamaWallLubrication.C
-  interfacialCompositionModels/interfaceCompositionModels/interfaceCompositionModel/interfaceCompositionModel.C
+  interfacialCompositionModels/interfaceCompositionModels/interfaceCompositionModelCamel/interfaceCompositionModel.C
   interfacialCompositionModels/interfaceCompositionModels/InterfaceCompositionModel/InterfaceCompositionModels.C
   interfacialCompositionModels/massTransferModels/massTransferModel/massTransferModel.C
   interfacialCompositionModels/massTransferModels/Frossling/Frossling.C
@@ -152,4 +152,32 @@ set(_FILES
 )
 add_library(reactingMultiphaseSystem ${_FILES})
 target_compile_features(reactingMultiphaseSystem PUBLIC cxx_std_11)
-target_include_directories(reactingMultiphaseSystem PUBLIC include PRIVATE includePrivate)
+target_include_directories(reactingMultiphaseSystem
+  PUBLIC
+    include
+    includePrivate
+    BlendedInterfacialModel
+    PhaseSystems/InterfaceCompositionPhaseChangePhaseSystem
+    PhaseSystems/MomentumTransferPhaseSystem
+    PhaseSystems/OneResistanceHeatTransferPhaseSystem
+    PhaseSystems/PhaseTransferPhaseSystem
+    PhaseSystems/PopulationBalancePhaseSystem
+    PhaseSystems/ThermalPhaseChangePhaseSystem
+    PhaseSystems/TwoResistanceHeatTransferPhaseSystem
+    interfacialCompositionModels/interfaceCompositionModels/Henry
+    interfacialCompositionModels/interfaceCompositionModels/InterfaceCompositionModel
+    interfacialCompositionModels/interfaceCompositionModels/NonRandomTwoLiquid
+    interfacialCompositionModels/interfaceCompositionModels/Raoult
+    interfacialCompositionModels/interfaceCompositionModels/Saturated
+    phaseModel/AnisothermalPhaseModel
+    phaseModel/InertPhaseModel
+    phaseModel/IsothermalPhaseModel
+    phaseModel/MovingPhaseModel
+    phaseModel/MultiComponentPhaseModel
+    phaseModel/PurePhaseModel
+    phaseModel/ReactingPhaseModel
+    phaseModel/StationaryPhaseModel
+    phaseModel/ThermoPhaseModel
+    phaseSystem
+)
+target_link_libraries(reactingMultiphaseSystem PUBLIC saturationModel finiteVolume fluidThermophysicalModels reactionThermophysicalModels combustionModels)

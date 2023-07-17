@@ -13,3 +13,4 @@ set(_FILES
 add_library(reactingTwoPhaseSystem ${_FILES})
 target_compile_features(reactingTwoPhaseSystem PUBLIC cxx_std_11)
 target_include_directories(reactingTwoPhaseSystem PUBLIC include PRIVATE includePrivate)
+target_link_libraries(reactingTwoPhaseSystem PUBLIC finiteVolume reactingMultiphaseSystem compressibleTwoPhaseSystem)

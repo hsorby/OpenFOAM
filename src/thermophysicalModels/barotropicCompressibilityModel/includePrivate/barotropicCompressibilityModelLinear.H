@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2015-2018 OpenFOAM Foundation
+    Copyright (C) 2011-2015 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -23,29 +23,80 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Typedef
-    Foam::phaseCompressibleTurbulenceModel
+Class
+    Foam::compressibilityModels::linear
 
 Description
-    Typedef for phaseCompressibleTurbulenceModel
+    linear compressibility model.
+
+SourceFiles
+    linear.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef phaseCompressibleTurbulenceModel_H
-#define phaseCompressibleTurbulenceModel_H
+#ifndef compressibilityModelslinear_H
+#define compressibilityModelslinear_H
 
-#include "phaseCompressibleTurbulenceModelFwd.H"
-#include "PhaseCompressibleTurbulenceModel.H"
-#include "ThermalDiffusivity.H"
-#include "phaseModel.H"
+#include "barotropicCompressibilityModel.H"
+#include "dimensionedScalar.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-      typedef ThermalDiffusivity<PhaseCompressibleTurbulenceModel<phaseModel>>
-          phaseCompressibleTurbulenceModel;
-}
+namespace compressibilityModels
+{
+
+/*---------------------------------------------------------------------------*\
+                           Class linear Declaration
+\*---------------------------------------------------------------------------*/
+
+class linear
+:
+    public barotropicCompressibilityModel
+{
+    // Private data
+
+        dimensionedScalar psiv_;
+        dimensionedScalar psil_;
+
+
+public:
+
+    //- Runtime type information
+    TypeName("linear");
+
+
+    // Constructors
+
+        //- Construct from components
+        linear
+        (
+            const dictionary& compressibilityProperties,
+            const volScalarField& gamma,
+            const word& psiName = "psi"
+        );
+
+
+    //- Destructor
+    ~linear()
+    {}
+
+
+    // Member Functions
+
+        //- Correct the linear compressibility
+        void correct();
+
+        //- Read transportProperties dictionary
+        bool read(const dictionary& compressibilityProperties);
+};
+
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+} // End namespace compressibilityModels
+} // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

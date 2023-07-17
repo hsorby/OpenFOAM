@@ -41,7 +41,7 @@ Description
 #include "turbulentFluidThermoModel.H"
 
 #include "twoPhaseSystem.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 #include "pimpleControl.H"
 #include "fixedGradientFvPatchFields.H"
 #include "regionProperties.H"

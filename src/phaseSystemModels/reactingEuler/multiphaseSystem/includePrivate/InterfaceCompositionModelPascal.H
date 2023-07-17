@@ -35,8 +35,8 @@ SourceFiles
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef InterfaceCompositionModel_H
-#define InterfaceCompositionModel_H
+#ifndef InterfaceCompositionModelPascal_H
+#define InterfaceCompositionModelPascal_H
 
 #include "interfaceCompositionModel.H"
 
@@ -209,7 +209,7 @@ public:
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-    #include "InterfaceCompositionModel.C"
+    #include "InterfaceCompositionModelPascal.C"
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

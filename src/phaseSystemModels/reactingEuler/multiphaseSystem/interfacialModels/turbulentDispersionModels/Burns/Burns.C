@@ -27,7 +27,7 @@ License
 
 #include "Burns.H"
 #include "phasePair.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 #include "addToRunTimeSelectionTable.H"
 
 #include "dragModel.H"

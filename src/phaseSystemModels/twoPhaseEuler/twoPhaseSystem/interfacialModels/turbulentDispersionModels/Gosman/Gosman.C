@@ -27,7 +27,7 @@ License
 
 #include "Gosman.H"
 #include "phasePair.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "addToRunTimeSelectionTable.H"
 
 #include "dragModel.H"

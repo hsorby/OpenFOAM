@@ -39,7 +39,7 @@ License
 #include "fvmSup.H"
 #include "fvcSup.H"
 #include "fvcDiv.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 
 // * * * * * * * * * * * * Private Member Functions * * * * * * * * * * * * //
 

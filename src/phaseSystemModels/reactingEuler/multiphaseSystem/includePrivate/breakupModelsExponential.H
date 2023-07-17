@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2014-2018 OpenFOAM Foundation
+    Copyright (C) 2017-2018 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -24,85 +24,81 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::blendingMethods::linear
+    Foam::diameterModels::breakupModels::exponential
 
 Description
+    Exponential kernel. Used for verification and validation of the breakup
+    formulation implemented in the populationBalanceModel class.
 
 SourceFiles
-    linear.C
+    exponential.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef linear_H
-#define linear_H
+#ifndef breakupModelsExponential_H
+#define breakupModelsExponential_H
 
-#include "blendingMethod.H"
+#include "breakupModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-namespace blendingMethods
+namespace diameterModels
+{
+namespace breakupModels
 {
 
 /*---------------------------------------------------------------------------*\
-                         Class linear Declaration
+                         Class exponential Declaration
 \*---------------------------------------------------------------------------*/
 
-class linear
+class exponential
 :
-    public blendingMethod
+    public breakupModel
 {
     // Private data
 
-        //- Minimum fraction of phases which can be considered fully continuous
-        HashTable<dimensionedScalar> minFullyContinuousAlpha_;
+        //- Exponent
+        scalar exponent_;
 
-        //- Minimum fraction of phases which can be considered partly continuous
-        HashTable<dimensionedScalar> minPartlyContinuousAlpha_;
+        //- Coefficient
+        scalar C_;
 
 
 public:
 
     //- Runtime type information
-    TypeName("linear");
+    TypeName("exponential");
 
+    // Constructor
 
-    // Constructors
-
-        //- Construct from a dictionary and two phases
-        linear
+        exponential
         (
-            const dictionary& dict,
-            const wordList& phaseNames
+            const populationBalanceModel& popBal,
+            const dictionary& dict
         );
 
 
     //- Destructor
-    ~linear() = default;
+    virtual ~exponential() = default;
 
 
     // Member Functions
 
-        //- Factor for primary phase
-        virtual tmp<volScalarField> f1
+        //- Set total breakupRate
+        virtual void setBreakupRate
         (
-            const phaseModel& phase1,
-            const phaseModel& phase2
-        ) const;
-
-        //- Factor for secondary phase
-        virtual tmp<volScalarField> f2
-        (
-            const phaseModel& phase1,
-            const phaseModel& phase2
-        ) const;
+            volScalarField& breakupRate,
+            const label i
+        );
 };
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-} // End namespace blendingMethods
+} // End namespace breakupModels
+} // End namespace diameterModels
 } // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

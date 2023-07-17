@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "InterfaceCompositionModelPascal.H"
+#include "interfaceCompositionModel.H"
 #include "phaseModel.H"
 #include "phasePair.H"
 #include "pureMixture.H"

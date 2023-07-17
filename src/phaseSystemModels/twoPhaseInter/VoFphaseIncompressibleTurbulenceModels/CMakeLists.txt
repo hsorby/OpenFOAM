@@ -3,4 +3,5 @@ set(_FILES
 )
 add_library(VoFphaseTurbulentTransportModels ${_FILES})
 target_compile_features(VoFphaseTurbulentTransportModels PUBLIC cxx_std_11)
-target_include_directories(VoFphaseTurbulentTransportModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(VoFphaseTurbulentTransportModels PUBLIC include includePrivate ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(VoFphaseTurbulentTransportModels PUBLIC finiteVolume fluidThermophysicalModels incompressibleTransportModels incompressibleTurbulenceModels)

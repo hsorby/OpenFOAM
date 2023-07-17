@@ -53,7 +53,7 @@ SourceFiles
 #include "fvm.H"
 #include "fvc.H"
 #include "fvMatrices.H"
-#include "incompressible/transportModel/transportModel.H"
+#include "transportModel.H"
 #include "IOdictionary.H"
 #include "Switch.H"
 #include "bound.H"

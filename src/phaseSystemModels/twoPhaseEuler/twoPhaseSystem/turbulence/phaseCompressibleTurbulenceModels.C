@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "phaseModel.H"
 #include "twoPhaseSystem.H"
 #include "addToRunTimeSelectionTable.H"

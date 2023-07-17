@@ -27,7 +27,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "twoPhaseSystem.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "BlendedInterfacialModel.H"
 #include "virtualMassModel.H"
 #include "heatTransferModel.H"

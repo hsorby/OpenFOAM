@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "PhaseIncompressibleTurbulenceModel.H"
-#include "incompressible/transportModel/transportModel.H"
+#include "transportModel.H"
 #include "addToRunTimeSelectionTable.H"
 #include "makeTurbulenceModel.H"
 

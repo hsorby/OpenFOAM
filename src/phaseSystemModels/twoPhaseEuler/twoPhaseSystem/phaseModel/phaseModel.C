@@ -30,7 +30,7 @@ License
 #include "twoPhaseSystem.H"
 #include "diameterModel.H"
 #include "fvMatrix.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "dragModel.H"
 #include "heatTransferModel.H"
 #include "fixedValueFvsPatchFields.H"

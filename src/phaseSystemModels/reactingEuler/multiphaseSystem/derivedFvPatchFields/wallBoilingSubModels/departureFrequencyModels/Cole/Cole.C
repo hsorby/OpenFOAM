@@ -31,7 +31,7 @@ License
 #include "uniformDimensionedFields.H"
 #include "compressibleTurbulenceModel.H"
 #include "ThermalDiffusivity.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 

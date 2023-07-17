@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "linear.H"
+#include "specieLinear.H"
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 

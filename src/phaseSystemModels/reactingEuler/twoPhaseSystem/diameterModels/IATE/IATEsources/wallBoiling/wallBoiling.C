@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "wallBoiling.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "twoPhaseSystemPhaseCompressibleTurbulenceModel.H"
 #include "alphatWallBoilingWallFunctionFvPatchScalarField.H"
 #include "fvmSup.H"
 #include "addToRunTimeSelectionTable.H"

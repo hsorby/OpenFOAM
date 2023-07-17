@@ -29,7 +29,7 @@ License
 #include "Luo.H"
 #include "addToRunTimeSelectionTable.H"
 #include "mathematicalConstants.H"
-#include "phaseCompressibleTurbulenceModel.H"
+#include "multiphaseSystemPhaseCompressibleTurbulenceModel.H"
 #include "virtualMassModel.H"
 #include "phaseSystem.H"
 

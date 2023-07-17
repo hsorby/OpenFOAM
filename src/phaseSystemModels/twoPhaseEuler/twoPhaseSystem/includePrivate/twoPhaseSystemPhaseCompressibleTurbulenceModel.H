@@ -5,7 +5,7 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2015 OpenFOAM Foundation
+    Copyright (C) 2015-2016 OpenFOAM Foundation
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -23,80 +23,29 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Class
-    Foam::compressibilityModels::linear
+Typedef
+    Foam::phaseCompressibleTurbulenceModel
 
 Description
-    linear compressibility model.
-
-SourceFiles
-    linear.C
+    Typedef for phaseCompressibleTurbulenceModel
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef linear_H
-#define linear_H
+#ifndef phaseCompressibleTurbulenceModel_H
+#define phaseCompressibleTurbulenceModel_H
 
-#include "barotropicCompressibilityModel.H"
-#include "dimensionedScalar.H"
+#include "phaseCompressibleTurbulenceModelFwd.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
+#include "ThermalDiffusivity.H"
+#include "phaseModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-namespace compressibilityModels
-{
-
-/*---------------------------------------------------------------------------*\
-                           Class linear Declaration
-\*---------------------------------------------------------------------------*/
-
-class linear
-:
-    public barotropicCompressibilityModel
-{
-    // Private data
-
-        dimensionedScalar psiv_;
-        dimensionedScalar psil_;
-
-
-public:
-
-    //- Runtime type information
-    TypeName("linear");
-
-
-    // Constructors
-
-        //- Construct from components
-        linear
-        (
-            const dictionary& compressibilityProperties,
-            const volScalarField& gamma,
-            const word& psiName = "psi"
-        );
-
-
-    //- Destructor
-    ~linear()
-    {}
-
-
-    // Member Functions
-
-        //- Correct the linear compressibility
-        void correct();
-
-        //- Read transportProperties dictionary
-        bool read(const dictionary& compressibilityProperties);
-};
-
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
-} // End namespace compressibilityModels
-} // End namespace Foam
+      typedef ThermalDiffusivity<PhaseCompressibleTurbulenceModel<phaseModel>>
+          phaseCompressibleTurbulenceModel;
+}
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

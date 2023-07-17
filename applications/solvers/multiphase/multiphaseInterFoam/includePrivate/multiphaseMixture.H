@@ -45,7 +45,7 @@ SourceFiles
 #ifndef multiphaseMixture_H
 #define multiphaseMixture_H
 
-#include "incompressible/transportModel/transportModel.H"
+#include "transportModel.H"
 #include "IOdictionary.H"
 #include "phase.H"
 #include "PtrDictionary.H"

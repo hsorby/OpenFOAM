@@ -56,7 +56,7 @@ SourceFiles
 
 #include "RASModel.H"
 #include "eddyViscosity.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "ThermalDiffusivity.H"
 #include "EddyDiffusivity.H"
 #include "phaseModel.H"

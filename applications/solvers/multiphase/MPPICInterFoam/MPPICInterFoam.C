@@ -46,7 +46,7 @@ Description
 #include "subCycle.H"
 
 #include "immiscibleIncompressibleTwoPhaseMixture.H"
-#include "PhaseCompressibleTurbulenceModel.H"
+#include "PhaseCompressibleTurbulenceModelPascal.H"
 #include "pimpleControl.H"
 #include "fvOptions.H"
 #include "CorrectPhi.H"
