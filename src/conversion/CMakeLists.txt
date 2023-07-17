@@ -17,4 +17,12 @@ set(_FILES
 )
 add_library(conversion ${_FILES})
 target_compile_features(conversion PUBLIC cxx_std_11)
-target_include_directories(conversion PUBLIC include PRIVATE includePrivate)
+target_include_directories(conversion
+  PUBLIC
+    include
+    includePrivate
+    ensight/output
+    vtk/adaptor
+    vtk/output
+)
+target_link_libraries(conversion PUBLIC finiteArea finiteVolume)

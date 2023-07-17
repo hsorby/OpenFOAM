@@ -13,3 +13,4 @@ set(_FILES
 add_library(ccm ${_FILES})
 target_compile_features(ccm PUBLIC cxx_std_11)
 target_include_directories(ccm PUBLIC include PRIVATE includePrivate)
+target_link_libraries(ccm PUBLIC conversion)
