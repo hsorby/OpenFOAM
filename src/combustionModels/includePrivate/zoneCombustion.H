@@ -40,7 +40,7 @@ SourceFiles
 #ifndef zoneCombustion_H
 #define zoneCombustion_H
 
-#include "CombustionModel.H"
+#include "CombustionModelPascal.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

@@ -18,4 +18,25 @@ set(_FILES
 )
 add_library(combustionModels ${_FILES})
 target_compile_features(combustionModels PUBLIC cxx_std_11)
-target_include_directories(combustionModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(combustionModels
+  PUBLIC
+    include
+    includePrivate
+    CombustionModel
+    CombustionModel/ChemistryCombustion
+    CombustionModel/CombustionModel
+    CombustionModel/ThermoCombustion
+    EDC
+    FSD
+    PaSR
+    diffusion
+    infinitelyFastChemistry
+    laminar
+    noCombustion
+    singleStepCombustion
+    zoneCombustion
+    eddyDissipationModelBase
+    diffusionMulticomponent
+    eddyDissipationDiffusionModel
+)
+target_link_libraries(combustionModels PUBLIC finiteVolume chemistryModel compressibleTransportModels compressibleTurbulenceModels reactionThermophysicalModels fluidThermophysicalModels)

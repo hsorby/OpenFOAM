@@ -101,7 +101,7 @@ SourceFiles
 #ifndef EDC_H
 #define EDC_H
 
-#include "../laminar/laminar.H"
+#include "combustionLaminar.H"
 #include "Enum.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

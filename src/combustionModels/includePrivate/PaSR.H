@@ -44,7 +44,7 @@ SourceFiles
 #ifndef PaSR_H
 #define PaSR_H
 
-#include "../laminar/laminar.H"
+#include "combustionLaminar.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

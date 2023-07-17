@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "laminar.H"
+#include "combustionLaminar.H"
 #include "fvmSup.H"
 #include "localEulerDdtScheme.H"
 

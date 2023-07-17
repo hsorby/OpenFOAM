@@ -29,7 +29,7 @@ License
 
 #include "psiReactionThermo.H"
 #include "rhoReactionThermo.H"
-#include "laminar.H"
+#include "combustionLaminar.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
