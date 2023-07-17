@@ -33,4 +33,13 @@ set(_FILES
 )
 add_library(snappyHexMesh ${_FILES})
 target_compile_features(snappyHexMesh PUBLIC cxx_std_11)
-target_include_directories(snappyHexMesh PUBLIC include PRIVATE includePrivate)
+target_include_directories(snappyHexMesh
+  PUBLIC
+    include
+    includePrivate
+    externalDisplacementMeshMover/fieldSmoother
+    externalDisplacementMeshMover/zeroFixedValue
+    meshRefinement
+    snappyHexMeshDriver
+)
+target_link_libraries(snappyHexMesh PUBLIC overset distributed)
