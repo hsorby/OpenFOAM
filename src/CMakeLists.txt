@@ -85,13 +85,15 @@ add_subdirectory(combustionModels)
 
 add_subdirectory(overset)
 
+add_subdirectory(fvOptions)
+
+add_subdirectory(fvMotionSolver)
+
 #add_subdirectory(renumber/renumberMethods)
 #add_subdirectory(renumber/SloanRenumber)
 #add_subdirectory(renumber/zoltanRenumber)
-#add_subdirectory(fvMotionSolver)
 #add_subdirectory(mesh/extrudeModel)
 #add_subdirectory(mesh/snappyHexMesh)
-#add_subdirectory(fvOptions)
 #add_subdirectory(regionFaModels)
 #add_subdirectory(Pstream/mpi)
 #add_subdirectory(dynamicFaMesh/interfaceTrackingFvMesh)

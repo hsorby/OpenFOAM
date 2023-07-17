@@ -35,4 +35,13 @@ set(_FILES
 )
 add_library(fvMotionSolvers ${_FILES})
 target_compile_features(fvMotionSolvers PUBLIC cxx_std_11)
-target_include_directories(fvMotionSolvers PUBLIC include PRIVATE includePrivate)
+target_include_directories(fvMotionSolvers
+  PUBLIC
+    include
+    includePrivate
+    fvMotionSolvers/fvMotionSolver
+    fvPatchFields/derived/cellMotion
+    pointPatchFields/derived/timeVaryingMappedFixedValue
+    motionInterpolation/patchCorrected
+)
+target_link_libraries(fvMotionSolvers PUBLIC dynamicMesh)

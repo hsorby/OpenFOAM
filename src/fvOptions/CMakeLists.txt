@@ -52,4 +52,21 @@ set(_FILES
 )
 add_library(fvOptions ${_FILES})
 target_compile_features(fvOptions PUBLIC cxx_std_11)
-target_include_directories(fvOptions PUBLIC include PRIVATE includePrivate)
+target_include_directories(fvOptions
+  PUBLIC
+    include
+    includePrivate
+    constraints/general/fixedValueConstraint
+    sources/derived/actuationDiskSource
+    sources/derived/buoyancyTurbSource
+    sources/derived/jouleHeatingSource
+    sources/derived/radialActuationDiskSource
+    sources/derived/rotorDiskSource
+    sources/derived/solidificationMeltingSource
+    sources/derived/tabulatedAccelerationSource
+    sources/general/codedSource
+    sources/general/semiImplicitSource
+    sources/interRegion/interRegionHeatTransfer/interRegionHeatTransferModel
+    sources/derived/phaseLimitStabilization
+)
+target_link_libraries(fvOptions PUBLIC overset compressibleTurbulenceModels incompressibleTurbulenceModels)
