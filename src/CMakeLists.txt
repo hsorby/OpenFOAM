@@ -106,7 +106,7 @@ endif()
 
 add_subdirectory(waveModels)
 
-#add_subdirectory(engine)
+add_subdirectory(engine)
 
 #add_subdirectory(regionFaModels)
 #add_subdirectory(Pstream/mpi)

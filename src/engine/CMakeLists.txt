@@ -17,4 +17,5 @@ set(_FILES
 )
 add_library(engine ${_FILES})
 target_compile_features(engine PUBLIC cxx_std_11)
-target_include_directories(engine PUBLIC include PRIVATE includePrivate)
+target_include_directories(engine PUBLIC include includePrivate)
+target_link_libraries(engine PUBLIC fvMotionSolvers)
