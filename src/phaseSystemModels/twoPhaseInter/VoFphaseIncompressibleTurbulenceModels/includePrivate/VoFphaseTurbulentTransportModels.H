@@ -28,7 +28,7 @@ License
 #include "PhaseIncompressibleTurbulenceModel.H"
 #include "transportModel.H"
 #include "addToRunTimeSelectionTable.H"
-#include "makeTurbulenceModel.H"
+#include "makeTurbulenceModelCamel.H"
 
 #include "laminarModel.H"
 #include "RASModel.H"
