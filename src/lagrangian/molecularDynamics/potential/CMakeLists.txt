@@ -28,4 +28,5 @@ set(_FILES
 )
 add_library(potential ${_FILES})
 target_compile_features(potential PUBLIC cxx_std_11)
-target_include_directories(potential PUBLIC include PRIVATE includePrivate)
+target_include_directories(potential PUBLIC include includePrivate)
+target_link_libraries(potential PUBLIC lagrangian)

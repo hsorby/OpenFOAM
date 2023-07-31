@@ -10,5 +10,5 @@ set(_FILES
 )
 add_library(lagrangian ${_FILES})
 target_compile_features(lagrangian PUBLIC cxx_std_11)
-target_include_directories(lagrangian PUBLIC include Cloud particle IOPosition includePrivate)
-target_link_libraries(lagrangian PUBLIC meshTools)
+target_include_directories(lagrangian PUBLIC include Cloud particle IOPosition includePrivate InteractionLists)
+target_link_libraries(lagrangian PUBLIC finiteVolume meshTools)

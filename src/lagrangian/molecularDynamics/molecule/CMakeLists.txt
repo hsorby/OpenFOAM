@@ -8,3 +8,4 @@ set(_FILES
 add_library(molecule ${_FILES})
 target_compile_features(molecule PUBLIC cxx_std_11)
 target_include_directories(molecule PUBLIC include PRIVATE includePrivate)
+target_link_libraries(molecule PUBLIC potential)

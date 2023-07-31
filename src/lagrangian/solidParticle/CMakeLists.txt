@@ -6,3 +6,4 @@ set(_FILES
 add_library(solidParticle ${_FILES})
 target_compile_features(solidParticle PUBLIC cxx_std_11)
 target_include_directories(solidParticle PUBLIC include PRIVATE includePrivate)
+target_link_libraries(solidParticle PUBLIC lagrangian finiteVolume)

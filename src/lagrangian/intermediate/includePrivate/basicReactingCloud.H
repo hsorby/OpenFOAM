@@ -35,9 +35,9 @@ Description
 #define basicReactingCloud_H
 
 #include "CloudPascal.H"
-#include "KinematicCloud.H"
-#include "ThermoCloud.H"
-#include "ReactingCloud.H"
+#include "KinematicCloudPascal.H"
+#include "ThermoCloudPascal.H"
+#include "ReactingCloudPascal.H"
 #include "basicReactingParcel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

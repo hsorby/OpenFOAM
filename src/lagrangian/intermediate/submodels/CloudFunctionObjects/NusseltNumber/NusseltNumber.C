@@ -26,7 +26,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "NusseltNumber.H"
-#include "ThermoCloud.H"
+#include "ThermoCloudPascal.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 

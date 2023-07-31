@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "SprayCloud.H"
+#include "SprayCloudPascal.H"
 #include "AtomizationModel.H"
 #include "BreakupModel.H"
 

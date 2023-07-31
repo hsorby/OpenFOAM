@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "ReactingMultiphaseCloud.H"
+#include "ReactingMultiphaseCloudPascal.H"
 
 #include "DevolatilisationModel.H"
 #include "SurfaceReactionModel.H"

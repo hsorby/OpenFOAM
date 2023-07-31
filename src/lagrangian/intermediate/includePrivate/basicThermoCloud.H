@@ -34,7 +34,7 @@ Description
 #ifndef basicThermoCloud_H
 #define basicThermoCloud_H
 
-#include "ThermoCloud.H"
+#include "ThermoCloudPascal.H"
 #include "basicThermoParcel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

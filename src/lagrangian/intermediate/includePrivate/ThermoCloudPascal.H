@@ -45,7 +45,7 @@ SourceFiles
 #ifndef ThermoCloud_H
 #define ThermoCloud_H
 
-#include "KinematicCloud.H"
+#include "KinematicCloudPascal.H"
 #include "thermoCloud.H"
 #include "SLGThermo.H"
 

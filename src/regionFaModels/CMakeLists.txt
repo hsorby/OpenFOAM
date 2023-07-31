@@ -31,5 +31,5 @@ set(_FILES
 )
 add_library(regionFaModels ${_FILES})
 target_compile_features(regionFaModels PUBLIC cxx_std_11)
-target_include_directories(regionFaModels PUBLIC include PRIVATE includePrivate liquidFilm/subModels)
+target_include_directories(regionFaModels PUBLIC include includePrivate liquidFilm/subModels)
 target_link_libraries(regionFaModels PUBLIC finiteVolume finiteArea fluidThermophysicalModels faOptions distributionModels thermophysicalProperties compressibleTurbulenceModels incompressibleTurbulenceModels surfaceFilmModels)

@@ -9,4 +9,11 @@ set(_FILES
 )
 add_library(lagrangianTurbulence ${_FILES})
 target_compile_features(lagrangianTurbulence PUBLIC cxx_std_11)
-target_include_directories(lagrangianTurbulence PUBLIC include PRIVATE includePrivate)
+target_include_directories(lagrangianTurbulence PUBLIC include
+    includePrivate
+    submodels/Kinematic/DispersionModel/DispersionRASModel
+    submodels/Kinematic/DispersionModel/GradientDispersionRAS
+    submodels/Kinematic/DispersionModel/StochasticDispersionRAS
+    submodels/Thermodynamic/ParticleForces/BrownianMotion
+)
+target_link_libraries(lagrangianTurbulence PUBLIC lagrangianIntermediate)

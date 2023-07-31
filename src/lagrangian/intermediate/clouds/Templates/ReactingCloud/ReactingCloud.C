@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "ReactingCloud.H"
+#include "ReactingCloudPascal.H"
 #include "CompositionModel.H"
 #include "PhaseChangeModel.H"
 

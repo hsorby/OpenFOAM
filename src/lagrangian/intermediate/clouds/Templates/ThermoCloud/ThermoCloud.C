@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "ThermoCloud.H"
+#include "ThermoCloudPascal.H"
 #include "ThermoParcel.H"
 
 #include "HeatTransferModel.H"

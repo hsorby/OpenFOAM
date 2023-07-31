@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "KinematicCloud.H"
+#include "KinematicCloudPascal.H"
 #include "integrationScheme.H"
 #include "interpolation.H"
 #include "subCycleTime.H"
