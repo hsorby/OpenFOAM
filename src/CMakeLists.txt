@@ -147,7 +147,7 @@ add_subdirectory(regionModels/regionCoupling)
 
 add_subdirectory(faOptions)
 
-#add_subdirectory(regionFaModels)
+add_subdirectory(regionFaModels)
 
 #add_subdirectory(dynamicFaMesh/interfaceTrackingFvMesh)
 #add_subdirectory(rigidBodyDynamics)

@@ -38,7 +38,7 @@ SourceFiles
 #ifndef force_H
 #define force_H
 
-#include "filmSubModelBase.H"
+#include "areaFilmSubModelBase.H"
 #include "runTimeSelectionTables.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

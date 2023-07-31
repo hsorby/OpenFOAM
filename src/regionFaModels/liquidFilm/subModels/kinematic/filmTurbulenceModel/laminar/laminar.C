@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "laminar.H"
+#include "areaLaminar.H"
 #include "addToRunTimeSelectionTable.H"
 
 

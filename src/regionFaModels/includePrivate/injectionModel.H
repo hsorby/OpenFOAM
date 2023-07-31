@@ -39,7 +39,7 @@ SourceFiles
 #ifndef injectionModel_H
 #define injectionModel_H
 
-#include "filmSubModelBase.H"
+#include "areaFilmSubModelBase.H"
 #include "runTimeSelectionTables.H"
 #include "scalarField.H"
 

@@ -42,7 +42,7 @@ SourceFiles
 #include "volFieldsFwd.H"
 #include "liquidFilmBase.H"
 #include "faMesh.H"
-#include "filmTurbulenceModel.H"
+#include "areaFilmTurbulenceModel.H"
 #include "liquidMixtureProperties.H"
 #include "injectionModelList.H"
 #include "faCFD.H"

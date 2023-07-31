@@ -25,7 +25,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "laminar.H"
+#include "surfaceLaminar.H"
 #include "addToRunTimeSelectionTable.H"
 #include "fvMesh.H"
 #include "fvMatrices.H"

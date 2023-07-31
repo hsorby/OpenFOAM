@@ -39,7 +39,7 @@ SourceFiles
 
 #include "PtrList.H"
 #include "injectionModel.H"
-#include "filmSubModelBase.H"
+#include "areaFilmSubModelBase.H"
 #include "scalarField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
