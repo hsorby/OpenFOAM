@@ -29,7 +29,7 @@ License
 #include "wallHeatFlux.H"
 #include "turbulentFluidThermoModel.H"
 #include "solidThermo.H"
-#include "surfaceInterpolate.H"
+#include "surfaceInterpolateCamel.H"
 #include "fvcSnGrad.H"
 #include "wallPolyPatch.H"
 #include "turbulentFluidThermoModel.H"

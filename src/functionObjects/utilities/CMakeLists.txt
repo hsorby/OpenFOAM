@@ -32,4 +32,22 @@ set(_FILES
 )
 add_library(utilityFunctionObjects ${_FILES})
 target_compile_features(utilityFunctionObjects PUBLIC cxx_std_11)
-target_include_directories(utilityFunctionObjects PUBLIC include PRIVATE includePrivate)
+target_include_directories(utilityFunctionObjects
+  PUBLIC
+    include
+    includePrivate
+    runTimeControl/runTimeCondition/equationInitialResidualCondition
+    runTimeControl/runTimeCondition/minMaxCondition
+    solverInfo
+    thermoCoupleProbes
+)
+target_link_libraries(utilityFunctionObjects
+  PUBLIC
+    sampling
+    finiteArea
+    finiteVolume
+    fluidThermophysicalModels
+    compressibleTransportModels
+    ODE
+    conversion
+)

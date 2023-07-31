@@ -21,7 +21,7 @@ Description
 #ifndef ensight_writePointFields_H
 #define ensight_writePointFields_H
 
-#include "readFields.H"
+#include "readFieldsCamel.H"
 #include "ensightMesh.H"
 #include "fvMesh.H"
 

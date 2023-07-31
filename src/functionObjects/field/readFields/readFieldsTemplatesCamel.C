@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "readFields.H"
+#include "readFieldsCamel.H"
 #include "volFields.H"
 #include "surfaceFields.H"
 #include "TimeFoam.H"

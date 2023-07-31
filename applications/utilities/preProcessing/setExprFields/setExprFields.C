@@ -48,7 +48,7 @@ Note
 #include "exprOps.H"
 #include "volumeExprDriver.H"
 #include "timeSelector.H"
-#include "readFields.H"
+#include "readFieldsCamel.H"
 
 
 using namespace Foam;

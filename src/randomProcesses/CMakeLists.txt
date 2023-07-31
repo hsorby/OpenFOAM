@@ -17,7 +17,7 @@ set(_FILES
 )
 add_library(randomProcesses ${_FILES})
 target_compile_features(randomProcesses PUBLIC cxx_std_11)
-target_include_directories(randomProcesses PUBLIC include PRIVATE includePrivate windowModels/windowModel)
+target_include_directories(randomProcesses PUBLIC include includePrivate windowModels/windowModel)
 target_link_libraries(randomProcesses PUBLIC sampling finiteVolume FFTW::DoubleThreads)
 #message(STATUS "FFTW_FOUND: ${FFTW_FOUND}")
 #message(STATUS "FFTW_FLOAT_LIB: ${FFTW_FLOAT_LIB}")

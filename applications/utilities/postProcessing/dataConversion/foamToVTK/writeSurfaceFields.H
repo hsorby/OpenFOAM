@@ -18,7 +18,7 @@ Description
 #ifndef writeSurfaceFields_H
 #define writeSurfaceFields_H
 
-#include "readFields.H"
+#include "readFieldsCamel.H"
 #include "primitivePatch.H"
 #include "foamVtkGenericPatchGeoFieldsWriter.H"
 

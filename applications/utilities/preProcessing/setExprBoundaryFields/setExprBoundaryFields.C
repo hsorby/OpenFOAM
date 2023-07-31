@@ -47,7 +47,7 @@ Note
 #include "pointFields.H"
 #include "patchExprDriver.H"
 #include "timeSelector.H"
-#include "readFields.H"
+#include "readFieldsCamel.H"
 
 using namespace Foam;
 

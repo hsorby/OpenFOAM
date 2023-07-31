@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "surfaceInterpolate.H"
+#include "surfaceInterpolateCamel.H"
 #include "volFields.H"
 #include "linear.H"
 

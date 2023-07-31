@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
         runTime.setTime(timeDirs[timeI], timeI);
         Info<< "Collapsing fields for time " << runTime.timeName() << endl;
 
-        #include "readFields.H"
+        #include "readFieldsCamel.H"
         #include "calculateFields.H"
 
         // Average fields over channel down to a line

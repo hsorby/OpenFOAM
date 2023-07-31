@@ -19,7 +19,7 @@ Description
 #ifndef FoamToVTK_writeVolFields_H
 #define FoamToVTK_writeVolFields_H
 
-#include "readFields.H"
+#include "readFieldsCamel.H"
 #include "foamVtkInternalWriter.H"
 #include "foamVtkPatchWriter.H"
 

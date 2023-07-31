@@ -144,7 +144,7 @@ Note
 #include "stringListOps.H"
 
 #include "Cloud.H"
-#include "readFields.H"
+#include "readFieldsCamel.H"
 #include "reportFields.H"
 
 #include "foamVtmWriter.H"

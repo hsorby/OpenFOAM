@@ -26,7 +26,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "surfaceInterpolate.H"
+#include "surfaceInterpolateCamel.H"
 #include "surfaceFields.H"
 #include "addToRunTimeSelectionTable.H"
 

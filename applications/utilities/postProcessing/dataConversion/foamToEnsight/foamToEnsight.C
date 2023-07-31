@@ -143,7 +143,7 @@ Usage
 #include "ensightOutputVolField.H"
 
 // local files
-#include "readFields.H"
+#include "readFieldsCamel.H"
 #include "writeVolFields.H"
 #include "writeDimFields.H"
 #include "writePointFields.H"

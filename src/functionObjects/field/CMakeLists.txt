@@ -46,7 +46,7 @@ set(_FILES
   wallBoundedStreamLine/wallBoundedStreamLineParticle.C
   wallBoundedStreamLine/wallBoundedStreamLineParticleCloud.C
   wallBoundedStreamLine/wallBoundedParticle.C
-  surfaceInterpolate/surfaceInterpolate.C
+  surfaceInterpolate/surfaceInterpolateCamel.C
   regionSizeDistribution/regionSizeDistribution.C
   histogram/histogram.C
   histogram/histogramModels/histogramModel/histogramModel.C
@@ -122,4 +122,72 @@ set(_FILES
 )
 add_library(fieldFunctionObjects ${_FILES})
 target_compile_features(fieldFunctionObjects PUBLIC cxx_std_11)
-target_include_directories(fieldFunctionObjects PUBLIC include PRIVATE includePrivate)
+target_include_directories(fieldFunctionObjects
+  PUBLIC
+    include
+    includePrivate
+    DMD
+    DMD/DMDModels/derived/STDMD
+    add
+    binField/binModels/binModel
+    binField/binModels/singleDirectionUniformBin
+    binField/binModels/uniformBin
+    blendingFactor
+    columnAverage
+    ddt
+    ddt2
+    div
+    externalCoupled
+    externalCoupled/externalCoupledMixed
+    extractEulerianParticles/eulerianParticle
+    extractEulerianParticles/extractEulerianParticles
+    fieldAverage
+    fieldAverage/fieldAverageItem
+    fieldCoordinateSystemTransform
+    fieldExpression
+    fieldExtents
+    fieldMinMax
+    fieldValues/fieldValue
+    fieldValues/surfaceFieldValue
+    fieldValues/volFieldValue
+    fieldsExpression
+    flux
+    grad
+    limitFields
+    mag
+    magSqr
+    mapFields
+    multiply
+    nearWallFields
+    particleDistribution
+    reactionSensitivityAnalysis
+    readFields
+    reference
+    resolutionIndex/resolutionIndexModels/resolutionIndexModel
+    subtract
+    surfaceInterpolate
+    turbulenceFields
+    wallBoundedStreamLine
+    zeroGradient
+)
+target_link_libraries(fieldFunctionObjects
+  PUBLIC
+    finiteVolume
+    finiteArea
+    sampling
+    lagrangian
+    distributionModels
+    fluidThermophysicalModels
+    compressibleTransportModels
+    incompressibleTransportModels
+    turbulenceModels
+    incompressibleTurbulenceModels
+    compressibleTurbulenceModels
+    turbulenceModelSchemes
+    solidThermo
+    chemistryModel
+    reactionThermophysicalModels
+    pairPatchAgglomeration
+    incompressibleMultiphaseSystems
+    reactingMultiphaseSystem
+)
