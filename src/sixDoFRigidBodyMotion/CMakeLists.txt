@@ -31,4 +31,5 @@ set(_FILES
 )
 add_library(sixDoFRigidBodyMotion ${_FILES})
 target_compile_features(sixDoFRigidBodyMotion PUBLIC cxx_std_11)
-target_include_directories(sixDoFRigidBodyMotion PUBLIC include PRIVATE includePrivate)
+target_include_directories(sixDoFRigidBodyMotion PUBLIC include includePrivate)
+target_link_libraries(sixDoFRigidBodyMotion PUBLIC finiteVolume dynamicMesh dynamicFvMesh forces)

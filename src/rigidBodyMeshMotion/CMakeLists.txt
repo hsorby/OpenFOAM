@@ -5,3 +5,4 @@ set(_FILES
 add_library(rigidBodyMeshMotion ${_FILES})
 target_compile_features(rigidBodyMeshMotion PUBLIC cxx_std_11)
 target_include_directories(rigidBodyMeshMotion PUBLIC include PRIVATE includePrivate)
+target_link_libraries(rigidBodyMeshMotion PUBLIC finiteVolume dynamicMesh rigidBodyDynamics forces)

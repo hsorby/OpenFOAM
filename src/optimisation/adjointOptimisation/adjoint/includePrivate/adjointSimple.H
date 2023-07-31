@@ -48,7 +48,7 @@ Description
 #define adjointSimple_H
 
 #include "incompressibleAdjointSolver.H"
-#include "SIMPLEControl.H"
+#include "SIMPLEControlPascal.H"
 #include "incompressibleVars.H"
 #include "incompressibleAdjointVars.H"
 #include "adjointSensitivityIncompressible.H"

@@ -5,7 +5,7 @@ set(_FILES
 )
 add_library(forces ${_FILES})
 target_compile_features(forces PUBLIC cxx_std_11)
-target_include_directories(forces PUBLIC include PRIVATE includePrivate)
+target_include_directories(forces PUBLIC include includePrivate)
 target_link_libraries(forces
   PUBLIC
     sampling

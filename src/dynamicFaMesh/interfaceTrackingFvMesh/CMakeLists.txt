@@ -9,3 +9,4 @@ set(_FILES
 add_library(interfaceTrackingFvMesh ${_FILES})
 target_compile_features(interfaceTrackingFvMesh PUBLIC cxx_std_11)
 target_include_directories(interfaceTrackingFvMesh PUBLIC include PRIVATE includePrivate)
+target_link_libraries(interfaceTrackingFvMesh PUBLIC dynamicFvMesh finiteArea fvMotionSolvers incompressibleTurbulenceModels incompressibleTransportModels)

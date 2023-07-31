@@ -46,4 +46,5 @@ set(_FILES
 )
 add_library(rigidBodyDynamics ${_FILES})
 target_compile_features(rigidBodyDynamics PUBLIC cxx_std_11)
-target_include_directories(rigidBodyDynamics PUBLIC include PRIVATE includePrivate)
+target_include_directories(rigidBodyDynamics PUBLIC include includePrivate)
+target_link_libraries(rigidBodyDynamics PUBLIC OpenFOAM)

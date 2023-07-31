@@ -138,4 +138,19 @@ set(_FILES
 )
 add_library(adjointOptimisation ${_FILES})
 target_compile_features(adjointOptimisation PUBLIC cxx_std_11)
-target_include_directories(adjointOptimisation PUBLIC include PRIVATE includePrivate)
+target_include_directories(adjointOptimisation PUBLIC include
+  PRIVATE
+    includePrivate
+    ATCModel/ATCModel
+    adjointBoundaryConditions/adjointBoundaryCondition
+    adjointBoundaryConditions/adjointZeroInlet
+    boundaryAdjointContributions/boundaryAdjointContributionIncompressible
+    deltaBoundary
+    interpolation/pointVolInterpolation
+    optimisation/adjointSensitivity/shapeSensitivitiesBase
+    solvers/solver
+    solvers/variablesSet/variablesSet
+    turbulenceModels/incompressibleAdjoint/adjointRAS/adjointkOmegaSST
+    turbulenceModels/incompressibleAdjoint/adjointRAS/derivedFvPatchFields/adjointOutletFlux
+)
+target_link_libraries(adjointOptimisation PUBLIC finiteArea finiteVolume fvMotionSolvers sampling dynamicMesh solidThermo fvOptions incompressibleTurbulenceModels compressibleTurbulenceModels fluidThermophysicalModels)

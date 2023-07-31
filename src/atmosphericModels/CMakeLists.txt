@@ -26,4 +26,15 @@ set(_FILES
 )
 add_library(atmosphericModels ${_FILES})
 target_compile_features(atmosphericModels PUBLIC cxx_std_11)
-target_include_directories(atmosphericModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(atmosphericModels PUBLIC include
+  PRIVATE
+    includePrivate
+    fvOptions/atmAmbientTurbSource
+    fvOptions/atmBuoyancyTurbSource
+    fvOptions/atmLengthScaleTurbSource
+    fvOptions/atmPlantCanopyTurbSource
+    porosityModels/powerLawLopesdaCosta
+    turbulenceModels/RAS/kEpsilonLopesdaCosta
+    turbulenceModels/RAS/kL
+)
+target_link_libraries(atmosphericModels PUBLIC finiteVolume dynamicMesh solidThermo fvOptions incompressibleTurbulenceModels compressibleTurbulenceModels fluidThermophysicalModels)

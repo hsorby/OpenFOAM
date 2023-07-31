@@ -38,7 +38,7 @@ Description
 #ifndef SIMPLEControlOpt_H
 #define SIMPLEControlOpt_H
 
-#include "SIMPLEControl.H"
+#include "SIMPLEControlPascal.H"
 #include "subCycleTime.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
