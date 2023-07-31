@@ -34,11 +34,11 @@ SourceFiles
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef forceList_H
-#define forceList_H
+#ifndef regionFaModels_forceList_H
+#define regionFaModels_forceList_H
 
 #include "PtrList.H"
-#include "force.H"
+#include "areaForce.H"
 #include "faCFD.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

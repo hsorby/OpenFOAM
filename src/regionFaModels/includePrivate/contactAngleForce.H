@@ -109,7 +109,7 @@ SourceFiles
 #ifndef areaSurfaceFilmModels_contactAngleForce_H
 #define areaSurfaceFilmModels_contactAngleForce_H
 
-#include "force.H"
+#include "areaForce.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

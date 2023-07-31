@@ -46,7 +46,7 @@ SourceFiles
 #include "liquidMixtureProperties.H"
 #include "injectionModelList.H"
 #include "faCFD.H"
-#include "forceList.H"
+#include "areaForceList.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

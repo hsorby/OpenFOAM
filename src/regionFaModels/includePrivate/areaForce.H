@@ -35,8 +35,8 @@ SourceFiles
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef force_H
-#define force_H
+#ifndef regionFaModels_force_H
+#define regionFaModels_force_H
 
 #include "areaFilmSubModelBase.H"
 #include "runTimeSelectionTables.H"
