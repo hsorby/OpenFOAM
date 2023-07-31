@@ -20,4 +20,15 @@ set(_FILES
 )
 add_library(thermoTools ${_FILES})
 target_compile_features(thermoTools PUBLIC cxx_std_11)
-target_include_directories(thermoTools PUBLIC include PRIVATE includePrivate)
+target_include_directories(thermoTools PUBLIC include includePrivate derivedFvPatchFields/thermalBaffle1D)
+target_link_libraries(thermoTools
+  PUBLIC
+    compressibleTransportModels
+    finiteVolume
+    solidThermo
+    turbulenceModels
+    compressibleTurbulenceModels
+    reactionThermophysicalModels
+    incompressibleMultiphaseSystems
+    radiationModels
+)

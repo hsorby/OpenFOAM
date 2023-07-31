@@ -9,4 +9,5 @@ set(_FILES
 )
 add_library(regionModels ${_FILES})
 target_compile_features(regionModels PUBLIC cxx_std_11)
-target_include_directories(regionModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(regionModels PUBLIC include includePrivate regionModel singleLayerRegion)
+target_link_libraries(regionModels PUBLIC finiteVolume distributed fluidThermophysicalModels reactionThermophysicalModels solidThermo)

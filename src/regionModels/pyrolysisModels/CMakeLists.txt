@@ -8,4 +8,5 @@ set(_FILES
 )
 add_library(pyrolysisModels ${_FILES})
 target_compile_features(pyrolysisModels PUBLIC cxx_std_11)
-target_include_directories(pyrolysisModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(pyrolysisModels PUBLIC include includePrivate)
+target_link_libraries(pyrolysisModels PUBLIC radiationModels regionModels solidChemistryModel distributionModels)

@@ -13,4 +13,5 @@ set(_FILES
 )
 add_library(faOptions ${_FILES})
 target_compile_features(faOptions PUBLIC cxx_std_11)
-target_include_directories(faOptions PUBLIC include PRIVATE includePrivate)
+target_include_directories(faOptions PUBLIC include PRIVATE includePrivate faOption sources/derived/jouleHeatingSource)
+target_link_libraries(faOptions PUBLIC finiteVolume finiteArea sampling incompressibleTurbulenceModels compressibleTurbulenceModels thermoTools)

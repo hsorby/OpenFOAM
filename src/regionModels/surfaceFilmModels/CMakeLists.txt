@@ -62,4 +62,5 @@ set(_FILES
 )
 add_library(surfaceFilmModels ${_FILES})
 target_compile_features(surfaceFilmModels PUBLIC cxx_std_11)
-target_include_directories(surfaceFilmModels PUBLIC include PRIVATE includePrivate)
+target_include_directories(surfaceFilmModels PUBLIC include includePrivate submodels kinematicSingleLayer)
+target_link_libraries(surfaceFilmModels PUBLIC regionModels SLGThermo distributionModels turbulenceModels)

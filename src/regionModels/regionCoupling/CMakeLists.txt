@@ -6,3 +6,4 @@ set(_FILES
 add_library(regionCoupling ${_FILES})
 target_compile_features(regionCoupling PUBLIC cxx_std_11)
 target_include_directories(regionCoupling PUBLIC include PRIVATE includePrivate)
+target_link_libraries(regionCoupling PUBLIC pyrolysisModels surfaceFilmModels thermoTools)
