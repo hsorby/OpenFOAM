@@ -1,8 +1,7 @@
 
-
 cmake_minimum_required(VERSION 3.18.0)
 
-set(CMAKE_OSX_DEPLOYMENT_TARGET 10.14 CACHE STRING "Minimum OS X deployment version.")
+set(CMAKE_OSX_DEPLOYMENT_TARGET 13 CACHE STRING "Minimum OS X deployment version.")
 
 set(PROJECT_NAME OpenFOAM)
 set(_PROJECT_VERSION 10.0.0)
