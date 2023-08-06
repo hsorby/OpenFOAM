@@ -21,6 +21,7 @@ find_package(ZLIB REQUIRED)
 find_package(FLEX REQUIRED)
 find_package(RAGEL REQUIRED)
 find_package(FFTW REQUIRED)
+find_package(MPI)
 
 add_subdirectory(cmakemodules/lemon)
 

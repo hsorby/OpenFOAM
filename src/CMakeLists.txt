@@ -10,8 +10,11 @@ endif()
 
 add_subdirectory(OpenFOAM)
 
-add_subdirectory(Pstream/dummy)
-#add_subdirectory(Pstream/mpi)
+if (MPI_FOUND)
+  add_subdirectory(Pstream/mpi)
+else()
+  add_subdirectory(Pstream/dummy)
+endif()
 
 
 add_subdirectory(fileFormats)
