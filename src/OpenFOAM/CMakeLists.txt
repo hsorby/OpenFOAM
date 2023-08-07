@@ -826,7 +826,9 @@ target_include_directories(OpenFOAM PUBLIC
   db/IOobjects/GlobalIOList
   meshes/primitiveShapes/triangle
 )
+target_compile_definitions(OpenFOAM PUBLIC WM_LABEL_SIZE=${WM_LABEL_SIZE} WM_${WM_PRECISION})
 target_link_libraries(OpenFOAM PUBLIC OSspecific Pstream ZLIB::ZLIB)
 if (BUILD_SHARED_LIBS)
   target_link_options(OpenFOAM PUBLIC -undefined dynamic_lookup)
 endif()
+install(TARGETS OpenFOAM DESTINATION ${CMAKE_INSTALL_LIBDIR}/openfoam EXPORT openfoam-targets)

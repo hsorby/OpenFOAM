@@ -209,7 +209,9 @@ Foam::functionEntries::codeStream::getFunction
         }
         else
         {
+            DetailInfo << "dlOpen: " << libPath << nl;
             lib = Foam::dlOpen(libPath, false);
+            DetailInfo << "Success??" << nl;
         }
     }
 
@@ -225,6 +227,7 @@ Foam::functionEntries::codeStream::getFunction
     }
 
 
+    DetailInfo << "dlSym: " << dynCode.codeName() << nl;
     // Find the function handle in the library
     streamingFunctionType function =
         reinterpret_cast<streamingFunctionType>
@@ -232,6 +235,9 @@ Foam::functionEntries::codeStream::getFunction
             Foam::dlSym(lib, dynCode.codeName())
         );
 
+
+    DetailInfo << "Success:" << nl;
+    DetailInfo << function << nl;
 
     if (!function)
     {
@@ -268,7 +274,10 @@ Foam::string Foam::functionEntries::codeStream::evaluate
     OStringStream os(is.format());
 
     streamingFunctionType function = getFunction(parentDict, codeDict);
+    DetailInfo << "got function: " << function << nl;
+    printf("%p\n", function);
     (*function)(os, parentDict);
+    DetailInfo << "called it!!!!! " << nl;
 
     // Return evaluated content as string
     return os.str();

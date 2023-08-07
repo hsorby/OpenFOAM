@@ -121,7 +121,7 @@ protected:
         );
 
         //- Write SHA1 value as C-comment
-        bool writeCommentSHA1(Ostream&) const;
+        bool writeCommentSHA1(Ostream&, bool) const;
 
         //- Copy/create Make/files prior to compilation
         bool createMakeFiles() const;

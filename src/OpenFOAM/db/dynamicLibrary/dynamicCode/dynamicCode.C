@@ -180,14 +180,25 @@ bool Foam::dynamicCode::resolveTemplates
 }
 
 
-bool Foam::dynamicCode::writeCommentSHA1(Ostream& os) const
+bool Foam::dynamicCode::writeCommentSHA1(Ostream& os, bool cmake) const
 {
     const auto iter = filterVars_.cfind("SHA1sum");
 
+    const std::string lineComment = "# ";
+
     if (iter.good())
     {
-        os  << "/* dynamicCode:\n * SHA1 = ";
-        os.writeQuoted(iter.val(), false) << "\n */\n";
+        if (cmake)
+        {
+            os << "# dynamicCode:" << nl;
+            os << "# SHA1 = ";
+            os.writeQuoted(iter.val(), false) << nl;
+        }
+        else
+        {
+            os  << "/* dynamicCode:\n * SHA1 = ";
+            os.writeQuoted(iter.val(), false) << "\n */\n";
+        }
     }
 
     return iter.good();
@@ -203,11 +214,14 @@ bool Foam::dynamicCode::createMakeFiles() const
     }
 
     const fileName dstFile(this->codePath()/"Make/files");
+    const fileName cmakeFile(this->codePath()/"CMakeLists.txt");
 
     // Create dir
     mkDir(dstFile.path());
 
     OFstream os(dstFile);
+    OFstream cm(cmakeFile);
+
     //Debug: Info<< "Writing to " << dstFile << endl;
     if (!os.good())
     {
@@ -216,17 +230,29 @@ bool Foam::dynamicCode::createMakeFiles() const
             << exit(FatalError);
     }
 
-    writeCommentSHA1(os);
+    writeCommentSHA1(os, false);
+    writeCommentSHA1(cm, true);
+
+    cm << "cmake_minimum_required(VERSION 3.18)" << nl;
+    cm << "project(dynamicCode VERSION 1.0.0 LANGUAGES C CXX)" << nl;
+    cm << "find_package(OpenFOAM)" << nl << nl;
 
     // Write compile files
+    cm << "set(_FILES" << nl;
     for (const fileName& file : compileFiles_)
     {
+        std::cout << "file name? " << file << std::endl;
         os.writeQuoted(file, false) << nl;
+        cm.writeQuoted(file, false) << nl;
     }
+    cm << ")" << nl;
 
     os  << nl
         << targetLibDir
         << "/lib" << codeName_.c_str() << nl;
+    cm << nl
+       << "add_library(" << codeName_.c_str() << " SHARED ${_FILES})" << nl;
+    cm << "target_link_libraries(" << codeName_.c_str() << " PUBLIC OpenFOAM::OpenFOAM)" << nl;
 
     return true;
 }
@@ -254,7 +280,7 @@ bool Foam::dynamicCode::createMakeOptions() const
             << exit(FatalError);
     }
 
-    writeCommentSHA1(os);
+    writeCommentSHA1(os, false);
     os.writeQuoted(makeOptions_, false) << nl;
 
     return true;
@@ -495,6 +521,8 @@ bool Foam::dynamicCode::copyOrCreateFiles(const bool verbose) const
 bool Foam::dynamicCode::wmakeLibso() const
 {
     stringList cmd({"wmake", "-s", "libso", this->codePath()});
+    const fileName buildDir = this->codeRoot()/this->libSubDir();
+    stringList cfgCmd({"cmake", "-S", this->codePath(), "-B", buildDir, "-D", stringOps::expand("CMAKE_PREFIX_PATH=${WM_BUILD_DIR}")});
 
     // NOTE: could also resolve wmake command explicitly
     //   cmd[0] = stringOps::expand("$WM_PROJECT_DIR/wmake/wmake");
@@ -503,11 +531,30 @@ bool Foam::dynamicCode::wmakeLibso() const
     // Even with details turned off, we want some feedback
 
     OSstream& os = (Foam::infoDetailLevel > 0 ? Info : InfoErr);
-    os  << "Invoking wmake libso " << this->codePath().c_str() << endl;
+    os << "Invoking cmake " << this->codePath() << nl;
+    os << this->codeRoot() << nl;
+    os << this->libPath() << nl;
+    os << "build dir: " << buildDir << nl;
+    os << this->libSubDir() << nl;
+    os << stringOps::expand("CMAKE_PREFIX_PATH=${WM_BUILD_DIR}") << nl;
 
-    if (Foam::system(cmd) == 0)
+    if (Foam::system(cfgCmd) == 0)
     {
-        return true;
+        os << "Invoking make ..." << nl;
+        stringList buildCmd({"cmake", "--build", buildDir});
+        if (Foam::system(buildCmd) == 0)
+        {
+            return true;
+        }
+    }
+    else
+    {
+        os  << "Invoking wmake libso " << this->codePath().c_str() << endl;
+
+        if (Foam::system(cmd) == 0)
+        {
+            return true;
+        }
     }
 
     return false;

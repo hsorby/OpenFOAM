@@ -205,8 +205,7 @@ Description
         (                                                                      \
             const ::Foam::word& k = baseType##Type::typeName                   \
         )                                                                      \
-        {   \
-        printf("here %s:\n", k.c_str());                                                         \
+        {                                                                      \
             argNames##ConstructorTablePtr_construct(true);                     \
             if (!argNames##ConstructorTablePtr_->insert(k, New))               \
             {                                                                  \
