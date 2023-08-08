@@ -175,6 +175,15 @@ Foam::functionEntries::codeStream::getFunction
           + context.libs()
         );
 
+        if (!context.libs().empty())
+        {
+            FatalIOErrorInFunction(parentDict)
+                << "Context libs not passed to CMake build." << nl
+                << dynCode.libRelPath() << nl
+                << context.libs() << nl
+                << exit(FatalIOError);
+        }
+
         if (!dynCode.copyOrCreateFiles(true))
         {
             FatalIOErrorInFunction(parentDict)

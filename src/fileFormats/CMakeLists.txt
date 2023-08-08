@@ -70,7 +70,6 @@ RAGEL_TARGET(RagelScanner stl/STLAsciiParseRagel.rl "${_RAGEL_FILE}")
 add_library(fileFormats ${_FILES} ${_INTERFACE_FILES} ${_RAGEL_FILE})
 target_compile_features(fileFormats PUBLIC cxx_std_11)
 target_include_directories(fileFormats PUBLIC
-  include
   includePrivate
   ensight/file
   ensight/output
@@ -83,3 +82,4 @@ target_include_directories(fileFormats PUBLIC
   vtk/write
 )
 target_link_libraries(fileFormats PUBLIC OpenFOAM)
+install(TARGETS fileFormats DESTINATION ${CMAKE_INSTALL_LIBDIR}/openfoam EXPORT openfoam-targets)

@@ -109,6 +109,19 @@ void Foam::codedPoints0MotionSolver::prepare
         "    -lfvMotionSolvers \\\n"
       + context.libs()
     );
+
+    dynCode.setLinkLibraries(
+     " OpenFOAM::finiteVolume OpenFOAM::meshTools OpenFOAM::dynamicMesh OpenFOAM::fvMotionSolvers"
+    );
+
+    if (!context.libs().empty())
+    {
+        FatalIOErrorInFunction(codeDict())
+            << "Context libs not passed to CMake build." << nl
+            << dynCode.libRelPath() << nl
+            << context.libs() << nl
+            << exit(FatalIOError);
+    }
 }
 
 

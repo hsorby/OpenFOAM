@@ -426,7 +426,6 @@ set(_FILES
 add_library(finiteVolume ${_FILES})
 target_compile_features(finiteVolume PUBLIC cxx_std_11)
 target_include_directories(finiteVolume PUBLIC
-  include
   includePrivate
   cfdTools/general/CorrectPhi
   cfdTools/general/MRF
@@ -601,3 +600,4 @@ target_include_directories(finiteVolume PUBLIC
   expressions/fields/pointPatchFields
 )
 target_link_libraries(finiteVolume PUBLIC OpenFOAM fileFormats meshTools)
+install(TARGETS finiteVolume DESTINATION ${CMAKE_INSTALL_LIBDIR}/openfoam EXPORT openfoam-targets)

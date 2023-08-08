@@ -67,7 +67,6 @@ set(_FILES
 add_library(surfMesh ${_FILES})
 target_compile_features(surfMesh PUBLIC cxx_std_11)
 target_include_directories(surfMesh PUBLIC
-  include
   includePrivate
   MeshedSurface
   MeshedSurfaceProxy
@@ -92,3 +91,4 @@ target_include_directories(surfMesh PUBLIC
   surfaceFormats/fire
 )
 target_link_libraries(surfMesh PUBLIC OpenFOAM fileFormats)
+install(TARGETS surfMesh DESTINATION ${CMAKE_INSTALL_LIBDIR}/openfoam EXPORT openfoam-targets)

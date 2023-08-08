@@ -89,6 +89,8 @@ class dynamicCode
         //- Contents for Make/options
         std::string makeOptions_;
 
+        std::string linkLibraries_;
+
 
 protected:
 
@@ -249,6 +251,7 @@ public:
         //- Define contents for Make/options
         void setMakeOptions(const std::string& content);
 
+        void setLinkLibraries(const std::string& content);
 
         //- Verify if the copied code is up-to-date, based on Make/SHA1Digest
         bool upToDate(const dynamicCodeContext& context) const;

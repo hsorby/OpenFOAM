@@ -241,7 +241,6 @@ bool Foam::dynamicCode::createMakeFiles() const
     cm << "set(_FILES" << nl;
     for (const fileName& file : compileFiles_)
     {
-        std::cout << "file name? " << file << std::endl;
         os.writeQuoted(file, false) << nl;
         cm.writeQuoted(file, false) << nl;
     }
@@ -251,8 +250,10 @@ bool Foam::dynamicCode::createMakeFiles() const
         << targetLibDir
         << "/lib" << codeName_.c_str() << nl;
     cm << nl
-       << "add_library(" << codeName_.c_str() << " SHARED ${_FILES})" << nl;
-    cm << "target_link_libraries(" << codeName_.c_str() << " PUBLIC OpenFOAM::OpenFOAM)" << nl;
+       << "add_library(" << codeName_ << " SHARED ${_FILES})" << nl;
+
+    cm << "target_link_libraries(" << codeName_ << " PUBLIC";
+    cm.writeQuoted(linkLibraries_, false) << ")" << nl;
 
     return true;
 }
@@ -363,6 +364,7 @@ void Foam::dynamicCode::clear()
     makeOptions_ =
         "EXE_INC = -g\n"
         "\n\nLIB_LIBS = ";
+    linkLibraries_ = " OpenFOAM::OpenFOAM";
 }
 
 
@@ -423,6 +425,11 @@ void Foam::dynamicCode::setFilterVariable
 void Foam::dynamicCode::setMakeOptions(const std::string& content)
 {
     makeOptions_ = content;
+}
+
+void Foam::dynamicCode::setLinkLibraries(const std::string& content)
+{
+    linkLibraries_ = content;
 }
 
 
@@ -522,7 +529,7 @@ bool Foam::dynamicCode::wmakeLibso() const
 {
     stringList cmd({"wmake", "-s", "libso", this->codePath()});
     const fileName buildDir = this->codeRoot()/this->libSubDir();
-    stringList cfgCmd({"cmake", "-S", this->codePath(), "-B", buildDir, "-D", stringOps::expand("CMAKE_PREFIX_PATH=${WM_BUILD_DIR}")});
+    stringList cfgCmd({"cmake", "--fresh", "-S", this->codePath(), "-B", buildDir, "-D", stringOps::expand("CMAKE_PREFIX_PATH=${WM_BUILD_DIR}")});
 
     // NOTE: could also resolve wmake command explicitly
     //   cmd[0] = stringOps::expand("$WM_PROJECT_DIR/wmake/wmake");

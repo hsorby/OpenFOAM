@@ -126,6 +126,20 @@ void Foam::functionObjects::codedFunctionObject::prepare
         "    -lmeshTools \\\n"
       + context.libs()
     );
+
+    dynCode.setLinkLibraries(
+     " OpenFOAM::finiteVolume OpenFOAM::meshTools"
+    );
+
+    if (!context.libs().empty())
+    {
+        FatalIOErrorInFunction(codeDict())
+            << "Context libs not passed to CMake build." << nl
+            << dynCode.libRelPath() << nl
+            << context.libs() << nl
+            << exit(FatalIOError);
+    }
+
 }
 
 
