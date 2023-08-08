@@ -1,6 +1,7 @@
 set(_FILES
-  mhdFoam.C
+  potentialFoam.C
 )
-add_executable(mhdFoam ${_FILES})
-target_compile_features(mhdFoam PUBLIC cxx_std_11)
-target_link_libraries(mhdFoam PUBLIC finiteVolume)
+add_executable(potentialFoam ${_FILES})
+target_include_directories(potentialFoam PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_features(potentialFoam PUBLIC cxx_std_11)
+target_link_libraries(potentialFoam PUBLIC finiteVolume meshTools)
