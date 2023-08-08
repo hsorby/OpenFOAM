@@ -66,7 +66,7 @@ target_include_directories(OSspecific
     ${OPENFOAM_SRC_DIR}/OpenFOAM/db/functionObjects/functionObjectProperties
 )
 #target_link_libraries(OSspecific PUBLIC OpenFOAM)
-target_compile_definitions(OSspecific PRIVATE WM_LABEL_SIZE=${WM_LABEL_SIZE} WM_${WM_PRECISION})
+target_compile_definitions(OSspecific PRIVATE WM_LABEL_SIZE=${WM_LABEL_SIZE} WM_${WM_PRECISION} NoRepository OPENFOAM=2306)
 if (BUILD_SHARED_LIBS)
   target_link_options(OSspecific PUBLIC -undefined dynamic_lookup)
 endif()

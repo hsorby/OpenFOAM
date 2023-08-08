@@ -19,8 +19,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(WM_LABEL_SIZE 32)
 set(WM_PRECISION DP)
 
-add_compile_definitions(NoRepository OPENFOAM=2306)
-
 find_package(SCOTCH REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(FLEX REQUIRED)

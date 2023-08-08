@@ -59,7 +59,7 @@ target_include_directories(Pstream
     ${OPENFOAM_SRC_DIR}/OpenFOAM/db/functionObjects/functionObjectProperties
 )
 target_link_libraries(Pstream PUBLIC OSspecific MPI::MPI_CXX)
-target_compile_definitions(Pstream PRIVATE WM_LABEL_SIZE=${WM_LABEL_SIZE} WM_${WM_PRECISION})
+target_compile_definitions(Pstream PRIVATE WM_LABEL_SIZE=${WM_LABEL_SIZE} WM_${WM_PRECISION} NoRepository OPENFOAM=2306)
 if (BUILD_SHARED_LIBS)
   target_link_options(Pstream PUBLIC -undefined dynamic_lookup)
 endif()
