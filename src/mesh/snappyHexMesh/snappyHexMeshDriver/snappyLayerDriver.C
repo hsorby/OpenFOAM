@@ -4676,6 +4676,12 @@ void Foam::snappyLayerDriver::mergePatchFacesUndo
     );
 
     nChanged += meshRefiner_.mergeEdgesUndo(minCos, motionDict);
+
+    if (nChanged)
+    {
+        Info << nl
+             << "Changed: " << nChanged << nl;
+    }
 }
 
 
