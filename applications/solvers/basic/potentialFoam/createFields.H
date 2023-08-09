@@ -93,7 +93,7 @@ volScalarField Phi
 (
     IOobject
     (
-        "Phi",
+        "PhiVel",
         runTime.timeName(),
         mesh,
         IOobject::READ_IF_PRESENT,
