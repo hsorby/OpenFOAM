@@ -18,7 +18,10 @@ set(_FILES
   derivedFvPatchFields/boundarySourcePatch/boundarySourcePatch.C
   functionObjects/moleFractions/moleFractionsFunctionObjects.C
 )
-add_library(reactionThermophysicalModels ${_FILES})
+set(_INTERFACE_FILES ${CMAKE_CURRENT_BINARY_DIR}/chemkinLexer.C)
+FLEX_TARGET(ChemistryScanner chemistryReaders/chemkinReader/chemkinLexer.L "${_INTERFACE_FILES}" COMPILE_FLAGS --c++)
+
+add_library(reactionThermophysicalModels ${_FILES} ${_INTERFACE_FILES})
 target_compile_features(reactionThermophysicalModels PUBLIC cxx_std_11)
 target_include_directories(reactionThermophysicalModels
   PUBLIC

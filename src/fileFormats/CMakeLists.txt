@@ -62,7 +62,7 @@ set(_FILES
   vtk/write/foamVtkSurfaceWriter.C
 )
 set(_INTERFACE_FILES ${CMAKE_CURRENT_BINARY_DIR}/STLAsciiParseFlex.C)
-FLEX_TARGET(MyScanner stl/STLAsciiParseFlex.L "${_INTERFACE_FILES}" COMPILE_FLAGS --c++)
+FLEX_TARGET(STLAsciiScanner stl/STLAsciiParseFlex.L "${_INTERFACE_FILES}" COMPILE_FLAGS --c++)
 
 set(_RAGEL_FILE ${CMAKE_CURRENT_BINARY_DIR}/STLAsciiParseRagel.C)
 RAGEL_TARGET(RagelScanner stl/STLAsciiParseRagel.rl "${_RAGEL_FILE}")
