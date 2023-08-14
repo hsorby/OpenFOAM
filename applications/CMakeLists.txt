@@ -1,5 +1,6 @@
 add_subdirectory(utilities/mesh/generation/blockMesh)
 add_subdirectory(utilities/postProcessing/postProcess)
+add_subdirectory(utilities/preProcessing/setFields)
 add_subdirectory(solvers/basic/potentialFoam)
 add_subdirectory(solvers/electromagnetics/mhdFoam)
 add_subdirectory(solvers/incompressible/icoFoam)
