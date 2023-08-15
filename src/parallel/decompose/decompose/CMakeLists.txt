@@ -11,5 +11,5 @@ set(_FILES
 )
 add_library(decompose ${_FILES})
 target_compile_features(decompose PUBLIC cxx_std_11)
-target_include_directories(decompose PUBLIC include ${CMAKE_CURRENT_SOURCE_DIR} PRIVATE includePrivate)
+target_include_directories(decompose PUBLIC include ${CMAKE_CURRENT_SOURCE_DIR} includePrivate)
 target_link_libraries(decompose PUBLIC lagrangian meshTools finiteVolume dynamicMesh decompositionMethods)
