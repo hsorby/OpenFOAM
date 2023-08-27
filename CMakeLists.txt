@@ -73,11 +73,13 @@ if (APPLE)
   set(_MACOS_PREFIX DY)
 endif()
 
+set(_ENV_SETTINGS "
+export WM_PROJECT_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+export WM_OPTIONS=${WM_OPTIONS}
+export WM_BUILD_DIR=${CMAKE_CURRENT_BINARY_DIR}
+export ${_MACOS_PREFIX}LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+")
 message("")
 message("Environment settings for this build of OpenFOAM:")
-message("")
-message("export WM_PROJECT_DIR=${CMAKE_CURRENT_SOURCE_DIR}")
-message("export WM_OPTIONS=${WM_OPTIONS}")
-message("export WM_BUILD_DIR=${CMAKE_CURRENT_BINARY_DIR}")
-message("export ${_MACOS_PREFIX}LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
-message("")
+message(${_ENV_SETTINGS})
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmakemodules/openfoam-env.sh ${CMAKE_CURRENT_BINARY_DIR}/openfoam-env.sh)
