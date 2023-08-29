@@ -655,6 +655,7 @@ target_include_directories(OpenFOAM PUBLIC
   db/functionObjects/stateFunctionObject
   db/functionObjects/valueAverageBase
   db/functionObjects/writeFile
+  db/IOstreams/gzstream
   db/objectRegistry
   dimensionedTypes/dimensionedMinMax
   dimensionedTypes/dimensionedType
