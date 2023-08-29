@@ -1,3 +1,4 @@
+add_subdirectory(utilities/mesh/manipulation/checkMesh)
 add_subdirectory(utilities/mesh/generation/blockMesh)
 add_subdirectory(utilities/mesh/generation/snappyHexMesh)
 add_subdirectory(utilities/parallelProcessing/decomposePar)
