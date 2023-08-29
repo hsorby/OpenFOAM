@@ -1,4 +1,5 @@
 add_subdirectory(utilities/mesh/generation/blockMesh)
+add_subdirectory(utilities/mesh/generation/snappyHexMesh)
 add_subdirectory(utilities/parallelProcessing/decomposePar)
 add_subdirectory(utilities/postProcessing/postProcess)
 add_subdirectory(utilities/preProcessing/setFields)

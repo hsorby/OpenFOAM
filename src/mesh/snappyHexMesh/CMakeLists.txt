@@ -31,9 +31,9 @@ set(_FILES
   externalDisplacementMeshMover/zeroFixedValue/zeroFixedValuePointPatchFields.C
   externalDisplacementMeshMover/fieldSmoother/fieldSmoother.C
 )
-add_library(snappyHexMesh ${_FILES})
-target_compile_features(snappyHexMesh PUBLIC cxx_std_11)
-target_include_directories(snappyHexMesh
+add_library(snappyHexMeshLib ${_FILES})
+target_compile_features(snappyHexMeshLib PUBLIC cxx_std_11)
+target_include_directories(snappyHexMeshLib
   PUBLIC
     include
     includePrivate
@@ -42,4 +42,5 @@ target_include_directories(snappyHexMesh
     meshRefinement
     snappyHexMeshDriver
 )
-target_link_libraries(snappyHexMesh PUBLIC overset distributed)
+target_link_libraries(snappyHexMeshLib PUBLIC overset distributed)
+set_target_properties(snappyHexMeshLib PROPERTIES OUTPUT_NAME snappyHexMesh)
