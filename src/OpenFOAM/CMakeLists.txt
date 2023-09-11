@@ -592,6 +592,8 @@ set(_FILES
   meshes/data/data.C
 )
 
+set_source_files_properties(db/IOstreams/Fstreams/fstreamPointers.C db/IOstreams/gzstream/gzstream.C PROPERTIES COMPILE_DEFINITIONS HAVE_LIBZ)
+
 get_target_property(_lemon_template lemon LEMON_TEMPLATE)
 set(_some_output fieldExprLemonParser.C)
 set(_some_output ${CMAKE_CURRENT_BINARY_DIR}/fieldExprLemonParser.C)
