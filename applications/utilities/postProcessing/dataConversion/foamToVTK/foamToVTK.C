@@ -143,8 +143,8 @@ Note
 #include "regionProperties.H"
 #include "stringListOps.H"
 
-#include "Cloud.H"
-#include "readFieldsCamel.H"
+#include "CloudPascal.H"
+#include "readFields.H"
 #include "reportFields.H"
 
 #include "foamVtmWriter.H"

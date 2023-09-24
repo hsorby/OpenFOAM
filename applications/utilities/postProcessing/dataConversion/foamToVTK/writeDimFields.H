@@ -19,7 +19,7 @@ Description
 #ifndef FoamToVTK_writeDimFields_H
 #define FoamToVTK_writeDimFields_H
 
-#include "readFieldsCamel.H"
+#include "readFields.H"
 #include "foamVtkInternalWriter.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
