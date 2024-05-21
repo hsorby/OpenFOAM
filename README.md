@@ -1,3 +1,7 @@
+# Superseded
+
+Further work on building OpenFOAM with CMake has been continued in [this repository](https://github.com/openfoamdotcom/openfoam).
+
 ## About OpenFOAM
 OpenFOAM is a free, open source CFD software [released and developed by OpenCFD Ltd since 2004](http://www.openfoam.com/history/).
 It has a large user base across most areas of engineering and science, from both commercial and academic organisations.
